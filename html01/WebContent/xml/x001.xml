@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 주석: XML Parser(XML 문서를 해석하는 프로그램)에게 무시할 것을 요구 
+1. XML 목적
+- 데이터를 구조화 해서 텍스트로 표현
+- 구조화를 하면, 데이터를 추출하기가 쉽다.  
+- 데이터에 태그를 붙인다.
+
+2. XML 문서의 활용
+- 애플리케이션 끼리 데이터 교환
+ 
+-->
+<students>
+  <student>
+    <name>홍길동</name>
+    <age>21</age>
+    <address>성북구</address>
+    <tel>010-1111</tel>
+  </student>
+  <student>
+    <name>임꺽정</name>
+    <age>26</age>
+    <address>아산시</address>
+    <tel>010-2222</tel>
+  </student>  
+</students>
+
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spms>
+  <members>
+    <member>
+      <email></email>
+      <name></name>
+      <tel></tel>
+      <photo></photo>
+    </member>
+    <member>
+      <email></email>
+      <name></name>
+      <tel></tel>
+      <photo></photo>
+    </member>
+    <member>
+      <email></email>
+      <name></name>
+      <tel></tel>
+      <photo></photo>
+    </member>
+  </members>
+  <projects>
+    <project>
+      <title></title>
+      <owner-email></owner-email>
+      <description></description>
+      <start-date></start-date>
+      <end-date></end-date>
+      <status></status>
+      <participants>
+        <email></email>
+        <email></email>
+        <email></email>
+      </participants>
+      <tasks>
+        <task>
+          <title></title>
+          <owner-email></owner-email>
+          <status>준비</status>
+        </task>
+        <task>
+          <title></title>
+          <owner-email></owner-email>
+          <status>준비</status>
+        </task>
+        <task>
+          <title></title>
+          <owner-email></owner-email>
+          <status>준비</status>
+        </task>
+      </tasks>
+    </project>
+  </projects>
+</spms>
+
+
+
+
+
+
+
+
+
+

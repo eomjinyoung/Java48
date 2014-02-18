@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feeds>
+  <feed>
+    <name>홍길동</name>
+    <photo>/b.gif</photo>
+    <content>zzzz</content>
+    <photos>
+      <url>a.jpeg</url>
+      <url>b.jpeg</url>
+      <url>c.jpeg</url>
+    </photos>
+    <location>
+      <latitude>3.34343</latitude>
+      <longitude>2.434343</longitude>
+    </location>
+  </feed>
+  <feed>
+    <name>표창원</name>
+    <photo>/a.gif</photo>
+    <content>오호라..그렇군요..</content>
+    <share-link>
+      <url>http://youtu.be/jxlY0zgOGCk</url>
+      <home>youtube.com</home>
+      <caption>표창원이 바라보는 한국...</caption>
+      <content>오호라...등...</content>
+      <image>http://youtube.com/a.gif</image>
+    </share-link>
+  </feed>
+  <feed>
+    <name>표창원</name>
+    <photo>/a.gif</photo>
+    <content>오호라..그렇군요..</content>
+    <share-link>
+      <url>http://youtu.be/jxlY0zgOGCk</url>
+      <home>youtube.com</home>
+      <caption>표창원이 바라보는 한국...</caption>
+      <content>오호라...등...</content>
+      <image>http://youtube.com/a.gif</image>
+    </share-link>
+  </feed>
+</feeds>
