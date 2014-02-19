@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD 정의 
+문법: <!DOCTYPE 루트엘리먼트이름 [규칙들]>
+1) 엘리먼트 선언 
+<!ELEMENT 이름 (자식태그)>
+<!ELEMENT 이름 (자식태그,자식태그,자식태그)> : 태그는 순서대로 작성해야 한다.
+<!ELEMENT 이름 (#PCDATA)> : 엘리먼트의 콘텐츠가 문자열임을 선언
+<!ELEMENT 이름 EMPTY> : 엘리먼트의 콘텐츠가 없음을 선언
+-->
+<!DOCTYPE students [
+<!ELEMENT students (student)>
+<!ELEMENT student (name,age,tel,email,intro,working)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT tel (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT intro (#PCDATA)>
+<!ELEMENT working EMPTY>
+]>
+
+<students>
+  <student>
+    <name>홍길동</name>
+    <age>20</age>
+    <tel>111</tel>
+    <email>hong@test.com</email>
+    <intro>학생이다.</intro>
+    <working></working>
+  </student>
+</students>
+
+
+
+
+
+
+
+
+
+

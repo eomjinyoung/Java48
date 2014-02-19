@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 엘리먼트 작성법 -->
+<students>
+  <student> <!-- 1) 콘텐츠로 엘리먼트가 온다. -->
+    <name>홍길동</name> <!-- 2) 문자 데이터 -->
+    <age>20</age>
+    <intro> <!-- 3) XML Entity를 포함할 수 있다. 
+       그리고 주석도 포함할 수 있다. -->
+만나서 반갑습니다. 나는 홍길동입니다.
+나의 별명은 "1 &lt; 1 + 1" 입니다.
+    </intro>
+  </student>
+  <student>
+    <name>임꺽정</name>
+    <age>30</age>
+    <intro> <!-- 4) CDATA 섹션 : XML 파서에게 해석하지 말것을 지정. -->
+    <![CDATA[
+    int x = 2;
+    if (x < 3) {
+      System.out.println("x < 3 입니다.");
+    }
+    <ok> dkdkdk <no> .... </ok>....</no>
+    ]]>
+    </intro>
+  </student>
+</students>
+
+
+
+
+
+
+
+
+

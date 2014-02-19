@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+  <student name="홍길동" age="20"
+    email="hong@test.com"
+    tel="010-1111-2222">
+    홍길동은 테스트를 위한 사용자입니다. 
+  </student>
+  
+</students>
