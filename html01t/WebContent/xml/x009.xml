@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD 검사 -->
+<!-- , 와  | 의 응용
+-->
+<!DOCTYPE students [
+<!ELEMENT students (student*)>
+<!ELEMENT student (name,age?,tel,email,intro?,working?,(man|woman)?)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT tel (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT intro (#PCDATA)>
+<!ELEMENT working EMPTY>
+<!ELEMENT man EMPTY>
+<!ELEMENT woman EMPTY>
+]>
+
+<students>
+  <student>
+    <name>홍길동</name>
+    <age>20</age>
+    <tel>111</tel>
+    <email>hong@test.com</email>
+    <intro>학생이다.</intro>
+    <working></working>
+    <woman/>
+  </student>
+  
+  <student>
+    <name>홍길동</name>
+    <tel>111</tel>
+    <email>hong@test.com</email>
+  </student> 
+
+</students>
+
+
+
+
+
+
+
+
+
+

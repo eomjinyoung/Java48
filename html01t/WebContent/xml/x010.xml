@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD 검사 -->
+<!-- MIXED 엘리먼트: 텍스트와 태그를 섞어 사용 
+<!ELEMENT 이름 (#PCDATA|태그|태그...)*> : #PCDATA가 먼저와야 한다.
+-->
+<!DOCTYPE students [
+<!ELEMENT students (student*)>
+<!ELEMENT student (name,age?,tel,email,intro?,working?,(man|woman)?)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT tel (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT intro (#PCDATA|strong|tag)*>
+<!ELEMENT working EMPTY>
+<!ELEMENT man EMPTY>
+<!ELEMENT woman EMPTY>
+]>
+
+<students>
+  <student>
+    <name>홍길동</name>
+    <age>20</age>
+    <tel>111</tel>
+    <email>hong@test.com</email>
+    <intro><strong>학생</strong>이다. 멋진 사람이다. 
+      <tag>비트교육센터</tag>에 <strong>다닌다</strong>.
+    </intro>
+    <working></working>
+    <woman/>
+  </student>
+</students>
+
+
+
+
+
+
+
+
+
+
