@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 속성 정의
+<!ATTLIST 엘리먼트이름 
+  속성명     속성타입      기본값선언
+ ...
+>
+
+1. 기본값 선언
+#IMPLIED : 선택
+#REQUIRED : 필수
+#FIXED : 값 고정
+기본값 설정
+
+2. 속성 타입
+CDATA : 텍스트
+(값|값|값) : 열거형
+ID : 문서에서 유일한 값. 문자열의 시작은 문자가 와야 한다. 숫자 안된다.
+IDRED : 문서 내에 존재하는 ID 값 가리킴.
+-->
+<!DOCTYPE students [
+<!ELEMENT students (student*,manager*)>
+<!ELEMENT student (#PCDATA)>
+<!ATTLIST student
+  name      CDATA   #REQUIRED
+  age       CDATA   #IMPLIED
+  email     CDATA   #REQUIRED
+  tel       CDATA   #REQUIRED
+  working   CDATA #FIXED "yes" 
+  country   CDATA "korea"
+  gender    (man|woman) #IMPLIED
+  no        ID      #REQUIRED
+  managerNo   IDREF   #REQUIRED
+>
+
+<!ELEMENT manager EMPTY>
+<!ATTLIST manager
+  name    CDATA   #REQUIRED
+  tel     CDATA   #REQUIRED
+  no      ID      #REQUIRED
+>
+]>
+
+<students>
+  <student no="S10" name="홍길동" managerNo="M10"
+    email="hong@test.com" tel="1111" 
+    working="yes" gender="woman" >
+    나는 학생이다.
+  </student>
+  <student no="S20" name="홍길동" managerNo="M10"
+    email="hong@test.com" tel="1111" 
+    working="yes" gender="woman" >
+    나는 학생이다.
+  </student>  
+  
+  <manager name="이은주" tel="111-2222" no="M10"/>
+</students>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
