@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD 분리 및 엔티티 정의와 사용 
+1. 내부 파라미터 엔티티
+1) 정의
+<!ENTITY % 엔티티이름 "값">
+2) 사용
+%엔티티이름;
+
+-->
+<!ENTITY % attrs "
+  no        ID      #REQUIRED
+  name      CDATA   #REQUIRED
+  tel       CDATA   #REQUIRED
+">
+
+<!-- 내부 일반 파스드 엔티티 -->
+<!ENTITY bit "Bit Academy">
+
+<!ELEMENT students (student*,manager*)>
+<!ELEMENT student (#PCDATA)>
+<!ATTLIST student
+  %attrs;
+  age       CDATA   #IMPLIED
+  email     CDATA   #REQUIRED
+  working   CDATA #FIXED "yes" 
+  country   CDATA "korea"
+  gender    (man|woman) #IMPLIED
+  managerNo   IDREF   #REQUIRED
+>
+
+<!ELEMENT manager EMPTY>
+<!ATTLIST manager
+  %attrs;
+>
+
+
+
+
+
+
+

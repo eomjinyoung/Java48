@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 외부 DTD 사용 -->
+<!-- 
+<!DOCTYPE students SYSTEM "students.dtd">
+-->
+<!-- 
+1. PUBLIC / SYSTEM 
+PUBLIC : DTD 부가 정보 + DTD URL
+SYSTEM : DTD URL
+
+2. DTD 부가정보
++ / - : +(국제공인단체), -(비공인단체)
+DTD 개발 및 유지보수 업체
+DTD 이름 및 버전
+DTD 정의에 사용한 언어  
+ -->
+<!DOCTYPE students PUBLIC "-//BIT Academy//Java48 XML students 1.0//EN"
+  "students.dtd">
+  
+<students>
+  <student no="S10" name="홍길동" managerNo="M10"
+    email="hong@test.com" tel="1111" 
+    working="yes" gender="woman" >
+    나는 학생이다.
+  </student>
+  <student no="S20" name="홍길동" managerNo="M10"
+    email="hong@test.com" tel="1111" 
+    working="yes" gender="woman" >
+    나는 학생이다. &bit; 
+  </student>  
+  
+  <manager name="이은주" tel="111-2222" no="M10"/>
+</students>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
