@@ -1,0 +1,57 @@
+# Copyright (c) 1993-1999 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a '#' symbol.
+#
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+127.0.0.1       localhost
+192.168.200.52	s01.java48.com
+192.168.200.27	s02.java48.com
+192.168.200.15	s03.java48.com
+192.168.200.50	s04.java48.com
+192.168.200.20	s05.java48.com
+192.168.200.34	s06.java48.com
+192.168.200.36	s07.java48.com
+192.168.200.11	s08.java48.com
+192.168.200.45	s09.java48.com
+192.168.200.62	s10.java48.com
+192.168.200.75	s11.java48.com
+192.168.200.50	s12.java48.com
+192.168.200.57	s13.java48.com
+192.168.200.58	s14.java48.com
+192.168.200.61	s15.java48.com
+192.168.200.59	s16.java48.com
+192.168.200.69	s17.java48.com
+192.168.200.35	s18.java48.com
+192.168.200.64	s19.java48.com
+192.168.200.63	s20.java48.com
+192.168.200.51	s21.java48.com
+192.168.200.5	s22.java48.com
+192.168.200.72	s23.java48.com
+192.168.200.14	s24.java48.com
+192.168.10.123	s25.java48.com
+192.168.200.74	s26.java48.com
+192.168.200.55	s27.java48.com
+192.168.200.73	s28.java48.com
+192.168.200.54	s29.java48.com
+192.168.200.68	s30.java48.com
+
+
+
+
+
+
+
+
