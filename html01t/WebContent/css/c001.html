@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+  "http://www.w3.org/TR/html4/loose.dtd">
+<!-- CSS Selector
+1. CSS 스타일을 적용할 대상자 설정 방법
+1) 엘리먼트의 ID 값으로 선택한다.
+2) CSS 클래스 이름으로 선택한다.
+3) 태그 이름으로 선택한다.
+4) 전체 선택  
+
+ -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CSS001</title>
+<style type="text/css">
+/* 아이디로 대상 선택 */
+#header03 {
+  color: red;
+}
+
+/* CSS 클래스로 대상 선택 */
+.c1 {
+  color: blue;
+}
+
+.c2 {
+  font-size: 10px;
+}
+
+/* 태그이름으로 대상 선택 */
+p {
+  background-color: gray;
+}
+
+/* 글로벌 대상 선택 */
+* {
+  border: 1px red dotted;
+  padding: 10px;
+  margin: 10px;
+}
+
+</style>
+</head>
+
+<body>
+<div>
+	<div>
+		<h1 id="header01" class="c1 c2">테스트1</h1>
+		<p class="c1 c2">테스트...01</p>
+		<h1 id="header02">테스트2</h1>
+		<p>테스트...02</p>
+	</div>
+	
+	<div>
+		<h1 id="header03" class="c2">테스트3</h1>
+		<p class="c2">테스트...03</p>
+		<h1 id="header04">테스트4</h1>
+		<p>테스트...04</p>
+	</div>
+</div>
+<div>
+	<h1 id="header05" class="c1">테스트5</h1>
+	<p class="c1">테스트...05</p>
+	<h1 id="header06">테스트6</h1>
+	<p>테스트...06</p>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

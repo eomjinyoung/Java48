@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+  "http://www.w3.org/TR/html4/loose.dtd">
+<!-- 의사(pseudo) 셀렉터(셀넥터에 상태) 
+문법) 대상:상태 
+예)
+a:visited - 한 번 방문한 링크
+a:hover - 링크에 마우스가 올라간 상태
+
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CSS004</title>
+<style type="text/css">
+h1.c2:hover {
+  background-color: black;
+  color: white;
+}
+
+/* CSS 스타일 상속 
+- 일부 스타일은 자식 엘리먼트로 상속된다.
+*/
+div:nth-child(2) {
+  border: 2px solid blue;
+  color: red;
+}
+
+p::FIRST-LETTER {
+	color: blue;
+	font-size: 80px;
+}
+
+</style>
+</head>
+
+<body>
+<div id="d1">
+	<div id="d11">
+		<h1 id="header01" class="c1 c2">테스트1</h1>
+		<p class="c1 c2">테스트...01</p>
+		<h1 id="header02">테스트2</h1>
+		<p>테스트...02</p>
+	</div>
+	
+	<div id="d12">
+		<h1 id="header03" class="c2">테스트3</h1>
+		<p class="c2">테스트...03</p>
+		<h1 id="header04">테스트4</h1>
+		<p>테스트...04</p>
+	</div>
+</div>
+<div id="d2">
+	<h1 id="header05" class="c1">테스트5</h1>
+	<p class="c1">테스트...05</p>
+	<h1 id="header06">테스트6</h1>
+	<p>테스트...06</p>
+	<div id="d21">
+	  <h1>테스트 7</h1>
+	  <p>오호라... 07In CSS, the ::first-letter pseudo-element applies to block-like containers such as block, list-item, table-cell, table-caption, and inline-block elements. Note: A future version of this specification may allow this pseudo-element to apply to more display types.
+
+The ::first-letter pseudo-element can be used with all such elements that contain text, or that have a descendant in the same flow that contains text. A UA should act as if the fictional start tag of the ::first-letter pseudo-element is just before the first text of the element, even if that first text is in a descendant.
+
+Example:
+
+The fictional tag sequence for this HTML fragment:
+
+<div>
+<p>The first text.
+is:
+
+<div>
+<p><div::first-letter><p::first-letter>T</...></...>he first text.
+In CSS the first letter of a table-cell or inline-block cannot be the first letter of an ancestor element. Thus, in <DIV><P STYLE="display: inline-block">Hello<BR>Goodbye</P> etcetera</DIV> the first letter of the DIV is not the letter "H". In fact, the DIV doesn't have a first letter.</p>
+	</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
