@@ -1,35 +1,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
   "http://www.w3.org/TR/html4/loose.dtd">
-<!-- 의사(pseudo) 셀렉터(셀넥터에 상태) 
-문법) 대상:상태 
-예)
-a:visited - 한 번 방문한 링크
-a:hover - 링크에 마우스가 올라간 상태
+<!-- 폰트 다루기
+1. font-family
+=> font-family : 폰트, 폰트, 폰트, 패밀리;
+: 왼쪽부터 순서대로 폰트를 찾는다. 
 
+2. font-size
+: 폰트의 크기(높이)를 지정 
+1) 상수값: xx-small, x-small, small, medium, large, x-large, xx-large
+2) pixel: 14px, 20px
+3) 백분율: 120%, 80%
+4) 배수: 1.2em, 0.8em
+: 실무권고 => body에 기준 크기를 상수로 정의한다. 나머지 엘리먼트는 배수나 백분율을 사용하여 지정. 
+
+3. font-weight : lighter, normal, bold, bolder
+: 폰트의 두께를 지정
+
+4. text-decoration: none, underline, overline, line-through, blink
+
+5. font-style: italic, oblique, normal
+italic => 기울림 폰트를 지정. (폰트 파일에 기울림체가 있어야 한다.)
+oblique => 폰트 파일에 기울림체가 없어도 강제로 기울린다.(출력이 거칠다)
+
+6. font-color: 
+1) 상수값 사용: silver, aqua, black, white, blue...
+2) rgb(백분율,백분율,백분율): rgb(100%, 56%, 90%)
+3) rgb(값, 값, 값): rgb(255, 0, 0)
+4) #rrggbb: #ff0000 => #f00
+=> #445566 => #456
+ 
 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CSS004</title>
+<title>CSS005</title>
 <style type="text/css">
-h1.c2:hover {
-  background-color: black;
-  color: white;
+body {
+  font-family: Arial, serif;
+  font-size: small;
 }
 
-/* CSS 스타일 상속 
-- 일부 스타일은 자식 엘리먼트로 상속된다.
-*/
-#d1 {
-  border: 2px solid blue;
-  color: red;
+h1 {
+  font-size: 180%;
 }
 
-
+p {
+  font-size: 1.2em;
+}
 </style>
 </head>
 
 <body>
+오호라.. 비트교육센터 ... 
 <div id="d1">
 	<div id="d11">
 		<h1 id="header01" class="c1 c2">테스트1</h1>
