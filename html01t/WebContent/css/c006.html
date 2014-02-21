@@ -16,26 +16,39 @@
 ; margin: top left bottom right (순서로 값 지정) 
 ; margin: top/bottom left/right (두 개의 값으로 지정 가능)
 ; margin: 값 (한 개의 값을 지정하면 사방 모두에 적용)
+; 위의 엘리먼트 마진과 아래의 엘리먼트 마진은 겹쳐진다.(주의)
 
+4. width, height: 넓이 높이 지정
+
+5. 엘리먼트의 배치
+1) 공중 부양
+2) 절대 좌표 지정
+3) 상대 좌표 지정
+4) 웹 브라우저에 고정
 
 -->
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>CSS005</title>
+<title>CSS006</title>
 <style type="text/css">
-body {
-  font-family: Arial, serif;
-  font-size: small;
+#d1 {
+  border: 1px solid red;
+  border-left: 5px solid red;
+  border-right: 20px solid red;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-h1 {
-  font-size: 180%;
+#d2 {
+  width: 180px;
+/*   height: 180px; */
+  margin-top: 15px;
+  border: 1px dotted blue;
 }
 
-p {
-  font-size: 1.2em;
-}
+
 </style>
 </head>
 
@@ -63,21 +76,7 @@ p {
 	<p>테스트...06</p>
 	<div id="d21">
 	  <h1>테스트 7</h1>
-	  <p>오호라... 07In CSS, the ::first-letter pseudo-element applies to block-like containers such as block, list-item, table-cell, table-caption, and inline-block elements. Note: A future version of this specification may allow this pseudo-element to apply to more display types.
-
-The ::first-letter pseudo-element can be used with all such elements that contain text, or that have a descendant in the same flow that contains text. A UA should act as if the fictional start tag of the ::first-letter pseudo-element is just before the first text of the element, even if that first text is in a descendant.
-
-Example:
-
-The fictional tag sequence for this HTML fragment:
-
-<div>
-<p>The first text.
-is:
-
-<div>
-<p><div::first-letter><p::first-letter>T</...></...>he first text.
-In CSS the first letter of a table-cell or inline-block cannot be the first letter of an ancestor element. Thus, in <DIV><P STYLE="display: inline-block">Hello<BR>Goodbye</P> etcetera</DIV> the first letter of the DIV is not the letter "H". In fact, the DIV doesn't have a first letter.</p>
+	  <p>letthe DIV doesn't have a first letter.</p>
 	</div>
 </div>
 </body>

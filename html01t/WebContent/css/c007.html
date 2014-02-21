@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+  "http://www.w3.org/TR/html4/loose.dtd">
+<!-- 엘리먼트의 배치
+1. 공중 부양
+; 웹 브라우저는 HTML에 작성된 순서대로 왼쪽에서 오른쪽으로 배치한다. 끝을 만날 때 까지.
+; 위에서 아래로 배치한다.
+; float : left 또는 right => 출력순서에서 탈출하여 공중 부양한다. 왼쪽 또는 오른쪽으로 붙인다.
+; 출력될 그 위치에서 공중 부양한 후 좌우로만 이동 가능 
+* clear 속성
+=> 공중 부양으로 점유된 공간을 피하라는 명령
+
+2. 절대 좌표 지정
+3. 상대 좌표 지정
+4. 웹 브라우저에 고정
+
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>CSS007</title>
+<style type="text/css">
+#d1 {
+  border: 1px solid red;
+  border-left: 5px solid red;
+  border-right: 20px solid red;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 190px;  
+}
+
+#d2 {
+  width: 180px;
+/*   height: 180px; */
+  margin-top: 15px;
+  border: 1px dotted blue;
+  float: left;
+}
+
+#footer {
+  border: 1px solid green;
+  font-size: 80%;
+  text-align: center;
+  clear: left;
+}
+
+</style>
+</head>
+
+<body>
+오호라.. 비트교육센터 ... 
+<div id="d2">
+  <h1 id="header05" class="c1">테스트5</h1>
+  <p class="c1">테스트...05</p>
+  <h1 id="header06">테스트6</h1>
+  <p>테스트...06</p>
+  <div id="d21">
+    <h1>테스트 7</h1>
+    <p>letthe DIV doesn't have a first letter.</p>
+  </div>
+  <h1 id="header08">테스트8</h1>
+  <p>테스트...08</p>
+  <h1 id="header09">테스트9</h1>
+  <p>테스트...09</p>
+  <h1 id="header10">테스트10</h1>
+  <p>테스트...10</p>
+  <h1 id="header11">테스트11</h1>
+  <p>테스트...11</p>
+</div>
+
+<div id="d1">
+	<div id="d11">
+		<h1 id="header01" class="c1 c2">테스트1</h1>
+		<p class="c1 c2">장병완 민주당 정책위원회 의장은 20일 오전 열린 고위정책회의에서 “제조사와 통신사가 결탁해서 고가의 단말기나 고가 요금제를 소비자에게 사실상 강요했던 폐단을 끊어내기 위해 단말기 완전 자급제를 도입하겠다”며 “이를 통해 단말기 가격을 투명화함으로써 '착한 단말기 가격'을 유도, 가격 비교를 실시해 고가 단말기의 거품을 뺄 것”이라고 말했다. </p>
+		<h1 id="header02">테스트2</h1>
+		<p>장병완 민주당 정책위원회 의장은 20일 오전 열린 고위정책회의에서 “제조사와 통신사가 결탁해서 고가의 단말기나 고가 요금제를 소비자에게 사실상 강요했던 폐단을 끊어내기 위해 단말기 완전 자급제를 도입하겠다”며 “이를 통해 단말기 가격을 투명화함으로써 '착한 단말기 가격'을 유도, 가격 비교를 실시해 고가 단말기의 거품을 뺄 것”이라고 말했다. </p>
+	</div>
+	
+	<div id="d12">
+		<h1 id="header03" class="c2">테스트3</h1>
+		<p class="c2">장병완 민주당 정책위원회 의장은 20일 오전 열린 고위정책회의에서 “제조사와 통신사가 결탁해서 고가의 단말기나 고가 요금제를 소비자에게 사실상 강요했던 폐단을 끊어내기 위해 단말기 완전 자급제를 도입하겠다”며 “이를 통해 단말기 가격을 투명화함으로써 '착한 단말기 가격'을 유도, 가격 비교를 실시해 고가 단말기의 거품을 뺄 것”이라고 말했다. </p>
+		<h1 id="header04">테스트4</h1>
+		<p>장병완 민주당 정책위원회 의장은 20일 오전 열린 고위정책회의에서 “제조사와 통신사가 결탁해서 고가의 단말기나 고가 요금제를 소비자에게 사실상 강요했던 폐단을 끊어내기 위해 단말기 완전 자급제를 도입하겠다”며 “이를 통해 단말기 가격을 투명화함으로써 '착한 단말기 가격'을 유도, 가격 비교를 실시해 고가 단말기의 거품을 뺄 것”이라고 말했다. </p>
+	</div>
+</div>
+
+<div id="footer">
+<p>이 예제의 모든 권한은 Java48기에 있습니다.</p>
+<address>서울시 서초구 서초동 어쩌구 저쩌구...</address>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
