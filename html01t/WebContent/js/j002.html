@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j002</title>
+</head>
+<body>
+<h1>변수 선언 02</h1>
+<script>
+"use strict";
+
+//0. 변수 이름 짓는 규칙
+//$, _, 문자로 시작
+//첫 문자 이후에 숫자 가능
+//var 1test; //오류!
+var $test, _test, test, $123;
+//var 한글; // 비추!
+
+
+//1. 논리 연산자
+// ! : not (T -> F, F -> T)
+// && : and (T && T -> T)
+// || : or (T || F, F || T -> T)
+var v1 = true;
+var v2 = !v1;
+console.log(v2);
+console.log("and: true && true =", true && true);
+console.log("and: true && false=", true && false);
+
+//문제1) and의 나머지 경우와, or 전체 경우를 위와 같이 출력하시오.
+console.log("and: false && true =", false && true);
+console.log("and: false && false=", false && false);
+
+console.log("or: true || true =", true || true);
+console.log("or: true || false =", true || false);
+console.log("or: false || true =", false || true);
+console.log("or: false || false =", false || false);
+
+// 논리 연산자와 조건문
+var age = 32;
+if (age >= 19 && age <= 35) console.log("청년 이다!");
+
+if (age < 19 || age >= 32) console.log("클럽 출입불가!");
+
+// 비효율 논리 연산 2
+// x & y : x 값의 상관없이 y를 수행
+// x | y : x 값의 상관없이 y를 수행
+
+var age2 = 18;
+(age2 >= 19) & console.log("투표권 있음!");
+(age2 >= 19) | console.log('투표권 없음!');
+
+if (age2 >= 19) console.log('if:투표권 있음!');
+else console.log('else:투표권 없음!');
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

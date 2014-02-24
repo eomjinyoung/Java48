@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j001</title>
+</head>
+<body>
+<h1>변수 선언 01</h1>
+<script>
+// JavaScript 엔진에게 문법을 엄격하게 검사할 것을 요구!
+"use strict";
+
+//ok = 20; //strict 모드에서는 오류!
+
+//* 값의 표현
+//1) 문자열 : "홍길동" '홍길동'
+//2) 숫자: 12 3.14
+//3) 참/거짓: true false
+//4) 값 덩어리(Object): {값의이름: 값, 값의이름:값, ...}
+
+//
+//* 변수(variables) 선언 : 데이터를 임시 보관할 메모리를 준비 시키는 명령어
+// 문법: var 변수명;
+var name; // 값을 담을 메모리 준비 명령어 => 변수 선언
+name = "홍길동"; // 값을 메모리에 보관 => 할당(assignment)
+
+// 용어 정리
+// name(lvalue) = "홍길동"(rvalue)
+// = (할당 연산자)를 기준으로 왼쪽을 l-value, 오른쪽을 r-value라고 한다.
+// lvalue => 메모리여야 한다.
+// rvalue => 메모리 또는 값
+//"홍길동" = name; // 오류!
+var name2;
+name2 = name; // OK. name 메모리에 저장된 값을 name2 메모리에 복사. rvalue가 변수다.
+name2 = "임꺽정"; // OK. rvalue가 값이어도 된다.
+
+//문제1. 이름, 나이, 이메일, 전화 데이터를 저장할 변수를 선언하고, 임의의 값을 넣으시오!
+//방법1)
+var name;
+var age;
+var email;
+var tel;
+
+name = "홍길동";
+age = 20;
+email = 'hong@test.com';
+tel = '111-1111';
+
+//방법2)
+var name, age, email, tel;
+name = "홍길동";
+age = 20;
+email = 'hong@test.com';
+tel = '111-1111'
+
+//방법3)
+var name="홍길동", age=20, email="hong@test.com", tel="111-1111";
+
+//* 콘솔 창에 출력하는 도구
+//문법: console.log(출력할 값);
+//-출력할 값: 메모리 또는 데이터
+//-웹 브라우저의 콘솔 창에 출력하는 명령어들의 묶음
+//-명령어들의 묶음 => 함수
+
+//* 함수 사용법 (함수 호출)
+// 함수명(값, 값, ...);
+console.log(name);
+console.log("오호라");
+console.log(20);
+console.log(3.14);
+console.log(10 > 18);
+console.log("임꺽정", 30, 100.5, 42);
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
