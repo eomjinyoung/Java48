@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j003</title>
+</head>
+<body>
+<h1>형변환</h1>
+<script>
+"use strict";
+
+// 형변환(type conversion): 연산을 수행하기 위해 피연산자를 서로 일치되게 맞추는 것.
+// 1) 명시적 형변환(explicit) : 명령어로 값을 원하는 유형으로 변환하는 것.
+// 2) 암시적 형변환(implicit) : 명령어를 수행하는 과정 중에 자바스크립트 엔진이 자동으로 변환하는 것.
+
+//* 명시적 형변환
+// 형변환 도구: Number(값), String(값), Boolean(값), Object(값)
+//@참고
+//특별히 객체를 지정하지 않고 도구를 사용할 경우, 해당 도구는 window 객체에 있다.
+//자바스크립트에서 사용하는 모든 도구는 window 객체에 소속되어 있다.
+//Number(값) -> window.Number(값)
+console.log("test..ok");
+window.console.log("test..ok2");
+
+// 문제1) 숫자로 바꾸기
+console.log("값 -> 숫자  --------------------------------");
+console.log(window.Number(undefined)); // NaN (Not a Number)
+console.log(Number(null)); // 0
+console.log(Number(true)); // 1
+console.log(Number(false)); // 0
+console.log(Number("")); // 0
+console.log(Number("3.14")); // 3.14
+console.log(Number("ok")); // NaN
+console.log(Number(10)); // 10
+console.log(Number(NaN)); // NaN
+console.log(Number({name:'홍길동',age:20})); // NaN
+
+// 문제2) 문자열로 바꾸기
+console.log("값 -> 문자열 --------------------------------");
+console.log(window.String(undefined)); // "undefined"
+console.log(String(null)); // "null"
+console.log(String(true)); // "true"
+console.log(String(false)); // "false"
+console.log(String("")); // ""
+console.log(String("3.14")); // "3.14"
+console.log(String("ok")); // "ok"
+console.log(String(10)); // "10"
+console.log(String(NaN)); // "NaN"
+console.log(String({name:'홍길동',age:20})); //트리노드
+
+// 문제3) 불린으로 바꾸기
+console.log("값 -> 논리값 --------------------------------");
+console.log(Boolean(undefined)); // false
+console.log(Boolean(null)); // false
+console.log(Boolean(true)); // true
+console.log(Boolean(false)); // false
+console.log(Boolean("")); // false
+console.log(Boolean("3.14")); // true
+console.log(Boolean("ok")); // true
+console.log(Boolean(10)); // true
+console.log(Boolean(NaN)); // false
+console.log(Boolean({name:'홍길동',age:20})); //true
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
