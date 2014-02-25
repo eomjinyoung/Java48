@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j006</title>
+</head>
+<body>
+<h1>함수</h1>
+<script>
+"use strict";
+
+// 함수 : 명령어 묶음
+// 함수 정의
+// function 함수명(파라미터, 파라미터, ...) { 명령어들... }
+// - 특정 기능을 하기 위해 만든 명령어를 언제든지 재 사용할 수 있다.
+// - 재사용을 생각해서 가능한 개별 기능 단위로 명령어를 묶어야 한다.
+function test() {
+  console.log("오호라..");
+  var input = prompt('이름?');
+  console.log(input)
+}
+
+// 함수 사용(함수 호출)
+// 함수명(값,값,값,...);
+//test();
+//test();
+
+// 문제: 1에서 x까지 수 더한 합계 반환
+// - 함수 파라미터는 var을 선언하지 않는다.
+// - 함수에서 값을 반환할 때 return을 사용
+//   return 반환할값;
+function f(x) {
+	// 함수 안에서 window 객체에 소속된 변수를 사용하지 말라!
+	// window 객체에 소속된 변수의 값이 필요하다면 파라미터로 받어라!
+	var sum = 0;
+	for (var i = 1; i <= x; i += 1) {
+		sum += i;
+	}
+	return sum;
+}
+
+//console.log("1~10까지 합계=", f(10));
+//console.log(sum); // 함수 안에 선언된 변수는 해당 함수를 벗어나면 사라진다. -> 지역 변수
+
+// 글로벌 변수(window 객체에 소속된 변수), 로컬 변수(함수에 임시적으로 만들어지는 변수)
+var sum = 0;
+f(5);
+console.log(sum);
+
+// 몰래 숨겨둔 변수 "arguments": 모든 함수는 arguments 배열을 갖고 있다.
+// arguments 배열: 모든 인자 값을 보관
+function accum(p1, p2) {
+	var sum = 0;
+	console.log("accum() ----------------------");
+	// 파라미터 선언과 관계없이 모든 인자 값을 arguments에서 갖고 있음!
+	console.log(p1, p2);
+	console.log(arguments[0], arguments[1]);
+	
+	for (var i = 0; i < arguments.length; i += 1) {
+		sum += arguments[i];
+	}
+	return sum;
+}
+
+console.log(accum(10, 20));
+console.log(accum(10, 20, 30));
+console.log(accum(10, 20, 30, 40));
+
+function myLog() {
+	var str = '';
+	for (var i in arguments) {
+		str += ' ' + arguments[i];
+	}
+	console.log(str);
+}
+
+myLog("aaa", "bbb", "ccc", "ddd");
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
