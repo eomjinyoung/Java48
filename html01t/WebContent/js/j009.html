@@ -10,6 +10,11 @@
 "use strict";
 
 // 함수는 함수 안에서 정의될 수 있다.
+// * 내장 함수를 사용하는 이유?
+// 1) 외부 공개를 제한 -> 공개적으로 사용하지 않는 함수는 감추어서, 진짜 필요할 때 함수 이름 쓸 수 있게 한다. 
+// 2) 외부에서 변경 불가하게 만들고자 할 때. -> 보안 장치 
+
+  
 function calc(a, b, op) {
 	switch(op) {
 	case '+': 
@@ -19,15 +24,59 @@ function calc(a, b, op) {
 	default:
 		throw '오호라... 해당 연산자 없어!'; //예외 발생 명령어 throw
 	}
-		
-	function plus(v1, v2) {
-		return a + b;
+	
+  function plus(v1, v2) {
+	  return a + b;
+	}
+	  
+	function minus(v1, v2) {
+	  return a - b;
+	}	
+}
+
+function plus(a, b) {
+	return a * a + b * b;
+}
+	
+console.log(calc(10, 20, '+')); // 30
+console.log(plus(10, 20)); // Error!
+
+// 내장 함수의 다른 용도: 공장역할! "Factory Method" Pattern
+function runFactory(level) { // run() 함수를 만드는 공장역할!
+	switch(level) {
+	case 2: return run2;
+	case 3: return run3;
+	default: return run1;
 	}
 	
-	function minus(v1, v2) {
-		return a - b;
-	}
+  function run1() {
+	  console.log("달린다....");
+  }	
+  
+  function run2() {
+	  console.log("뛴다...");
+  }
+  
+  function run3() {
+	  console.log("난다....휘리릭~~~ ");
+  }
 }
+
+var level = prompt("달리기 레벨?", "1");
+//var run = runFactory(Number(level));
+//run(); // 1.달린다, 2.뛴다,  3.난다
+/*
+if (level == 2) {
+	run2();
+} else if (level == 3) {
+	run3();
+} else {
+	run1();
+}
+*/
+
+
+
 </script>
 
 </body>
