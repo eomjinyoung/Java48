@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j010</title>
+</head>
+<body>
+<h1>클로저(Closure)</h1>
+<script>
+"use strict";
+
+// 내장 함수가 개별적으로 사용하는 특별한 메모리
+// 1) 내장 함수가 바깥 함수의 로컬 변수를 사용하고, 
+// 2) 그 내장 함수를 리턴한다.
+// 3) 리턴된 내장 함수를 호출 --> 내장함수가 참조하는 바깥 함수의 로컬 변수는 없다! --> 오류!
+// 4) 그래서, 내장 함수가 바깥 함수의 로컬 변수를 사용할 수 있게 하기 위해 --> 별도 공간에 복제.
+function makeInterest(type) {
+	var interRate = 0;
+	if (type == '예금') {
+		interRate = 0.015;
+	} else if (type == '적금') {
+		interRate = 0.034;
+	} else if (type == '펀드') {
+		interRate = 0.08;
+	} else {
+		interRate = 0.008;
+	}
+	
+	return interest;
+	
+	function interest(money) {
+		return money + (money * interRate); // 바깥 함수의 로컬 변수를 사용 -> closure에 복제됨.
+	}
+}
+
+var interest1 = makeInterest('예금');
+var interest2 = makeInterest('펀드');
+
+console.log(interest1(1000000000));
+console.log(interest2(1000000000));
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
