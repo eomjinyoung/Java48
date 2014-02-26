@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j008</title>
+</head>
+<body>
+<h1>함수와 명령어 실행 순서</h1>
+<script>
+"use strict";
+
+// * 자바스크립트 명령어 실행 순서
+// 1) 선언문을 찾아 먼저 실행 : 변수 및 함수 선언
+// 2) 다시 처음부터 표현식(expression) 명령어 실행 : 할당문, 연산, 함수호출, 조건문, 반복문 등.
+//문제: age라는 변수를 선언하지 않고 값 출력 
+
+try { // 오류가 발생할 가능성이 있는 명령문을 두는 장소
+	console.log("age=", age); // 오류! -> age is not defined -> age라는 변수가 없다.
+	
+} catch(err) { // 오류가 발생했을 때 그 오류를 처리할 명령어를 두는 장소. 
+	//파라미터 값은 오류정보를 담고 있는 객체다.
+	// 오류정보 객체에는 message라는 이름으로 오류 내용이 들어 있다.
+	console.log(err.message);
+}
+//문제: name라는 변수를 선언하지 않고 값 출력. 출력문 다음에 name 변수 선언.
+console.log("name=", name); // 정상수행 -> name= undefined -> name 변수는 있는데, 값이 없다!
+var name = "홍길동";
+console.log("name=", name); // name= 홍길동
+
+
+//함수 정의 전에 호출 명령 수행?
+console.log('before plus():', plus(10, 20));  //
+try {
+	console.log('before plus2():', plus2(10, 20)); //오류!
+} catch (err) {
+	console.log('begore plus2():', err.message);
+}
+
+//함수 정의
+function plus(a, b) {
+	return a + b;
+}
+
+var plus2 = function(a, b) {
+	return a + b;
+};
+
+//함수 정의 후 호출 명령 수행
+console.log(plus(10, 20));
+console.log(plus2(10, 20));
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
