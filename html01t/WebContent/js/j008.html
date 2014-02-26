@@ -37,10 +37,16 @@ try {
 }
 
 //함수 정의
+// 단점: 무조건 window 객체에 보관된다.
+// 장점: 선언문은 표현식 보다 먼저 수행됨.
 function plus(a, b) {
 	return a + b;
 }
 
+var plus3 = plus;
+
+// 실무에서는 아래의 표현식으로 함수를 정의하는 방법을 많이 사용.
+// 이유? 임의의 객체에 함수를 저장할 수 있다.
 var plus2 = function(a, b) {
 	return a + b;
 };
@@ -48,7 +54,7 @@ var plus2 = function(a, b) {
 //함수 정의 후 호출 명령 수행
 console.log(plus(10, 20));
 console.log(plus2(10, 20));
-
+console.log(plus3(10, 20));
 
 </script>
 
