@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j009</title>
+</head>
+<body>
+<h1>내장 함수(inner function)</h1>
+<script>
+"use strict";
+
+// 함수는 함수 안에서 정의될 수 있다.
+function calc(a, b, op) {
+	switch(op) {
+	case '+': 
+		return plus(a, b);
+	case '-':
+		return minus(a, b);
+	default:
+		throw '오호라... 해당 연산자 없어!'; //예외 발생 명령어 throw
+	}
+		
+	function plus(v1, v2) {
+		return a + b;
+	}
+	
+	function minus(v1, v2) {
+		return a - b;
+	}
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
