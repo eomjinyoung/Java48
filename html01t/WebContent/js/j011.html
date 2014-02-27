@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j011</title>
+</head>
+<body>
+<h1>객체(object)</h1>
+<script>
+"use strict";
+
+// 객체란? 데이터 덩어리다.
+// 객체 생성 문법: new Object();
+// new : 초기화가 안된 객체 준비
+// Object() : 최소의 값과 함수를 객체에 넣어주는 함수. 객체 초기화 함수. 무조건 호출됨.
+//문제1. 객체를 생성하라!
+var obj1 = new Object();
+
+//문제2. 객체에 값을 담아라!
+// - 객체 담기는 값(숫자,문자열,불린,함수,undefined,객체) 
+//        ==> 프로퍼티(property)
+//문법1) 객체.라벨명 = 값;    // 라벨명은 변수 이름짓는 규칙과 동일.
+//문법2) 객체['라벨명'] = 값; // 라벨명은 어떤 글자라도 가능.
+var i = 20; // 일반 변수에 값 담기.
+obj1.name = '홍길동'; // 객체에 값 담기
+obj1.age = 20;
+obj1.tel = "1111-1111"; 
+obj1['address'] = '경기도 용인시';
+obj1["postno"] = '123-222';
+obj1["헐..^^ **?"] = '이건 뭥미?';
+//obj1.헐..^^ **## = '값이 들어갈까?' // 오류!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+console.log(obj1.name, obj1.age, obj1.tel, 
+		obj1.address, obj1.postno, obj1['헐..^^ **?']);
+
+
+//문제: 학생의 이름, 이메일, 전화, 나이, 재직여부를 저장하시오!
+var student = {};  // = new Object(); 의 단축 표현식
+student.name = '홍길동';
+student.email = 'hong@test.com';
+student.tel = '111-2222';
+student.age = 20;
+student.working = false;
+
+// JavaScript Object Notation (JSON) : 자바스크립트 객체 표기법
+// - 자바스크립트에서 객체를 정의하는 단축 표기법 
+var student2 = {   
+		name: '홍길동2', 
+		email: 'hong2@test.com', 
+		tel: '111-3333', 
+		age: 22,
+		working: true
+};
+
+console.log(student, student2);
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
