@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j013</title>
+</head>
+<body>
+<h1>팩토리 메서드를 이용한 객체 생성</h1>
+<script>
+"use strict";
+
+// 팩토리 메서드를 이용한 객체 생성 방법 개선
+function makeStudent(name, kor, eng, math) {
+	return {
+		"name": name, 
+		"kor": kor, 
+		"eng": eng, 
+		"math": math
+	};
+}
+
+// 객체 배열 - makeStudent() 사용
+var students = [makeStudent('홍길동', 100, 90, 80),
+                makeStudent('임꺽정', 90, 95, 100),
+                makeStudent('장길산', 50, 90, 65)];
+
+console.log("forEach()----------------------------------------");
+students.forEach(function(student){
+	console.log(student.name, 
+	        student.kor, 
+	        student.eng, 
+	        student.math);
+});
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
