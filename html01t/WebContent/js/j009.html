@@ -75,7 +75,48 @@ if (level == 2) {
 }
 */
 
+// * 함수를 파라미터로 받기
+function plus2(a, b) {
+	return a + b;
+}
 
+function minus2(a, b) {
+	return a - b;
+}
+
+function calc2(f, a, b) {
+	console.log(f(a, b));
+}
+
+console.log("파라미터로 함수를 받아서 호출하기----------------------------------")
+calc2(plus2, 10, 20);
+calc2(minus2, 10, 20);
+
+// 문제: 반복문을 사용하지 않고 배열 다루기.
+function myEach(arr, f) {
+	for (var i in arr) {
+		f(i, arr[i]);
+	}
+}
+
+var names = ['홍길동', '임꺽정', '장길산', '장보고', '유덕화', '주윤발'];
+//예전방식 
+console.log("배열 처리 예전방식 -------------------------------------");
+for (var i in names) {
+	console.log(names[i]);
+}
+
+//myEach를 사용한 현대식 방식
+var fx = function(index, item) {
+	console.log(item);
+};
+console.log("myEach()를 사용한 방식 --------------------------------------");
+myEach(names, fx);
+
+console.log("myEach() + function(){} 을 사용한 방식 --------------------------------------");
+myEach(names, function(index, item) {
+  console.log(item);
+} );
 
 </script>
 
