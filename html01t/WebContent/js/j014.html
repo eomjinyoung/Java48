@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j014</title>
+</head>
+<body>
+<h1>생성자 함수 : 객체를 초기화 하는 함수</h1>
+<script>
+"use strict";
+
+// 팩토리 메서드를 이용한 객체 생성 방법 개선
+function Student(name, kor, eng, math) {
+	// 빈 객체를 초기화 해야 한다. ==> 생성자 함수 : 빈객체를 초기화 하는 함수
+	// 빈 객체를 가리키는 특별한 변수 => this
+	// 반드시 new 명령어 다음에 호출해야만 this 변수를 사용할 수 있다.
+	// this.라벨명 = 값; => this 객체에 값을 저장한다. 저장할 때 이름은 라벨명을 사용한다.
+	this.name = name;
+	this.kor = kor;
+	this.eng = eng;
+	this.math = math;
+}
+
+// 객체 배열 - makeStudent() 사용
+var students = [new Student('홍길동', 100, 90, 80),
+                new Student('임꺽정', 90, 95, 100),
+                new Student('장길산', 50, 90, 65)];
+
+console.log("forEach()----------------------------------------");
+students.forEach(function(student){
+	console.log(student.name, 
+	        student.kor, 
+	        student.eng, 
+	        student.math);
+});
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
