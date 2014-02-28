@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j021</title>
+</head>
+<body>
+<h1>DOM API : 엘리먼트 만들기</h1>
+<form>
+<textarea id="message" style="width:400px;height:60px;"></textarea>
+<input type="button" onclick="addMessage()" value="등록">
+</form>
+<div id="feedList"></div>
+<script>
+"use strict";
+function addMessage() {
+  var msg = document.getElementById('message');
+  //alert(msg.value);
+  // <p> 태그를 생성하라 -> 내용은 사용자가 입력한 값을 갖는다.
+  var p = document.createElement('p');
+  p.innerHTML = msg.value;
+  msg.value = '';
+  
+  // <hr>을 사용하여 수평선을 그려라. 
+  var hr = document.createElement('hr');
+  
+  // 이 태그들을 feedList div에 추가하라.
+  var div = document.getElementById('feedList');
+  div.appendChild(p);
+  div.appendChild(hr);
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

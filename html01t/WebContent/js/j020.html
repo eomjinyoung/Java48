@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j020</title>
+</head>
+<body>
+<h1>DOM API : 엘리먼트 찾기</h1>
+<div id="d1">
+  <div id="d11">
+    <h1 id="header01" class="c1 c2">테스트1</h1>
+    <p class="c1 c2">테스트...01</p>
+    <h1 id="header02">테스트2</h1>
+    <p>테스트...02</p>
+  </div>
+  <div id="d12">
+    <h1 id="header03" class="c2">테스트3</h1>
+    <p class="c2">테스트...03</p>
+    <h1 id="header04">테스트4</h1>
+    <p>테스트...04</p>
+  </div>
+</div>
+<div id="d2">
+  <h1 id="header05" class="c1">테스트5</h1>
+  <p class="c1">테스트...05</p>
+  <h1 id="header06">테스트6</h1>
+  <p>테스트...06</p>
+  <div id="d21">
+    <h1>테스트 7</h1>
+    <p>오호라... 07</p>
+  </div>
+</div>
+<script>
+"use strict";
+// getElementById(id)
+var e1 = document.getElementById('header05');
+console.log(e1.innerHTML);
+
+var text = prompt('변경할 내용을 입력하세요');
+e1.innerHTML = text;
+
+var tn1 = document.createTextNode('와.... 그렇군..');
+e1.appendChild(tn1);
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
