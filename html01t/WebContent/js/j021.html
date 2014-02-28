@@ -19,6 +19,9 @@ function addMessage() {
   // <p> 태그를 생성하라 -> 내용은 사용자가 입력한 값을 갖는다.
   var p = document.createElement('p');
   p.innerHTML = msg.value;
+  // 사용자가 입력한 스크립트가 실행되지 않게 하려면, 
+  //var text = document.createTextNode(msg.value);
+  //p.appendChild(text);
   msg.value = '';
   
   // <hr>을 사용하여 수평선을 그려라. 
