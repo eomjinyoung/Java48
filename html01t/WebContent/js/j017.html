@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j017</title>
+</head>
+<body>
+<h1>객체 구성원 : 데이터와 메서드(함수)</h1>
+<p>makeCalculator() : 계산기 객체 생성<p>
+
+<script src="calculator2.js"></script>
+<script>
+"use strict";
+
+// 3 * 2 + 7 - 5 = ?
+// 5 - 4 * 2 / 9 = ?
+var calc1 = makeCalculator();
+var calc2 = makeCalculator();
+		
+calc1.init(3);
+calc2.init(5);
+
+calc1.multiple(2);
+calc2.minus(4);
+
+calc1.plus(7);
+calc2.multiple(2);
+
+calc1.minus(5);
+calc2.divide(9);
+
+calc1.printResult(); // 3 * 2 + 7 - 5 = 8
+calc2.printResult(); // 5 - 4 * 2 / 9 = 0.2222
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
