@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j025</title>
+<style>
+.btn {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  float: left;
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+<h1>이벤트 처리 : 클릭 이벤트 처리</h1>
+<div class='btn'>1</div>
+<div class='btn'>2</div>
+<div class='btn'>3</div>
+<div class='btn'>4</div>
+<div class='btn'>5</div>
+<div class='btn'>6</div>
+<div class='btn'>7</div>
+<div class='btn'>8</div>
+<div class='btn'>9</div>
+<div class='btn'>10</div>
+
+<script>
+"use strict";
+
+//1. div.btn 찾는다
+var divList = document.getElementsByTagName('div');
+for (var i = 0; i < divList.length; i++) {
+	//2. 각각의 div 객체에 click 이벤트를 처리할 함수를 등록한다.
+	// onclick 속성에 함수를 등록하면 
+	// => 해당 엘리먼트를 클릭할 때 마다 웹 브라우저는 등록된 함수를 호출한다.
+	divList[i].onclick = function() {
+		// this 변수는 이벤트가 발생한 엘리먼트를 가리킨다.
+		alert(this.innerHTML);
+		//document.body.removeChild(this); //참고
+	};
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
