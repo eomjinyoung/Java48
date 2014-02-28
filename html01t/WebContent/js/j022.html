@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j022</title>
+</head>
+<body>
+<h1>DOM API : 엘리먼트 찾기</h1>
+<div id="d1">
+  <div id="d11">
+    <h1 id="header01" class="c1 c2">테스트1</h1>
+    <p class="c1 c2">테스트...01</p>
+    <h1 id="header02">테스트2</h1>
+    <p>테스트...02</p>
+  </div>
+  <div id="d12">
+    <h1 id="header03" class="c2">테스트3</h1>
+    <p class="c2">테스트...03</p>
+    <h1 id="header04">테스트4</h1>
+    <p>테스트...04</p>
+  </div>
+</div>
+<div id="d2">
+  <h1 id="header05" class="c1">테스트5</h1>
+  <p class="c1">테스트...05</p>
+  <h1 id="header06">테스트6</h1>
+  <p>테스트...06</p>
+  <div id="d21">
+    <h1>테스트 7</h1>
+    <p>오호라... 07</p>
+  </div>
+</div>
+
+<script>
+"use strict";
+// document.getElementById(id) : DOM 트리에서 해당 id를 갖는 엘리먼트를 찾는다. 
+// element.innerHTML : 해당 엘리먼트의 내용을 보관
+var e1 = document.getElementById('header05');
+console.log(e1.innerHTML);
+
+//문제: #d21 엘리먼트의 내용을 출력하라!
+console.log('d21 내용 ---------------------------------------------')
+e1 = document.getElementById('d21');
+console.log(e1.innerHTML);
+
+// * document.getElementsByTagName(태그명)
+// - 리턴되는 값은 배열이다.
+console.log('태그이름으로 찾기 ------------------------------------');
+var pList = document.getElementsByTagName('p');
+console.log(pList.length);
+console.log(pList);
+for (var i = 0; i < pList.length; i++) {
+	console.log(pList[i].innerHTML);
+}
+
+// * document.querySelector(selector문법); // 복잡한 대상지정
+// 예) CSS selector -> #header05
+console.log('100 --------------------------------------------------------')
+var e1 = document.querySelector('#header05');
+console.log(e1.innerHTML);
+
+// 문제: #d12 밑에 있는 모든 p 태그의 값을 찾아서 출력하라.
+var d12 = document.getElementById('d12');
+var pList = d12.getElementsByTagName('p');
+for (var i = 0; i < pList.length; i++) {
+	console.log("=>" + pList[i].innerHTML);
+}
+
+var pList = document.querySelectorAll('#d11 p.c1');
+for (var i = 0; i < pList.length; i++) {
+	console.log("##" + pList[i].innerHTML);
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
