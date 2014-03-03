@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j029</title>
+<style>
+div,h1 {
+  border: 1px solid red;
+  padding: 20px;
+  margin: 5px;
+}
+</style>
+</head>
+<body>
+<h1>이벤트 처리 단계: capture, target, bubble</h1>
+<div id='d1'>
+  <div id='d11'><h1 id='h01'>h01</h1></div>
+  <div id='d12'><h1 id='h02'>h02</h1></div>
+</div>z
+<div id='d2'>
+  <div id='d21'><h1 id='h03'>h03</h1></div>
+  <div id='d22'><h1 id='h04' onclick='console.log("h04 clicked!");'>h04</h1></div>
+</div>
+
+<script>
+"use strict";
+
+// * 기본은 bubble 및 target 단계에 호출됨.
+var d1 = document.getElementById('d1');
+d1.addEventListener('click', function(event){
+  console.log('d1 눌렀다!');
+});
+
+var d11 = document.getElementById('d11');
+d11.addEventListener('click', function(event){
+  console.log('d11 눌렀다!');
+});
+
+var h01 = document.getElementById('h01');
+h01.addEventListener('click', function(event){
+	console.log('h01 눌렀다!');
+});
+
+// 캡쳐 단계에 호출되도록 한다.
+var d2 = document.getElementById('d2');
+d2.addEventListener('click', function(event){
+  console.log('d2 눌렀다!');
+}, true);
+
+var d21 = document.getElementById('d21');
+d21.addEventListener('click', function(event){
+  console.log('d21 눌렀다!');
+}, true);
+
+var h03 = document.getElementById('h03');
+h03.addEventListener('click', function(event){
+  console.log('h03 눌렀다!');
+});
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
