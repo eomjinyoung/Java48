@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j030</title>
+<style>
+div,h1 {
+  border: 1px solid red;
+  padding: 20px;
+  margin: 5px;
+}
+</style>
+</head>
+<body>
+<h1>이벤트 처리 단계: stopPropagation(), stopImmediatePropagation()</h1>
+<div id='d1'>
+  <div id='d11'><h1 id='h01'>h01</h1></div>
+  <div id='d12'><h1 id='h02'>h02</h1></div>
+</div>z
+<div id='d2'>
+  <div id='d21'><h1 id='h03'>h03</h1></div>
+  <div id='d22'><h1 id='h04' onclick='console.log("h04 clicked!");'>h04</h1></div>
+</div>
+
+<script>
+"use strict";
+
+// * 기본은 bubble 및 target 단계에 호출됨.
+var d1 = document.getElementById('d1');
+d1.addEventListener('click', function(event){
+  console.log('d1 눌렀다!');
+});
+
+var d11 = document.getElementById('d11');
+d11.addEventListener('click', function(event){
+  console.log('d11 눌렀다!');
+});
+
+var h01 = document.getElementById('h01');
+h01.addEventListener('click', function(event){
+	console.log('h01 눌렀다!');
+	// 부모 엘리먼트로 이벤트를 전파하지 않는다.
+	//event.stopPropagation();
+	
+	// 이벤트 전파를 즉시 멈춰라. 
+  event.stopImmediatePropagation();
+});
+h01.addEventListener('click', function(event){
+  console.log('h01 눌렀다2222!');
+});
+h01.addEventListener('click', function(event){
+  console.log('h01 눌렀다33333333!');
+});
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
