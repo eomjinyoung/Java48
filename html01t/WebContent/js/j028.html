@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j028</title>
+<style>
+</style>
+</head>
+<body>
+<h1>이벤트 처리 : addEventListener() 함수를 이용한 리스너 등록</h1>
+<div id='d1'>
+  <div id='d11'><h1 id='h01'>d11</h1></div>
+  <div id='d12'><h1 id='h02'>d12</h1></div>
+</div>
+<div id='d2'>
+  <div id='d21'><h1 id='h03'>d21</h1></div>
+  <div id='d22'><h1 id='h04' onclick='console.log("h04 clicked!");'>d22</h1></div>
+</div>
+
+<script>
+"use strict";
+
+// addEventListener(): 여러 개의 리스너를 등록할 수 있다.
+// - 리스너 추가하는 방식은 좋은 점은, 
+// - 필요할 때 특정 기능을 넣고 제거하기가 쉽다.
+var h01 = document.getElementById('h01');
+// 1. 클릭했을 때 수행하는 기본 기능
+h01.addEventListener('click', function(event){
+	alert('h01 눌렀다!');
+});
+// 2. 특정 기간동안 수행될 기능 -> 기간이 지나면 수행되지 말아야 한다.
+h01.addEventListener('click', function(event){
+  alert('h01 눌렀다2!');
+});
+h01.addEventListener('click', function(event){
+  alert('h01 눌렀다3!');
+});	
+
+var h02 = document.getElementById('h02');
+h02.onclick = function(event) {
+	alert('h02 눌렀다!');
+};
+
+// onclick 속성과 addEventListener()의 실행순서
+// 크롬은 선언한 순서대로
+// Firefox: onclick 속성에 등록된 함수 먼저 호출. -> addEventListener()로 등록한 함수 호출.
+// 자바스크립트 스펙 참조 필요!
+var h04 = document.getElementById('h04');
+h04.addEventListener('click', function(event){
+  console.log('addEventListener()로 등록2!');
+});
+h04.onclick = function(event) {
+	console.log('onclick 속성으로 리스너 등록2!');
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
