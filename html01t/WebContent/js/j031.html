@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j031</title>
+<style>
+div,h1 {
+  border: 1px solid red;
+  padding: 20px;
+  margin: 5px;
+}
+</style>
+
+<script>
+"use strict";
+
+console.log("1 ....");
+
+window.onload = function() {
+	console.log("window.onload()...");
+	var h01 = document.getElementById('h01');
+	h01.addEventListener('click', function(event){
+	  console.log('h01 눌렀다!');
+	});
+};
+
+(function(){
+	console.log("1.5...");
+})();
+
+console.log("2 ....");
+</script>
+
+</head>
+<body>
+<script>
+alert("3...");
+</script>
+<h1>onload : DOM 트리 생성 -> 화면 출력 -> onload() 호출</h1>
+<div id='d1'>
+  <div id='d11'><h1 id='h01'>h01</h1></div>
+  <div id='d12'><h1 id='h02'>h02</h1></div>
+</div>
+<script>
+alert("4...");
+</script>
+<div id='d2'>
+  <div id='d21'><h1 id='h03'>h03</h1></div>
+  <div id='d22'><h1 id='h04' onclick='console.log("h04 clicked!");'>h04</h1></div>
+</div>
+<script>
+alert("5...")
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
