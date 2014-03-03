@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j027</title>
+<style>
+</style>
+</head>
+<body>
+<h1>이벤트 처리 : onXXX 속성을 이용한 함수 등록</h1>
+<div id='d1'>
+  <div id='d11'><h1 id='h01'>d11</h1></div>
+  <div id='d12'><h1 id='h02'>d12</h1></div>
+</div>
+<div id='d2'>
+  <div id='d21'><h1 id='h03'>d21</h1></div>
+  <div id='d22'><h1 id='h04' onclick='alert("h04 clicked!");'>d22</h1></div>
+  <h1 id='h05' onclick='ohora();'>오호라!</h1>
+</div>
+
+<script>
+"use strict";
+
+// onXXX : 각 엘리먼트 마다 특정 이벤트가 발생했을 때 호출할 메서드를 등록하는 속성이 있다.
+// - 이벤트가 발생했을 때 호출하는 메서드 => 이벤트 리스너 
+// - 이벤트 리스너를 등록하는 속성
+// - 예) onclick 속성 : click 이벤트에 대해 리스너를 등록하는 속성
+// - 리스너 함수의 문법: function 리스너(event) {...}
+var h01 = document.getElementById('h01');
+h01.onclick = clickH01;
+
+function clickH01(event) {
+	alert('h01 clicked!');
+}
+
+var h02 = document.getElementById('h02');
+h02.onclick = function(event) {
+	alert('h02 clicked!');
+};
+
+document.getElementById('h03').onclick = function(event) {
+	alert('h03 clicked!');
+};
+
+// * 웹 브라우저에서 이벤트 리스너 자동 생성하기
+// - HTML 태그에서 onXXX 속성 선언
+// - <h1 onclick='자바스크립트...'>안녕!</h1>
+// - 위와 같이 html 태그의 속성으로 리스너를 설정하면, 다음의 자바스크립트 문장이 자동 생성됨.
+// - HTML과 자바스크립트 코드가 섞여 있어서 코드를 해석하기기 힘들다. 유지보수 힘듬.
+// - 자주 사용하는 것은 좋지 않다.
+/*
+element.onclick = function(event) {
+	// onclick 속성에 들어 있는 자바스크립트 코드를 다음에 복사함.
+	alert("h04 clicked!");
+}
+*/
+
+/*
+element.onclick = function(event) {
+	// h05 태그의 onclick 속성에 들어있는 코드를 다음에 복사함.
+	ohora();
+}
+ */
+function ohora() {
+	var input = Number( prompt("당신의 나이는?", "20") );
+	if (input < 19) 
+		console.log("미성년입니다.");
+	else 
+		console.log("성년입니다.");
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
