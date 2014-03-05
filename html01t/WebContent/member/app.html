@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원관리</title>
+<link rel="stylesheet" href="app.css">
 <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
@@ -15,5 +16,37 @@
   <th>전화</th>
 </tr>
 </table>
+
+<hr>
+<h2>회원정보</h2>
+<form id="memberForm" 
+    action='http://localhost:8080/web02/member/ajax/add.do' 
+    method='post'>
+이름: <input type='text' name='name'><br>
+이메일: <input type='text' name='email'><br>
+암호: <input type='password' name='password'><br>
+암호: <input type='password'><br>
+전화: <input type='text' name='tel'><br>
+나이: <input type='text' name='age'><br>
+<input type='submit' value='등록'>
+</form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -19,6 +19,10 @@ window.onload = function() {
   };
   xhr.open('GET', 'http://localhost:8080/web02/member/ajax/list.do', true);
   xhr.send(null);
+  
+  
+  
+  
 };
 
 
