@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j034</title>
+<style>
+div,h1 {
+  border: 1px solid red;
+  padding: 20px;
+  margin: 5px;
+}
+</style>
+
+<script>
+"use strict";
+
+window.onload = function() {
+	var xhr = new XMLHttpRequest();
+	// onreadystatechange()는 요청 상태가 바뀔 때 마다 호출된다.
+	xhr.onreadystatechange = function() {
+		// 1 : 요청을 위한 주소를 준비했다. (open() 호출 후)
+		// 2 : 요청을 보냈다. (send() 호출 후 )
+		// 3 : 응답 데이터를 받고 있다. (결과 데이터 수신 중.. )
+		//     응답 받는 데이터의 양이 많을 경우 여러번 호출될 수 있음.
+		// 4 : 응답 데이터를 모두 받았다.
+	  if (xhr.readyState == 4) {
+		  if (xhr.status == 200) { // 서버에서 요청한 자원을 정상적으로 찾아서 보내 줄 때,
+  		  console.log("okok");
+  		  var content = document.getElementById("content");
+  		  content.innerHTML = xhr.responseText;
+		  }
+	  }
+	};
+	xhr.open('GET', 'j033_form2.html', true);
+	xhr.send();
+	
+};
+
+</script>
+
+</head>
+<body>
+<h1>AJAX: 비동기 요청</h1>
+<div id='content'>
+  
+</div>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
