@@ -6,7 +6,8 @@ var $ = bit;
 
 window.onload = function() {
 	loadMemberList();
-
+	clearForm();
+	
 	$('memberForm').onsubmit = function() {
 		try {
 			validateForm();
@@ -25,6 +26,13 @@ window.onload = function() {
 		$('btnAdd').style.display = '';
 	};
 	
+	$('btnUpdate').onclick = function() {
+		updateMember();
+	};
+	
+	$('btnDelete').onclick = function() {
+		deleteMember($('no').value);
+	};
 };
 
 function validateForm() {
@@ -142,6 +150,7 @@ function deleteMember(no) {
 				alert('삭제 실패입니다!');
 			} else {
 				loadMemberList();
+				clearForm();
 			}
 		}	  
 	};
@@ -179,6 +188,30 @@ function readMember(no) {
 	xhr.send(null);	
 }
 
+function updateMember() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var result = JSON.parse(xhr.responseText).jsonResult; 
+			if (result.resultStatus != 0) {
+				alert('회원 변경 실패!');
+				console.log(result.error);
+			} else {
+				loadMemberList();
+				clearForm();
+			}
+		}
+	};
+	xhr.open('POST', 'http://localhost:8080/web02/member/ajax/update.do', true);
+	
+	var data = 'name=' + encodeURIComponent($('name').value) +
+		'&email=' + encodeURIComponent($('email').value) +
+		'&tel=' + encodeURIComponent($('tel').value) +
+		'&age=' + $('age').value + 
+		'&no=' + $('no').value;
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.send(data);
+}
 
 
 
