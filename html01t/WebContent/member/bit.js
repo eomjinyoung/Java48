@@ -2,6 +2,25 @@ function bit(id) {
   return document.getElementById(id);
 }
 
+function createRequest() {
+    try {
+        return new XMLHttpRequest();
+    } catch (exception) {
+        var versions = [
+            'Msxml2.XMLHTTP.6.0',
+            'Msxml2.XMLHTTP.5.0',
+            'Msxml2.XMLHTTP.4.0',
+            'Msxml2.XMLHTTP.3.0',
+            'Msxml2.XMLHTTP',
+            'Microsoft.XMLHttp'
+        ];
+        for (var i = 0; i < versions.length; i++) {
+            try {
+                return new ActiveXObject(versions[i]);
+            } catch (e) { }
+        }
+    }
+}
 /* AJAX 기능 수행 
  * url : 서비스를 가리키는 URL. string
  * options: AJAX 요청시 필요한 값을 담은 객체.
@@ -11,7 +30,8 @@ function bit(id) {
  *    method - 원격 함수 호출 방법(요청 방식: GET, POST) 
  */
 bit.ajax = function(url, options) {
-	var xhr = new XMLHttpRequest();
+	//var xhr = new XMLHttpRequest();
+	var xhr = createRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var result = JSON.parse(xhr.responseText).jsonResult;

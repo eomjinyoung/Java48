@@ -127,22 +127,17 @@ function clearForm() {
 }
 
 function deleteMember(no) {
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var status = JSON.parse(xhr.responseText).jsonResult.resultStatus;
-			if (status != 0) {
-				alert('삭제 실패입니다!');
-			} else {
-				loadMemberList();
-				clearForm();
-			}
-		}	  
-	};
-	xhr.open('GET', 
-		'http://localhost:8080/web02/member/ajax/delete.do?no=' + no, 
-		true);
-	xhr.send(null);
+	$.ajax('http://localhost:8080/web02/member/ajax/delete.do?no=' + no, {
+		method: 'GET',
+		success: function(result){
+			loadMemberList();
+			clearForm();
+		},
+		error: function(msg){
+			alert('회원 삭제 실패!');
+			console.log(msg);
+		}
+	});
 }
 
 function readMember(no) {
@@ -169,28 +164,24 @@ function readMember(no) {
 }
 
 function updateMember() {
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var result = JSON.parse(xhr.responseText).jsonResult; 
-			if (result.resultStatus != 0) {
-				alert('회원 변경 실패!');
-				console.log(result.error);
-			} else {
-				loadMemberList();
-				clearForm();
-			}
+	$.ajax('http://localhost:8080/web02/member/ajax/update.do', {
+		method: 'POST',
+		data: {
+			no: $('no').value,
+			name: encodeURIComponent($('name').value),
+			email: encodeURIComponent($('email').value),
+			tel: encodeURIComponent($('tel').value),
+			age: $('age').value
+		},
+		success: function(result){
+			loadMemberList();
+			clearForm();
+		},
+		error: function(msg){
+			alert('회원 변경 실패!');
+			console.log(msg);
 		}
-	};
-	xhr.open('POST', 'http://localhost:8080/web02/member/ajax/update.do', true);
-	
-	var data = 'name=' + encodeURIComponent($('name').value) +
-		'&email=' + encodeURIComponent($('email').value) +
-		'&tel=' + encodeURIComponent($('tel').value) +
-		'&age=' + $('age').value + 
-		'&no=' + $('no').value;
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send(data);
+	});
 }
 
 
