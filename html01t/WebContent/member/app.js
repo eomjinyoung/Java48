@@ -140,7 +140,11 @@ function readMember(no) {
 			if (result.resultStatus != 0) {
 				alert('해당 멤버 정보를 읽을 수 없습니다!');
 			} else {
-				console.log(result.data);
+				$('no').value = result.data.no;
+				$('name').value = result.data.name;
+				$('email').value = result.data.email;
+				$('tel').value = result.data.tel;
+				$('age').value = result.data.age;
 			}
 		}	  
 	};
