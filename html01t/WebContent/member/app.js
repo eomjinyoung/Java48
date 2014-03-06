@@ -39,7 +39,7 @@ function loadMemberList() {
 			var members = JSON.parse(xhr.responseText).jsonResult.data;
 			var memberTable = $("memberTable");
 			clearMemberList();
-			var tr = null;
+			var tr = null, td = null, a = null;
 			members.forEach(function(member){
 				tr = document.createElement('tr');
 				tr.setAttribute('class', 'dataRow');
@@ -49,7 +49,7 @@ function loadMemberList() {
 					tr.appendChild(td);
 				});
 				td = document.createElement('td');
-				var a = document.createElement('a');
+				a = document.createElement('a');
 				a.href = '#';
 				a.onclick = function(event) {
 					deleteMember(member.no);
