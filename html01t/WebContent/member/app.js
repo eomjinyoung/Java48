@@ -38,9 +38,11 @@ function loadMemberList() {
 			//var obj = eval('(' + xhr.responseText + ')');
 			var members = JSON.parse(xhr.responseText).jsonResult.data;
 			var memberTable = $("memberTable");
+			clearMemberList();
 			var tr = null;
 			members.forEach(function(member){
 				tr = document.createElement('tr');
+				tr.setAttribute('class', 'dataRow');
 				[member.no,member.name,member.email,member.tel].forEach(function(value){
 					td = document.createElement('td');
 					td.innerHTML = value;
@@ -52,6 +54,14 @@ function loadMemberList() {
 	};
 	xhr.open('GET', 'http://localhost:8080/web02/member/ajax/list.do', true);
 	xhr.send(null);
+}
+
+function clearMemberList() {
+	var memberTable = $("memberTable");
+	var trList = document.querySelectorAll('.dataRow');
+	for (var i = 0; i < trList.length; i++) {
+		memberTable.removeChild(trList[i]);
+	}
 }
 
 function addMember() {
