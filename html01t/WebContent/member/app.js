@@ -1,9 +1,3 @@
-function bit(id) {
-  return document.getElementById(id);
-}
-
-var $ = bit;
-
 window.onload = function() {
 	loadMemberList();
 	clearForm();
@@ -161,31 +155,26 @@ function deleteMember(no) {
 }
 
 function readMember(no) {
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var result = JSON.parse(xhr.responseText).jsonResult;
-			if (result.resultStatus != 0) {
-				alert('해당 멤버 정보를 읽을 수 없습니다!');
-			} else {
-				$('no').value = result.data.no;
-				$('name').value = result.data.name;
-				$('email').value = result.data.email;
-				$('tel').value = result.data.tel;
-				$('age').value = result.data.age;
-				
-				$('noSpan').style.display = '';
-				$('btnUpdate').style.display = '';
-				$('btnDelete').style.display = '';
-				$('btnCancel').style.display = '';
-				$('btnAdd').style.display = 'none';
-			}
-		}	  
-	};
-	xhr.open('GET', 
-		'http://localhost:8080/web02/member/ajax/read.do?no=' + no, 
-		true);
-	xhr.send(null);	
+	$.ajax('http://localhost:8080/web02/member/ajax/read.do?no=' + no, {
+		method: 'GET',
+		success: function(result){
+			$('no').value = result.no;
+			$('name').value = result.name;
+			$('email').value = result.email;
+			$('tel').value = result.tel;
+			$('age').value = result.age;
+			
+			$('noSpan').style.display = '';
+			$('btnUpdate').style.display = '';
+			$('btnDelete').style.display = '';
+			$('btnCancel').style.display = '';
+			$('btnAdd').style.display = 'none';
+		},
+		error: function(msg){
+			alert('해당 멤버 정보를 읽을 수 없습니다!');
+			console.log(msg);
+		}
+	});
 }
 
 function updateMember() {
