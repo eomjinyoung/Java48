@@ -1,7 +1,13 @@
+function bit(id) {
+  return document.getElementById(id);
+}
+
+var $ = bit;
+
 window.onload = function() {
 	loadMemberList();
 
-	bit('memberForm').onsubmit = function() {
+	$('memberForm').onsubmit = function() {
 		try {
 			validateForm();
 			addMember();
@@ -10,6 +16,15 @@ window.onload = function() {
 		}
 		return false;
 	};
+	
+	$('btnCancel').onclick = function() {
+		$('noSpan').style.display = 'none';
+		$('btnUpdate').style.display = 'none';
+		$('btnDelete').style.display = 'none';
+		$('btnCancel').style.display = 'none';
+		$('btnAdd').style.display = '';
+	};
+	
 };
 
 function validateForm() {
@@ -24,12 +39,6 @@ function validateForm() {
 		throw '이름과 이메일은 필수 입력 항목입니다!';
 	}
 }
-
-function bit(id) {
-  return document.getElementById(id);
-}
-
-var $ = bit;
 
 function loadMemberList() {
 	var xhr = new XMLHttpRequest();
@@ -100,6 +109,7 @@ function addMember() {
 				console.log(result.error);
 			} else {
 				loadMemberList();
+				clearForm();
 			}
 		}
 	};
@@ -112,6 +122,15 @@ function addMember() {
 		'&age=' + $('age').value;
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhr.send(data);
+}
+
+function clearForm() {
+	var event = new MouseEvent('click', {
+		view: window,
+		bubbles: true,
+		cancelable: true
+	});
+	$('btnCancel').dispatchEvent(event);
 }
 
 function deleteMember(no) {
