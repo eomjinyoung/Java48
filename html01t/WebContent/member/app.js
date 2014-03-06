@@ -63,8 +63,7 @@ function addMember() {
 				alert('회원 등록 실패!');
 				console.log(result.error);
 			} else {
-				// 목록 다시 가져오기
-				alert('회원 등록 성공!');
+				loadMemberList();
 			}
 		}
 	};
