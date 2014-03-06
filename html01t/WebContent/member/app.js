@@ -43,11 +43,9 @@ function validateForm() {
 }
 
 function loadMemberList() {
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			//var obj = eval('(' + xhr.responseText + ')');
-			var members = JSON.parse(xhr.responseText).jsonResult.data;
+	$.ajax('http://localhost:8080/web02/member/ajax/list.do', {
+		method: 'GET',
+		success: function(members){
 			var memberTable = $("memberTable");
 			clearMemberList();
 			var tr = null, td = null, a = null;
@@ -78,19 +76,16 @@ function loadMemberList() {
 				};
 				a.innerHTML = '삭제';
 				td.appendChild(a);
-				/*
-				td.innerHTML = '<a href="#"' + 
-					' onclick="deleteMember(' + member.no + 
-					'); event.preventDefault();">삭제</a>';
-				*/
 				tr.appendChild(td);
 				
 				memberTable.appendChild(tr);
 			});
-		}	  
-	};
-	xhr.open('GET', 'http://localhost:8080/web02/member/ajax/list.do', true);
-	xhr.send(null);
+		},
+		error: function(msg){
+			alert('회원 정보를 읽을 수 없습니다!');
+			console.log(msg);
+		}
+	});
 }
 
 function clearMemberList() {
@@ -102,28 +97,24 @@ function clearMemberList() {
 }
 
 function addMember() {
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var result = JSON.parse(xhr.responseText).jsonResult; 
-			if (result.resultStatus != 0) {
-				alert('회원 등록 실패!');
-				console.log(result.error);
-			} else {
-				loadMemberList();
-				clearForm();
-			}
+	$.ajax('http://localhost:8080/web02/member/ajax/add.do', {
+		method: 'POST',
+		data: {
+			name: encodeURIComponent($('name').value),
+			email: encodeURIComponent($('email').value),
+			password: $('pass1').value,
+			tel: encodeURIComponent($('tel').value),
+			age: $('age').value
+		},
+		success: function(result){
+			loadMemberList();
+			clearForm();
+		},
+		error: function(msg){
+			alert('회원 등록 실패!');
+			console.log(msg);
 		}
-	};
-	xhr.open('POST', 'http://localhost:8080/web02/member/ajax/add.do', true);
-	
-	var data = 'name=' + encodeURIComponent($('name').value) +
-		'&email=' + encodeURIComponent($('email').value) +
-		'&password=' + $('pass1').value +
-		'&tel=' + encodeURIComponent($('tel').value) +
-		'&age=' + $('age').value;
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send(data);
+	});
 }
 
 function clearForm() {
