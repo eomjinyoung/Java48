@@ -43,9 +43,19 @@ function loadMemberList() {
 			members.forEach(function(member){
 				tr = document.createElement('tr');
 				tr.setAttribute('class', 'dataRow');
-				[member.no,member.name,member.email,member.tel].forEach(function(value){
+				[member.no,
+				 member.name,
+				 member.email,
+				 member.tel].forEach(function(value,index,arr){
 					td = document.createElement('td');
-					td.innerHTML = value;
+					if (index == 1) {
+						td.innerHTML = '<a href="#"' +
+							' onclick="readMember(' + arr[0] +
+							'); return false;">' +
+							value + '</a>';
+					} else {
+						td.innerHTML = value;
+					} 
 					tr.appendChild(td);
 				});
 				td = document.createElement('td');
@@ -105,9 +115,40 @@ function addMember() {
 }
 
 function deleteMember(no) {
-	alert('삭제...' + no);
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var status = JSON.parse(xhr.responseText).jsonResult.resultStatus;
+			if (status != 0) {
+				alert('삭제 실패입니다!');
+			} else {
+				loadMemberList();
+			}
+		}	  
+	};
+	xhr.open('GET', 
+		'http://localhost:8080/web02/member/ajax/delete.do?no=' + no, 
+		true);
+	xhr.send(null);
 }
 
+function readMember(no) {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var result = JSON.parse(xhr.responseText).jsonResult;
+			if (result.resultStatus != 0) {
+				alert('해당 멤버 정보를 읽을 수 없습니다!');
+			} else {
+				console.log(result.data);
+			}
+		}	  
+	};
+	xhr.open('GET', 
+		'http://localhost:8080/web02/member/ajax/read.do?no=' + no, 
+		true);
+	xhr.send(null);	
+}
 
 
 
