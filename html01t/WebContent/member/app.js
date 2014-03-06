@@ -48,6 +48,22 @@ function loadMemberList() {
 					td.innerHTML = value;
 					tr.appendChild(td);
 				});
+				td = document.createElement('td');
+				var a = document.createElement('a');
+				a.href = '#';
+				a.onclick = function(event) {
+					deleteMember(member.no);
+					event.preventDefault();
+				};
+				a.innerHTML = '삭제';
+				td.appendChild(a);
+				/*
+				td.innerHTML = '<a href="#"' + 
+					' onclick="deleteMember(' + member.no + 
+					'); event.preventDefault();">삭제</a>';
+				*/
+				tr.appendChild(td);
+				
 				memberTable.appendChild(tr);
 			});
 		}	  
@@ -86,6 +102,10 @@ function addMember() {
 		'&age=' + $('age').value;
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhr.send(data);
+}
+
+function deleteMember(no) {
+	alert('삭제...' + no);
 }
 
 
