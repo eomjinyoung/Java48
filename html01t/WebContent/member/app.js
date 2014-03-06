@@ -145,6 +145,12 @@ function readMember(no) {
 				$('email').value = result.data.email;
 				$('tel').value = result.data.tel;
 				$('age').value = result.data.age;
+				
+				$('noSpan').style.display = '';
+				$('btnUpdate').style.display = '';
+				$('btnDelete').style.display = '';
+				$('btnCancel').style.display = '';
+				$('btnAdd').style.display = 'none';
 			}
 		}	  
 	};
