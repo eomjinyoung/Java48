@@ -1,45 +1,38 @@
 window.onload = function() {
 	loadMemberList();
-
-	/*
 	clearForm();
-	
-	$('memberForm').onsubmit = function() {
+
+	$('#btnAdd').click(function() {
 		try {
 			validateForm();
 			addMember();
 		} catch (err) {
 			alert(err);
 		}
-		return false;
-	};
-	
-	$('btnCancel').onclick = function() {
-		$('noSpan').style.display = 'none';
-		$('btnUpdate').style.display = 'none';
-		$('btnDelete').style.display = 'none';
-		$('btnCancel').style.display = 'none';
-		$('btnAdd').style.display = '';
-	};
-	
-	$('btnUpdate').onclick = function() {
+	});
+
+	$('#btnCancel').click(function() {
+		$('.editMode').css('display', 'none');
+		$('.newMode').css('display', '');
+	});
+
+	$('#btnUpdate').click(function() {
 		updateMember();
-	};
+	});
 	
-	$('btnDelete').onclick = function() {
-		deleteMember($('no').value);
-	};
-	*/
+	$('#btnDelete').click( function() {
+		deleteMember($('#no').val());
+	});
 };
 
 function validateForm() {
-	var pass1 = $('pass1').value;
-	var pass2 = $('pass2').value;
+	var pass1 = $('#pass1').val();
+	var pass2 = $('#pass2').val();
 	if (pass1 != pass2) {
 		throw '암호가 일치하지 않습니다!';
 	}
-	var name = $('name').value;
-	var email = $('email').value;
+	var name = $('#name').val();
+	var email = $('#email').val();
 	if (name == '' || email == '') {
 		throw '이름과 이메일은 필수 입력 항목입니다!';
 	}
@@ -50,7 +43,7 @@ function loadMemberList() {
 		method: 'GET',
 		success: function(members){
 			var memberTable = $("#memberTable");
-			//clearMemberList();
+			clearMemberList();
 			var tr = null, td = null, a = null;
 			members.forEach(function(member){
 				tr = document.createElement('tr');
@@ -92,22 +85,18 @@ function loadMemberList() {
 }
 
 function clearMemberList() {
-	var memberTable = $("memberTable");
-	var trList = document.querySelectorAll('.dataRow');
-	for (var i = 0; i < trList.length; i++) {
-		memberTable.removeChild(trList[i]);
-	}
+	$('.dataRow').remove();
 }
 
 function addMember() {
 	$.ajax('http://localhost:8080/web02/member/ajax/add.do', {
 		method: 'POST',
 		data: {
-			name: encodeURIComponent($('name').value),
-			email: encodeURIComponent($('email').value),
-			password: $('pass1').value,
-			tel: encodeURIComponent($('tel').value),
-			age: $('age').value
+			name: encodeURIComponent($('#name').val()),
+			email: encodeURIComponent($('#email').val()),
+			password: $('#pass1').val(),
+			tel: encodeURIComponent($('#tel').val()),
+			age: $('#age').val()
 		},
 		success: function(result){
 			loadMemberList();
@@ -121,12 +110,7 @@ function addMember() {
 }
 
 function clearForm() {
-	var event = new MouseEvent('click', {
-		view: window,
-		bubbles: true,
-		cancelable: true
-	});
-	$('btnCancel').dispatchEvent(event);
+	$('#btnCancel').dispatchEvent('click');
 }
 
 function deleteMember(no) {
@@ -147,17 +131,14 @@ function readMember(no) {
 	$.ajax('http://localhost:8080/web02/member/ajax/read.do?no=' + no, {
 		method: 'GET',
 		success: function(result){
-			$('no').value = result.no;
-			$('name').value = result.name;
-			$('email').value = result.email;
-			$('tel').value = result.tel;
-			$('age').value = result.age;
+			$('#no').val(result.no);
+			$('#name').val(result.name);
+			$('#email').val(result.email);
+			$('#tel').val(result.tel);
+			$('#age').val(result.age);
 			
-			$('noSpan').style.display = '';
-			$('btnUpdate').style.display = '';
-			$('btnDelete').style.display = '';
-			$('btnCancel').style.display = '';
-			$('btnAdd').style.display = 'none';
+			$('.editMode').css('display', '');
+			$('.newMode').css('display', 'none');
 		},
 		error: function(msg){
 			alert('해당 멤버 정보를 읽을 수 없습니다!');
@@ -170,11 +151,11 @@ function updateMember() {
 	$.ajax('http://localhost:8080/web02/member/ajax/update.do', {
 		method: 'POST',
 		data: {
-			no: $('no').value,
-			name: encodeURIComponent($('name').value),
-			email: encodeURIComponent($('email').value),
-			tel: encodeURIComponent($('tel').value),
-			age: $('age').value
+			no: $('#no').val(),
+			name: encodeURIComponent($('#name').val()),
+			email: encodeURIComponent($('#email').val()),
+			tel: encodeURIComponent($('#tel').val()),
+			age: $('#age').val()
 		},
 		success: function(result){
 			loadMemberList();

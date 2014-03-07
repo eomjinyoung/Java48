@@ -22,17 +22,18 @@
 <hr>
 <h2>회원정보</h2>
 <form id="memberForm">
-<span id='noSpan' style='display:none;'>번호: <input id='no' type='text' readonly><br></span>    
+<span id='noSpan' class='editMode' style='display:none;'>번호: 
+  <input id='no' type='text' readonly><br></span>    
 이름: <input id='name' type='text'><br>
 이메일: <input id='email' type='text'><br>
 암호: <input id='pass1' type='password'><br>
 암호: <input id='pass2' type='password'><br>
 전화: <input id='tel' type='text'><br>
 나이: <input id='age' type='text'><br>
-<input id='btnAdd' type='submit' value='등록'>
-<input id='btnUpdate' type='button' value='변경' style='display:none;'>
-<input id='btnDelete' type='button' value='삭제' style='display:none;'>
-<input id='btnCancel' type='reset' value='취소' style='display:none;'>
+<input id='btnAdd' class='newMode' type='button' value='등록'>
+<input id='btnUpdate' class='editMode' type='button' value='변경' style='display:none;'>
+<input id='btnDelete' class='editMode' type='button' value='삭제' style='display:none;'>
+<input id='btnCancel' class='editMode' type='reset' value='취소' style='display:none;'>
 </form>
 </body>
 </html>

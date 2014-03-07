@@ -2,20 +2,52 @@ function bit(selector) {
   var elements = document.querySelectorAll(selector);
   
   elements.click = function(listener) {
-	  for (var i = 0; i < elements.length; i++) {
+	  for (var i = 0; i < this.length; i++) {
 		  this[i].onclick = listener;
 	  }
   };
   
   elements.css = function(name, value) {
-	  for (var i = 0; i < elements.length; i++) {
+	  for (var i = 0; i < this.length; i++) {
 		  this[i].style[name] = value;
 	  }
   };
   
   elements.append = function(child) {
-	  for (var i = 0; i < elements.length; i++) {
+	  for (var i = 0; i < this.length; i++) {
 		  this[i].appendChild(child);
+	  }
+  };
+  
+  elements.remove = function() {
+	  for (var i = 0; i < this.length; i++) {
+		  this[i].parentNode.removeChild(this[i]);
+	  }
+  };
+  
+  elements.dispatchEvent = function(eventType) {
+	  var event = null;
+	  if (eventType == 'click') {
+		  event = new MouseEvent('click', {
+				view: window,
+				bubbles: true,
+				cancelable: true
+		  });
+	  } else {
+		  return;
+	  }
+	  for (var i = 0; i < this.length; i++) {
+		  this[i].dispatchEvent(event);
+	  }
+  };
+  
+  elements.val = function(value) {
+	  if (arguments.length == 0) {
+		  return this[0].value;
+	  } else {
+		  for (var i = 0; i < this.length; i++) {
+			  this[i].value = value;
+		  } 
 	  }
   };
   
