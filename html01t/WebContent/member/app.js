@@ -1,5 +1,7 @@
 window.onload = function() {
 	loadMemberList();
+
+	/*
 	clearForm();
 	
 	$('memberForm').onsubmit = function() {
@@ -27,6 +29,7 @@ window.onload = function() {
 	$('btnDelete').onclick = function() {
 		deleteMember($('no').value);
 	};
+	*/
 };
 
 function validateForm() {
@@ -46,8 +49,8 @@ function loadMemberList() {
 	$.ajax('http://localhost:8080/web02/member/ajax/list.do', {
 		method: 'GET',
 		success: function(members){
-			var memberTable = $("memberTable");
-			clearMemberList();
+			var memberTable = $("#memberTable");
+			//clearMemberList();
 			var tr = null, td = null, a = null;
 			members.forEach(function(member){
 				tr = document.createElement('tr');
@@ -78,7 +81,7 @@ function loadMemberList() {
 				td.appendChild(a);
 				tr.appendChild(td);
 				
-				memberTable.appendChild(tr);
+				memberTable.append(tr);
 			});
 		},
 		error: function(msg){

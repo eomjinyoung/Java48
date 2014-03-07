@@ -1,6 +1,29 @@
-function bit(id) {
-  return document.getElementById(id);
+function bit(selector) {
+  var elements = document.querySelectorAll(selector);
+  
+  elements.click = function(listener) {
+	  for (var i = 0; i < elements.length; i++) {
+		  this[i].onclick = listener;
+	  }
+  };
+  
+  elements.css = function(name, value) {
+	  for (var i = 0; i < elements.length; i++) {
+		  this[i].style[name] = value;
+	  }
+  };
+  
+  elements.append = function(child) {
+	  for (var i = 0; i < elements.length; i++) {
+		  this[i].appendChild(child);
+	  }
+  };
+  
+  return elements;
 }
+
+
+
 
 function createRequest() {
     try {
