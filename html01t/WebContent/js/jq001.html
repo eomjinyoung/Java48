@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq001</title>
+<style>
+div,h1 {
+  border: 1px solid red;
+  padding: 20px;
+  margin: 5px;
+}
+</style>
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+"use strict";
+
+window.onload = function() {
+	console.log('window.onload = 함수객체...');
+};
+
+$(document).ready(function(){ // DOM tree 완성 후 호출
+  console.log('ready(함수객체)1111...');
+});
+	
+$(function(){  // DOM tree 완성 후 호출
+	console.log('$(함수객체)...')
+});
+	
+$(document).ready(function(){ // DOM tree 완성 후 호출
+	console.log('ready(함수객체)22222...');
+});
+
+
+
+
+
+
+</script>
+
+</head>
+<body>
+<h1>jQuery: </h1>
+<div id='content'>
+  
+</div>
+
+
+<script>
+console.log('body...끝!');
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

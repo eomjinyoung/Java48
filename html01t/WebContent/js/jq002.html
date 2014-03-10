@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq002</title>
+
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+"use strict";
+
+// DOM 트리가 완성되면 내가 넘겨 준 함수를 호출해 다오!
+$(function(){
+	// 1. 값 꺼내기 - 여러 개의 엘리먼트에서 값을 꺼낼 때는 첫 번째 것 만 꺼낸다.
+	/*
+	console.log('1. 값 꺼내기 ---------------------------------------------');
+	var content = $('h2').html();
+	console.log(content);
+	*/
+	
+	// 2. 값 설정하기 - 여러 개의 엘리먼트의 값을 설정
+	/*
+	console.log('2. 값 설정하기 ---------------------------------------------');
+	$('h2').html('okok');
+	*/
+	
+	// 3. 함수 객체를 통해 값 설정
+	/*
+	console.log('3. 함수 객체를 통해 값 설정 ---------------------------------------------');
+	$('h2').html(function(i, oldvalue){
+		var prefix = '(홀)';
+		if (i % 2 == 0) {
+			prefix = '(짝)'
+		}
+		return prefix + oldvalue + '-nono';
+	});
+	*/
+	
+	// 4. 한꺼번에 여러 개의 값을 설정
+	/* 다음과 같이 낱개로 스타일을 설정할 수 있다.
+	$('h2').css('background', 'black')
+	       .css('color', 'white')
+	       .css('font-style', 'italic')
+	       .css('text-decoration', 'line-through');
+	*/
+	// 객체를 사용하여 한꺼번에 스타일을 설정
+	/*
+	$('h2').css({
+		'background': 'blue',
+		'color': 'red',
+		'font-style': 'italic',
+		'text-decoration': 'line-through'
+	});
+	*/
+	// 객체를 통해 값을 설정할 때 이전과 같이 함수를 넣을 수 있다.
+	$('h2').css({
+    'background': function(index){
+    	if (index % 2 == 0) {
+    		return 'blue';
+    	} else {
+    		return 'white';
+    	}
+    },
+    'color': 'red',
+    'font-style': 'italic',
+    'text-decoration': 'line-through'
+  });
+	
+});
+</script>
+</head>
+<body>
+<h1>jQuery: 함수 사용 패턴</h1>
+<div id='content'>
+<h2>1111</h2>  
+<h2>2222</h2> 
+<h2>3333</h2> 
+<h2>4444</h2> 
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
