@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+
+#memberTable {
+	border: 1px solid DarkKhaki;
+}
+
+tr:nth-child(odd) {
+	background-color: lightyellow;
+}
+
+tr:first-child {
+  background-color: Khaki;
+}
+
+
+
+
+
+
+
+
+

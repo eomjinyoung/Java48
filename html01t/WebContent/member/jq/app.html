@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원관리</title>
+<link rel="stylesheet" href="app.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+<h1>회원 목록</h1>
+<table id="memberTable">
+<tr>
+  <th>번호</th>
+  <th>이름</th>
+  <th>이메일</th>
+  <th>전화</th>
+  <th></th>
+</tr>
+</table>
+
+<hr>
+<h2>회원정보</h2>
+<form id="memberForm">
+<span id='noSpan' class='editMode' style='display:none;'>번호: 
+  <input id='no' type='text' readonly><br></span>    
+이름: <input id='name' type='text'><br>
+이메일: <input id='email' type='text'><br>
+암호: <input id='pass1' type='password'><br>
+암호: <input id='pass2' type='password'><br>
+전화: <input id='tel' type='text'><br>
+나이: <input id='age' type='text'><br>
+<input id='btnAdd' class='newMode' type='button' value='등록'>
+<input id='btnUpdate' class='editMode' type='button' value='변경' style='display:none;'>
+<input id='btnDelete' class='editMode' type='button' value='삭제' style='display:none;'>
+<input id='btnCancel' class='editMode' type='reset' value='취소' style='display:none;'>
+</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
