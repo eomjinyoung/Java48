@@ -1,8 +1,16 @@
 $(document).ready(function() {
 	loadMemberList();
-/*	
 	clearForm();
-
+	
+	$('#memberTable').on('click', '.btnMemberDelete', function(){
+		deleteMember($(this).attr('data-no'));
+	});
+	
+	$('#btnCancel').click(function() {
+		$('.editMode').css('display', 'none');
+		$('.newMode').css('display', '');
+	});
+	
 	$('#btnAdd').click(function() {
 		try {
 			validateForm();
@@ -11,20 +19,15 @@ $(document).ready(function() {
 			alert(err);
 		}
 	});
-
-	$('#btnCancel').click(function() {
-		$('.editMode').css('display', 'none');
-		$('.newMode').css('display', '');
-	});
-
-	$('#btnUpdate').click(function() {
-		updateMember();
-	});
 	
 	$('#btnDelete').click( function() {
 		deleteMember($('#no').val());
 	});
-*/	
+	
+	$('#btnUpdate').click(function() {
+		updateMember();
+	});
+	
 });
 
 function validateForm() {
@@ -47,38 +50,26 @@ function loadMemberList() {
 		success: function(result){
 			var members = result.jsonResult.data;
 			var memberTable = $("#memberTable");
-			//clearMemberList();
-			console.log(members);
+			clearMemberList();
 			$.each(members, function(index, member){
 				$('<tr></tr>')
 					.addClass('dataRow')
 					.append($('<td></td>').html(member.no)) // 번호
-					.append($('<td></td>').html(member.name)) // 이름
+					.append($('<td></td>')
+							.append($('<a></a>')
+								.attr('href', '#')
+								.attr('data-no', member.no)
+								.html(member.name)
+								.click(function(){
+									readMember($(this).attr('data-no'));
+								}))) // 이름
 					.append($('<td></td>').html(member.email)) // 이메일
 					.append($('<td></td>').html(member.tel)) // 전화
-					.append($('<td></td>').html('삭제')) // 삭제버튼
+					.append($('<td></td>').append($('<a>삭제</a>')
+							.addClass('btnMemberDelete')
+							.attr('href', '#')
+							.attr('data-no', member.no))) // 삭제버튼
 					.appendTo(memberTable); 
-				/*
-				$.each([member.no,member.name,member.email, member.tel], 
-						function(index, value){
-					td = $('<td>');
-					if (index == 1) {
-						td.append($('<a></a>',{
-							href: '#'
-						}).html(value));
-					} else {
-						td.html(value);
-					} 
-					tr.append(td);
-				});
-				td = $('<td></td>').append($('<a>',{
-							href: '#'
-						}).click(function(event) {
-							deleteMember(member.no);
-							event.preventDefault();
-						}).html('삭제')).appendTo(tr);
-				memberTable.append(tr);
-				*/
 			});
 		},
 		error: function(msg){
@@ -93,67 +84,49 @@ function clearMemberList() {
 }
 
 function addMember() {
-	$.ajax('http://localhost:8080/web02/member/ajax/add.do', {
-		method: 'POST',
-		data: {
+	$.post('http://localhost:8080/web02/member/ajax/add.do', {
 			name: encodeURIComponent($('#name').val()),
 			email: encodeURIComponent($('#email').val()),
 			password: $('#pass1').val(),
 			tel: encodeURIComponent($('#tel').val()),
 			age: $('#age').val()
-		},
-		success: function(result){
+		}, function(){
 			loadMemberList();
 			clearForm();
-		},
-		error: function(msg){
-			alert('회원 등록 실패!');
-			console.log(msg);
-		}
-	});
+		});
 }
 
 function clearForm() {
-	$('#btnCancel').dispatchEvent('click');
+	$('#btnCancel').trigger('click');
 }
 
 function deleteMember(no) {
-	$.ajax('http://localhost:8080/web02/member/ajax/delete.do?no=' + no, {
-		method: 'GET',
-		success: function(result){
+	$.get('http://localhost:8080/web02/member/ajax/delete.do?no=' + no, 
+		function(){
 			loadMemberList();
 			clearForm();
-		},
-		error: function(msg){
-			alert('회원 삭제 실패!');
-			console.log(msg);
-		}
-	});
+		});
 }
 
 function readMember(no) {
-	$.ajax('http://localhost:8080/web02/member/ajax/read.do?no=' + no, {
-		method: 'GET',
-		success: function(result){
-			$('#no').val(result.no);
-			$('#name').val(result.name);
-			$('#email').val(result.email);
-			$('#tel').val(result.tel);
-			$('#age').val(result.age);
+	$.getJSON('http://localhost:8080/web02/member/ajax/read.do?no=' + no, 
+		function(result){
+			var member = result.jsonResult.data;
+			$('#no').val(member.no);
+			$('#name').val(member.name);
+			$('#email').val(member.email);
+			$('#tel').val(member.tel);
+			$('#age').val(member.age);
 			
 			$('.editMode').css('display', '');
 			$('.newMode').css('display', 'none');
-		},
-		error: function(msg){
-			alert('해당 멤버 정보를 읽을 수 없습니다!');
-			console.log(msg);
-		}
 	});
 }
 
 function updateMember() {
-	$.ajax('http://localhost:8080/web02/member/ajax/update.do', {
-		method: 'POST',
+	$.ajax({
+		url: 'http://localhost:8080/web02/member/ajax/update.do', 
+		type: 'POST',
 		data: {
 			no: $('#no').val(),
 			name: encodeURIComponent($('#name').val()),
@@ -162,12 +135,17 @@ function updateMember() {
 			age: $('#age').val()
 		},
 		success: function(result){
-			loadMemberList();
-			clearForm();
+			if(result.jsonResult.resultStatus == 0) {
+				loadMemberList();
+				clearForm();
+			} else {
+				alert('서버가 바쁩니다. \n계속 문제 발생 시 관리자(1234)에게 연락바랍니다.');
+				console.log(result.jsonResult.error);
+			}
 		},
-		error: function(msg){
+		error: function(xhr, status, msg){
 			alert('회원 변경 실패!');
-			console.log(msg);
+			console.log('========>', msg);
 		}
 	});
 }
