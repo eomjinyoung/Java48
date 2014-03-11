@@ -85,10 +85,10 @@ function clearMemberList() {
 
 function addMember() {
 	$.post('http://localhost:8080/web02/member/ajax/add.do', {
-			name: encodeURIComponent($('#name').val()),
-			email: encodeURIComponent($('#email').val()),
+			name: $('#name').val(),
+			email: $('#email').val(),
 			password: $('#pass1').val(),
-			tel: encodeURIComponent($('#tel').val()),
+			tel: $('#tel').val(),
 			age: $('#age').val()
 		}, function(){
 			loadMemberList();
@@ -129,9 +129,9 @@ function updateMember() {
 		type: 'POST',
 		data: {
 			no: $('#no').val(),
-			name: encodeURIComponent($('#name').val()),
-			email: encodeURIComponent($('#email').val()),
-			tel: encodeURIComponent($('#tel').val()),
+			name: $('#name').val(),
+			email: $('#email').val(),
+			tel: $('#tel').val(),
 			age: $('#age').val()
 		},
 		success: function(result){
