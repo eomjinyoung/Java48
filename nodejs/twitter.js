@@ -1,11 +1,12 @@
 var http = require('http');
 var twitterAPI = require('node-twitter-api');
 var twitter = new twitterAPI({
-    consumerKey: 'e4eotjb8TZvdo3GrcxIBGA', // API key
-    consumerSecret: 'tCXx7yZ9LKfAEMg45foMnsGA0tlFYOVkLZg5Opy6Urk', // API Secret Key
+    consumerKey: '21JW7YoILVb1gBrdhsgZkQ', // API key
+    consumerSecret: 'vMWICXPx2ytmUvQ5spi9PBxlHAOQ7qGxjzoic65MxA', // API Secret Key
     callback: 'http://java.bitacademy.net:8884/goMain' // 로그인 성공 후 자동 접속할 주소
 });
 http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain;charset=UTF-8'});
   try {
 	 //1. URL 분석: req.url -> /getRequestToken
 	 //- 쓰기 좋도록 하기 위해
@@ -15,8 +16,8 @@ http.createServer(function (req, res) {
       twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results){
 	    if (error) {
 	      console.log("Error getting OAuth request token : ");
-	      console.log(error);
-	      throw '트위터 요청토큰 얻기 오류';
+	      console.log(error.toString());
+	      res.end();
 	    } else {
 	      res.write('{');
 	      res.write('  "requestToken": "서버로부터 받은 요청토큰값"');
