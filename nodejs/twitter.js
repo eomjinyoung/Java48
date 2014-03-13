@@ -6,6 +6,7 @@ var twitter = new twitterAPI({
     callback: 'http://java.bitacademy.net:8884/goMain' // 로그인 성공 후 자동 접속할 주소
 });
 http.createServer(function (req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.writeHead(200, {'Content-Type': 'text/plain;charset=UTF-8'});
   try {
 	 //1. URL 분석: req.url -> /getRequestToken
@@ -16,15 +17,17 @@ http.createServer(function (req, res) {
       twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results){
 	    if (error) {
 	      console.log("Error getting OAuth request token : ");
-	      console.log(error.toString());
+	      console.log(error);
 	      res.end();
 	    } else {
 	      res.write('{');
-	      res.write('  "requestToken": "서버로부터 받은 요청토큰값"');
+	      res.write('  "requestToken": "' + requestToken + '"');
 	      res.write('}'); 
 	      res.end();
 	    }
 	  });
+	} else if (urlObj.pathname == '/goMain') {
+	  // 	
 	}
   } catch (err) {
 	res.write('{ "error": "' + err + '" }');
