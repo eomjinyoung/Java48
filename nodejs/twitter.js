@@ -3,8 +3,9 @@ var twitterAPI = require('node-twitter-api');
 var twitter = new twitterAPI({
     consumerKey: '21JW7YoILVb1gBrdhsgZkQ', // API key
     consumerSecret: 'vMWICXPx2ytmUvQ5spi9PBxlHAOQ7qGxjzoic65MxA', // API Secret Key
-    callback: 'http://java.bitacademy.net:8884/goMain' // 로그인 성공 후 자동 접속할 주소
+    callback: 'http://192.168.200.43:8884/getAccessToken' // 로그인 성공 후 자동 접속할 주소
 });
+var reqToken, reqTokenSec;
 http.createServer(function (req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.writeHead(200, {'Content-Type': 'text/plain;charset=UTF-8'});
@@ -20,14 +21,34 @@ http.createServer(function (req, res) {
 	      console.log(error);
 	      res.end();
 	    } else {
+	      reqToken = requestToken;
+	      reqTokenSec = requestTokenSecret;
 	      res.write('{');
 	      res.write('  "requestToken": "' + requestToken + '"');
 	      res.write('}'); 
 	      res.end();
 	    }
 	  });
-	} else if (urlObj.pathname == '/goMain') {
-	  // 	
+      
+	} else if (urlObj.pathname == '/getAccessToken') {
+	  // 트위터로부터 액세스토큰을 발급받는다.
+	  var oauth_verifier = urlObj.query.oauth_verifier;
+	  twitter.getAccessToken(
+			  reqToken, // 요청토큰 
+			  reqTokenSec, // 요청토큰 보안키
+			  oauth_verifier, // 사용자 검증키
+			  function(error, accessToken, accessTokenSecret, results) {
+	    if (error) {
+	      console.log("Error getting OAuth access token : ");
+		  console.log(error);
+		  res.end();
+		} else {
+		  console.log('접근키(출입증)', accessToken);    
+		  console.log('접근키보안', accessTokenSecret);
+		  res.end();
+		}
+	  });
+	  
 	}
   } catch (err) {
 	res.write('{ "error": "' + err + '" }');
