@@ -70,7 +70,21 @@ pageControlMap['/getUserTimeline'] = function(req, res, urlObj) {
 				console.log(error);
 				res.write('{"error": "오류!"');
 			} else {
-				res.write(JSON.stringify(data));
+				res.write('[');
+				var isFirst = true;
+				data.forEach(function(item){
+					isFirst || res.write(',');
+					isFirst && (isFirst = false);
+					res.write('{');
+					res.write('"text":' + JSON.stringify(item.text));
+					res.write(',"created_at":' + JSON.stringify(item.created_at));
+					res.write(',"retweet_count": "' + item.retweet_count + '"');
+					res.write(',"favorite_count":"' + 
+						(item.retweeted_status?
+							item.retweeted_status.favorite_count : '0') + '"');
+					res.write('}')
+				});
+				res.write(']');
 			}
 			res.end();
 		}
