@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인화면</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<body>
+<h1>트위터 데이터 조회 테스트</h1>
+<a id='btn1' href='#'>사용자 타임라인 가져오기</a><br>
+<div id="tweets"></div>
+<script>
+$('#btn1').click(function(event){
+  event.preventDefault();
+  $.getJSON('http://192.168.200.43:8884/getUserTimeline?screen_name=jyeom15',
+		  function(result){
+	      console.log(result);
+  });
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
