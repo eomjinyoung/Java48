@@ -3,6 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <title>메인화면</title>
+<style>
+body {
+  font-size: small;
+}
+
+.tweetBox {
+/*   background: url('twitter.png') 0px 2000px; */
+  border: 1px solid lightgray; 
+  margin: 5px;
+  width: 510px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.tweetBox:hover {
+  border: 2px solid orange;
+  padding: 9px;
+}
+
+.tweetHeader {
+  font-size: 90%; 
+  color: red;
+}
+
+.tweetContent {
+  font-size: 1.2em;
+}
+
+.tweetTail {
+  font-weight: bold;
+}
+
+.retweetCount {
+  color: green;
+  margin-right: 30px;
+}
+
+.favoriteCount {
+  color: lightgray;
+}
+
+.favoriteCount:hover {
+  color: blue;
+}
+
+</style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
@@ -14,7 +60,18 @@ $('#btn1').click(function(event){
   event.preventDefault();
   $.getJSON('http://192.168.200.43:8884/getUserTimeline?screen_name=jyeom15',
 		  function(result){
-	      console.log(result);
+	      $.each(result, function(index, item){
+	    	  $('<div></div>')
+	    	    .addClass('tweetBox')
+	    	    .append($('<p></p>').addClass('tweetHeader').text(item.created_at))
+	    	    .append($('<p></p>').addClass('tweetContent').text(item.text))
+	    	    .append($('<p></p>').addClass('tweetTail')
+	    	    		       .append($('<span></span>').addClass('retweetCount')
+	    	    		    		             .text(item.retweet_count))
+	    	    		       .append($('<span></span>').addClass('favoriteCount')
+	    	    		    		             .text(item.favorite_count)))
+	    	    .appendTo('#tweets');
+	      });
   });
 });
 </script>
