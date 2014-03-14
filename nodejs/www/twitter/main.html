@@ -7,6 +7,13 @@
 body {
   font-size: small;
 }
+@font-face{ /* 폰트 정의 */ 
+  font-family:'rosettaicons';
+  src:url('rosetta-icons-Regular.eot');
+  src:url('rosetta-icons-Regular.eot?#iefix') format('embedded-opentype'),url('rosetta-icons-Regular.woff') format('woff'),url('rosetta-icons-Regular.ttf') format('truetype');
+  font-style:normal;
+  font-weight:normal;
+}
 
 .tweetBox {
 /*   background: url('twitter.png') 0px 2000px; */
@@ -32,16 +39,42 @@ body {
 }
 
 .tweetTail {
+/*   border: 1px solid gray; */
   font-weight: bold;
 }
 
-.retweetCount {
+.retweet:before {
+/*   border: 1px solid gray; */
+  font-family: "rosettaicons";
+  font-size: 1.2em;
+  content: "\f152";
   color: green;
+}
+
+.retweetCount {
+/*   border: 1px solid gray; */
+  color: green;
+  margin-left: 5px;
   margin-right: 30px;
+  
+}
+
+.favorite:before {
+/*   border: 1px solid gray; */
+  font-family: "rosettaicons";
+  font-size: 1.2em;
+  content: "\f147";
+  color: orange;
+}
+
+.favorite:hover {
+/*   border: 1px solid gray; */
+  color: orange;
 }
 
 .favoriteCount {
   color: lightgray;
+  margin-left: 10px;
 }
 
 .favoriteCount:hover {
@@ -66,8 +99,10 @@ $('#btn1').click(function(event){
 	    	    .append($('<p></p>').addClass('tweetHeader').text(item.created_at))
 	    	    .append($('<p></p>').addClass('tweetContent').text(item.text))
 	    	    .append($('<p></p>').addClass('tweetTail')
-	    	    		       .append($('<span></span>').addClass('retweetCount')
-	    	    		    		             .text(item.retweet_count))
+	    	    		       .append($('<span></span>').addClass('retweet'))
+	    	    		    	 .append($('<span></span>').addClass('retweetCount')
+                                     .text(item.retweet_count))
+                       .append($('<span></span>').addClass('favorite'))
 	    	    		       .append($('<span></span>').addClass('favoriteCount')
 	    	    		    		             .text(item.favorite_count)))
 	    	    .appendTo('#tweets');
