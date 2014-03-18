@@ -27,6 +27,30 @@ package step01.exam01;
 
 public class Test02 {
 	public static void main(String[] args) {
+		// 자바의 기본 연산은 int 이다.
+		byte b1 = 1;
+		byte b2 = 2;
+		//byte b3 = b1 + b2; // + 연산 수행전에 b1, b2 값을 임시 int 변수에 저장
+		byte b4 = 1 + 2; // 상수와 상수의 연산결과는 상수. 상수는 메모리의 범위를 넘지 않으면 허락함.
+		
+		short s1 = 1;
+		//short s2 = b1 + s1; // 연산 수행전에 b1, s1은 임시 int 변수에 저장
+		
+		char c = '가'; // 44032
+		int r1 = s1 + c; // OK! s1 -> int, c -> int 
+		System.out.println(r1);
+	}
+	
+	public static void main08(String[] args) {
+		//boolean : 1바이트 정수 값 저장. (0(false), 1(true))
+		//boolean b1 = 1; //오류! 직접 숫자를 저장할 수 없다.
+		boolean b2 = true;
+		boolean b3 = false;
+		
+		//boolean b4 = b2 + b3; // 오류!
+	}
+	
+	public static void main07(String[] args) {
 		//char: 2바이트 유니코드 값 저장. (0 ~ 65535)
 		char c1 = 44032;
 		char c2 = 0xAC00;
