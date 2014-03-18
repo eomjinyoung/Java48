@@ -8,6 +8,7 @@ var twitter = new twitterAPI({
 var reqToken, reqTokenSec;
 var accToken, accTokenSec;
 var pageControlMap = {};
+var oauthTokenStore = {};
 
 pageControlMap['/getRequestToken'] = function(req, res, urlObj) {
 	// 트위터로부터 요청토큰을 얻는다.
@@ -21,6 +22,14 @@ pageControlMap['/getRequestToken'] = function(req, res, urlObj) {
 	    } else {
 	      reqToken = requestToken;
 	      reqTokenSec = requestTokenSecret;
+	      console.log("reqToken:", reqToken);
+		  console.log("reqTokenSec:", reqTokenSec);
+		  
+		  oauthTokenStore['jyeom15'] = {
+				  reqToken: reqToken,
+				  reqTokenSec: reqTokenSec
+		  }
+		  
 	      res.write('{');
 	      res.write('  "requestToken": "' + requestToken + '"');
 	      res.write('}'); 
@@ -45,6 +54,11 @@ pageControlMap['/getAccessToken'] = function(req, res, urlObj) {
 	} else {
 	  accToken = accessToken;    
 	  accTokenSec = accessTokenSecret;
+	  console.log("accToken:", accToken);
+	  console.log("accTokenSec:", accTokenSec);
+	  
+	  oauthTokenStore['jyeom15'].accToken = accToken;
+	  oauthTokenStore['jyeom15'].accTokenSec = accTokenSec;
 	  
 	  res.write('<html><head><title>redirect main</title>');
 	  res.write('<meta http-equiv="refresh"');
