@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j035</title>
+</head>
+<body>
+<h1>함수 멤버와 객체 멤버</h1>
+
+<script>
+"use strict";
+
+// 객체 소속 함수
+/*
+var obj1 = {};
+var obj2 = {};
+
+obj1.plus = function(a, b) {
+	return a + b;
+};
+
+console.log(obj1.plus(10, 20));
+console.log(obj2.plus(20, 20));
+*/
+
+//함수 소속
+/*
+function Calc() {}
+Calc.plus = function(a, b) {
+	return a + b;
+};
+var obj1 = new Calc();
+var obj2 = new Calc();
+//console.log(obj1.plus(10, 20)); // 함수에 소속되었기 때문에 오류!
+console.log(Calc.plus(10, 20));
+*/
+
+//객체 공통 함수
+/*
+function Calc() {}
+Calc.prototype.plus = function(a, b) {
+  return a + b;
+};
+var obj1 = new Calc();
+var obj2 = new Calc();
+var obj3 = {}; 
+console.log(obj1.plus(10, 20)); //ok
+console.log(obj2.plus(10, 20)); //ok
+console.log(obj3.plus(10, 20)); //fail
+*/
+</script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
