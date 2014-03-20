@@ -1,7 +1,6 @@
 package step01.exam03.test02;
 
 public class StudentTest {
-
 	public static void main(String[] args) {
 		// Student2에서 재정의한 equals() 사용하기
 		Student2 s1 = new Student2("홍길동", 90, 100, 90);
