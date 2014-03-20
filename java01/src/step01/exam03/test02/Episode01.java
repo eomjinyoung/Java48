@@ -61,9 +61,9 @@ public class Episode01 {
 		((Truck)c2).load(); //SF 프로그래밍
 		((Truck)c2).dump(); //SF 프로그래밍
 		
-		Car 허태량 = new Car();
+		Car c3 = new Car();
 		
-		Truck t = (Truck)허태량;
+		Truck t = (Truck)c3; // 형변환 실행 오류 
 		t.start();
 		t.move();
 		t.stop();

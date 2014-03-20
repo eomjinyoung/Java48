@@ -1,7 +1,24 @@
 package step01.exam03.test02;
 
 public class StudentTest {
+	
 	public static void main(String[] args) {
+		// toString() 사용하기
+		Student2 s1 = new Student2("홍길동", 90, 100, 90);
+		
+		// println() 함수는 파라미터로 넘어온 인스턴스에 대해 toString() 메서드를 호출한다.
+		// 그리고, toString()이 리턴한 문자열을 출력한다.
+		// toString()은 Object 클래스의 메서드이다.
+		// 출력형식 : fully qualified class name(QName) @ hash code
+		// - hash code : 인스턴스 식별 번호이다.
+		// 예) step01.exam03.test02.Student2@10dc6b5
+		System.out.println(s1); 
+		
+		Student3 s2 = new Student3("홍길동", 90, 100, 90);
+		System.out.println(s2); 
+	}
+	
+	public static void main02(String[] args) {
 		// Student2에서 재정의한 equals() 사용하기
 		Student2 s1 = new Student2("홍길동", 90, 100, 90);
 		Student2 s2 = new Student2("홍길동", 90, 100, 90);

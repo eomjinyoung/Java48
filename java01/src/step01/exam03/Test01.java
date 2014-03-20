@@ -15,7 +15,7 @@ public class Test01 {
 		// 인스턴스가 같은지를 비교 => 주소가 같은지 비교
 		if (s1 == s2) System.out.println("s1 == s2");
 		
-		// 내용물이 같은지 비교
+		// Object에서 상속받은 equals()를 재정의 하지 않았다.
 		if (s1.equals(s2)) System.out.println("s1.equals(s2)");
 	}
 	
@@ -27,7 +27,7 @@ public class Test01 {
 		// 인스턴스가 같은지를 비교 => 주소가 같은지 비교
 		if (s1 == s2) System.out.println("s1 == s2");
 		
-		// 내용물이 같은지 비교
+		// 내용물이 같은지 비교 <= String 클래스에서 상속받은 equals()를 재정의 하였다.
 		if (s1.equals(s2)) System.out.println("s1.equals(s2)");
 	}
 	
