@@ -1,8 +1,41 @@
 package step01.exam03.test02;
 
 public class StudentTest {
-	
 	public static void main(String[] args) {
+		Student6 s1 = new Student6("홍길동", 90, 100, 90);
+		s1 = null;
+		System.out.println("안녕~~");
+	}
+	
+	public static void main05(String[] args) {
+		// getClass() 호출
+		Student s1 = new Student("홍길동", 90, 100, 90);
+		Student5 s2 = new Student5("홍길동", 90, 100, 90);
+		
+		Class c1 = s1.getClass(); // s1 인스턴스를 생성할 때 사용한 클래스 정보를 리턴
+		Class c2 = s2.getClass(); // s2 인스턴스를 생성할 때 사용한 클래스 정보 리턴
+		
+		System.out.println(c1.getName());
+		System.out.println(c2.getName());
+		
+		// 클래스 정보를 바로 꺼내기
+		// - 클래스 정보를 가리키는 특별한 static 변수 'class'
+		Class c3 = Student.class;
+		Class c4 = Student5.class;
+		System.out.println(c3.getName());
+		System.out.println(c4.getName());
+		
+		if (c1 == c3) {
+			System.out.println("c1 == c3");
+		}
+		
+		if (c2 == c4) {
+			System.out.println("c2 == c4");
+		}
+		
+	}
+	
+	public static void main04(String[] args) {
 		// toString() 및 hashCode() 재정의하기 전 
 		Student s1 = new Student("홍길동", 90, 100, 90);
 		Student s2 = new Student("홍길동", 90, 100, 90);
