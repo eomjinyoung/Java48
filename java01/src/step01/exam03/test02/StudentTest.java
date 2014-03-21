@@ -3,6 +3,27 @@ package step01.exam03.test02;
 public class StudentTest {
 	
 	public static void main(String[] args) {
+		// toString() 및 hashCode() 재정의하기 전 
+		Student s1 = new Student("홍길동", 90, 100, 90);
+		Student s2 = new Student("홍길동", 90, 100, 90);
+
+		System.out.println(Integer.toHexString(s1.hashCode()));
+		System.out.println(s1);
+		System.out.println(Integer.toHexString(s2.hashCode()));
+		System.out.println(s2);
+		
+		// hashCode()와 toString() 재정의 
+		Student4 s3 = new Student4("홍길동", 90, 100, 90);
+		Student4 s4 = new Student4("홍길동", 90, 100, 90);
+
+		System.out.println(Integer.toHexString(s3.hashCode()));
+		System.out.println(s3);
+		System.out.println(Integer.toHexString(s4.hashCode()));
+		System.out.println(s4);
+		
+	}
+	
+	public static void main03(String[] args) {
 		// toString() 사용하기
 		Student2 s1 = new Student2("홍길동", 90, 100, 90);
 		
