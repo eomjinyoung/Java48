@@ -30,7 +30,25 @@ public class StudentMgtSystem {
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine(); // 키보드로부터 들어 온 값을 읽는다. 엔터를 만날 떄까지.
 		
-		System.out.println("==>" + input);
+		String[] values = input.split(" ");
+		
+		if ("add".equals(values[0])) {
+			String[] data = values[1].split(",");
+			System.out.println("이름:" + data[0]);
+			System.out.println("국어:" + data[1]);
+			System.out.println("영어:" + data[2]);
+			System.out.println("수학:" + data[3]);
+			
+			System.out.print("등록하시겠습니까?(y/n)");
+			input = scanner.nextLine();
+			if ("y".equals(input.toLowerCase())) {
+				System.out.println("등록되었습니다.");
+			} else {
+				System.out.println("등록 취소하였습니다.");
+			}
+		}
+		
+		scanner.close();
 
 	}
 
