@@ -30,6 +30,13 @@ public class StudentScore {
 		
 		return obj;
 	}
+
+	@Override
+  public String toString() {
+	  return name + "," + kor + "," + eng + "," + math;
+  }
+	
+	
 }
 
 

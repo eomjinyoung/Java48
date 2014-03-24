@@ -65,12 +65,20 @@ public class StudentMgtSystem {
 		}
 	}
 	
+	public static void executeList() {
+		for (StudentScore score : scoreList) {
+			System.out.println(score);
+		}
+	}
+	
 	public static void main(String[] args) {
 		do {
 			String[] values = promptCommand();
 			
 			if ("add".equals(values[0])) {
 				executeAdd(values[1]);
+			} else if ("list".equals(values[0])) {
+				executeList();
 			} else if ("quit".equals(values[0])) {
 				break;
 			} else {
