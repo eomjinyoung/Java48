@@ -6,7 +6,7 @@ package step01.exam04.step01;
  */
 import java.util.Scanner;
 
-public class StudentMgtSystem {
+public class StudentMgtSystem02 {
 	private static Scanner scanner = new Scanner(System.in);
 	
 	private static String[] promptCommand() {
