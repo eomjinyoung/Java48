@@ -1,24 +1,34 @@
 package step01.exam04.step03;
 
-/* 데이터를 표현하는 클래스 : Value Object = Data Transfer Object
- * - 복합 데이터의 새로운 유형을 정의한다.
- *   => 새로운 형식의 데이터 타입을 정의.
- * - 데이터 타입 예) 
- *  => byte, short, int, long, float, double, boolean, char
- * 
+/* 콤마(,)로 구분된 문자열 데이터(comma seperated value; csv)로부터 
+ * 인스턴스 생성하기 
+ * - 클래스 메서드(static 메서드)의 활용 사례 공부
+ * - 데이터 항목이 추가되거나, 문자열의 표현 순서가 바뀌더라도 
+ *   소스코드를 유지보수하기 쉽다.
  */
 public class StudentScore {
-	// 인스턴스 변수: 값을 개별로 다뤄야 한다면 인스턴스 변수 선언.
 	String name;
 	int kor;
 	int eng;
 	int math;
 	
-	// 생성자: 객체가 사용되기 전에 최소한의 준비 작업(초기화 시키는 작업)
-	// - name 항목을 필수 값으로 간주한다.
-	//    => name 값 없이 인스턴스를 생성할 수 없다.
 	public StudentScore(String name) {
 		this.name = name;
+	}
+	
+	/* 클래스 메서드
+	 * - 특정 인스턴스를 위해 작업하지 않는다.
+	 * - 모든 인스턴스를 대상으로 공통 작업을 수행한다.
+	 */
+	public static StudentScore fromCSV(String value) {
+		String[] data = value.split(",");
+		
+		StudentScore obj = new StudentScore(data[0]);
+		obj.kor = Integer.parseInt(data[1]);
+		obj.eng = Integer.parseInt(data[2]);
+		obj.math = Integer.parseInt(data[3]);
+		
+		return obj;
 	}
 }
 

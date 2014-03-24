@@ -18,12 +18,8 @@ public class StudentMgtSystem {
 	
 	private static void executeAdd(String value) {
 		String input;
-		String[] data = value.split(",");
 		
-		StudentScore score = new StudentScore(data[0]);
-		score.kor = Integer.parseInt(data[1]);
-		score.eng = Integer.parseInt(data[2]);
-		score.math = Integer.parseInt(data[3]);
+		StudentScore score = StudentScore.fromCSV(value);
 		
 		System.out.println("이름:" + score.name);
 		System.out.println("국어:" + score.kor);
