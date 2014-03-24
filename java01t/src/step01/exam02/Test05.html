@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test03</title>
+</head>
+<body>
+<script>
+// 왜 자바스크립트는 오버로딩이 없는가?
+// - arguments 변수가 있기 떄문에 함수 구분 불가하다.
+function plus(a, b) {
+	return a + b;
+}
+
+function plus(a) {
+	return a + a;
+}
+
+function plus() {
+	return arguments[0] + arguments[1];
+}
+
+plus(10, 20); //?
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
