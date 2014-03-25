@@ -3,7 +3,10 @@ package basic.exam05.step01;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-/* FileInputStream, FileOutputStream
+/* Data Sink Stream Class
+ * - 데이터를 직접 파일이나 메모리 등으로 입/출력하는 클래스
+ * 
+ * 예) FileInputStream, FileOutputStream
  * - 바이너리 데이터의 입력출력을 다루는 클래스 
  */
 public class Episode02 {
