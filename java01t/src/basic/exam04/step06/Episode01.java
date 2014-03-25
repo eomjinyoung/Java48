@@ -154,7 +154,7 @@ public class Episode01 {
 		class Student {
 			String name;
 			int age;
-			
+
 			public Student(String n, int agHashe) {
 				// 로컬변수 이름과 충돌나지 않는다면 this 생략가능.
 				/*this.*/name = n;
