@@ -6,11 +6,10 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class StudentScoreControl {
+public class StudentControl {
 	static Scanner scanner;
-	// ArrayList에 저장할 인스턴스의 타입을 지정 
-	private static ArrayList<StudentScore> scoreList 
-												= new ArrayList<StudentScore>();
+	private static ArrayList<Student> studentList 
+												= new ArrayList<Student>();
 	
 	static {
 		scanner = StudentMgtSystem.scanner;
@@ -19,17 +18,18 @@ public class StudentScoreControl {
 	private static void executeAdd(final String value) {
 		String input;
 		
-		StudentScore score = StudentScore.fromCSV(value);
+		Student student = Student.fromCSV(value);
 		
-		System.out.println("이름:" + score.name);
-		System.out.println("국어:" + score.kor);
-		System.out.println("영어:" + score.eng);
-		System.out.println("수학:" + score.math);
+		System.out.println("이름:" + student.name);
+		System.out.println("나이:" + student.age);
+		System.out.println("전화:" + student.tel);
+		System.out.println("이메일:" + student.email);
+		System.out.println("주소:" + student.address);
 		
 		System.out.print("등록하시겠습니까?(y/n)");
 		input = scanner.nextLine();
 		if ("y".equals(input.toLowerCase())) {
-			scoreList.add(score);
+			studentList.add(student);
 			System.out.println("등록되었습니다.");
 		} else {
 			System.out.println("등록 취소하였습니다.");
@@ -38,14 +38,14 @@ public class StudentScoreControl {
 	
 	private static void executeList() {
 		int i = 0;
-		for (StudentScore score : scoreList) {
-			System.out.println(i++ + " " + score);
+		for (Student student : studentList) {
+			System.out.println(i++ + " " + student);
 		}
 	}
 	
 	private static void executeDelete(final int no) {
-	  if (no >= 0 && no < scoreList.size()) {
-	  	scoreList.remove(no);
+	  if (no >= 0 && no < studentList.size()) {
+	  	studentList.remove(no);
 	  	System.out.println("삭제하였습니다.");
 	  } else {
 	  	System.out.println("유효하지 않은 번호입니다.");
@@ -53,28 +53,29 @@ public class StudentScoreControl {
   }
 	
 	private static void executeUpdate(final int no) {
-		if (no >= 0 && no < scoreList.size()) {
-			StudentScore score = scoreList.get(no);
-			System.out.print("이름(" + score.name + "):");
-			String input = scanner.nextLine();
-			StudentScore temp = new StudentScore(input);
+		if (no >= 0 && no < studentList.size()) {
+			Student temp = new Student();
 			
-			System.out.print("국어(" + score.kor + "):");
-			input = scanner.nextLine();
-			temp.kor = Integer.parseInt(input);
+			Student student = studentList.get(no);
+			System.out.print("이름(" + student.name + "):");
+			temp.name = scanner.nextLine();
 			
-			System.out.print("영어(" + score.eng + "):");
-			input = scanner.nextLine();
-			temp.eng = Integer.parseInt(input);
+			System.out.print("나이(" + student.age + "):");
+			temp.age = Integer.parseInt(scanner.nextLine());
 			
-			System.out.print("수학(" + score.math + "):");
-			input = scanner.nextLine();
-			temp.math = Integer.parseInt(input);
+			System.out.print("전화(" + student.tel + "):");
+			temp.tel = scanner.nextLine();
+			
+			System.out.print("이메일(" + student.email + "):");
+			temp.email = scanner.nextLine();
+			
+			System.out.print("주소(" + student.address + "):");
+			temp.address = scanner.nextLine();
 			
 			System.out.print("변경하시겠습니까?(y/n)");
-			input = scanner.nextLine();
+			String input = scanner.nextLine();
 			if ("y".equals(input.toLowerCase())) {
-				scoreList.set(no, temp);
+				studentList.set(no, temp);
 				System.out.println("변경되었습니다.");
 			} else {
 				System.out.println("변경 취소하였습니다.");
@@ -86,9 +87,9 @@ public class StudentScoreControl {
 	
 	private static void executeSave() {
 		try {
-			FileWriter out = new FileWriter("studentscore.data");
-			for(StudentScore score : scoreList) {
-				out.write(score.toString() + "\n");
+			FileWriter out = new FileWriter("student.data");
+			for(Student student : studentList) {
+				out.write(student.toString() + "\n");
 			}
 			out.close();
 			System.out.println("저장되었습니다.");
@@ -99,11 +100,11 @@ public class StudentScoreControl {
 	
 	public static void executeLoad() {
 		try {
-			FileReader in = new FileReader("studentscore.data");
+			FileReader in = new FileReader("student.data");
 			Scanner s = new Scanner(in);
 			while(true) {
 				try {
-					scoreList.add(StudentScore.fromCSV(s.nextLine()));
+					studentList.add(Student.fromCSV(s.nextLine()));
 				} catch (NoSuchElementException ex) {
 					break;
 				}
@@ -141,7 +142,7 @@ public class StudentScoreControl {
 	}
 	
 	private static String[] promptCommand() {
-		System.out.print("점수관리>");
+		System.out.print("학생관리>");
 		String input = scanner.nextLine(); 
 		
 		return input.split(" ");

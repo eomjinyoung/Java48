@@ -21,7 +21,7 @@ public class StudentMgtSystem {
 			String menu = promptMenu();
 			
 			if ("1".equals(menu)) {
-				//StudentControl.execute();
+				StudentControl.execute();
 			} else if ("2".equals(menu)) {
 				StudentScoreControl.execute();
 			} else if ("list".equals(menu)) {
