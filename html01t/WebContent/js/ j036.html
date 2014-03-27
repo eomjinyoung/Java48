@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>j036</title>
+</head>
+<body>
+<h1 id='h'>이벤트 리스너 전달</h1>
+
+<script>
+"use strict";
+
+function myClick() {
+	alert('okok');
+}
+
+var obj = document.getElementById("h");
+
+obj.addEventListener("click", myClick);
+
+obj.addEventListener("click", function(){
+	alert('바로 정의');
+});
+
+</script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
