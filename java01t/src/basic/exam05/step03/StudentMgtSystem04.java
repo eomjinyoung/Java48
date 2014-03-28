@@ -16,14 +16,13 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-public class StudentMgtSystem extends Frame 
-										implements ActionListener {
+public class StudentMgtSystem04 extends Frame {
 	static Scanner scanner = new Scanner(System.in);
 	Panel menuPanel = new Panel();
 	Button btnStudentMgt = new Button("학생관리");
 	Button btnScoreMgt = new Button("점수관리");
 	
-	public StudentMgtSystem() {
+	public StudentMgtSystem04() {
 		super("학생관리시스템"); // 호출할 수퍼 클래스 생성자를 지정할 수 있다.
 		//super(); // 호출할 수퍼 클래스 생성자를 지정하지 않는다면 기본 생성자 호출함.
 		//setTitle("학생관리시스템"); // 기본 생성자 호출후 setTitle()를 호출해도 됨.
@@ -39,8 +38,21 @@ public class StudentMgtSystem extends Frame
 		menuPanel.setPreferredSize(new Dimension(70, 70)); 
 		add(menuPanel);
 		
-		btnStudentMgt.addActionListener(this);
-		btnScoreMgt.addActionListener(this);
+		btnStudentMgt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "오호라 이거야..");
+				
+			}
+		});
+		
+		btnScoreMgt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "오호라 이거야..2");
+				
+			}
+		});
 		
 		menuPanel.add(btnStudentMgt);
 		menuPanel.add(btnScoreMgt);
@@ -51,18 +63,8 @@ public class StudentMgtSystem extends Frame
 		return scanner.nextLine().toLowerCase(); 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnStudentMgt) {
-			JOptionPane.showMessageDialog(null, "학생관리");
-		} else { // btnScoreMgt
-			JOptionPane.showMessageDialog(null, "점수관리");
-		}
-		
-	}
-	
 	public static void main(String[] args) {
-		StudentMgtSystem f = new StudentMgtSystem();
+		StudentMgtSystem04 f = new StudentMgtSystem04();
 		f.setVisible(true);
 		
 		/*
