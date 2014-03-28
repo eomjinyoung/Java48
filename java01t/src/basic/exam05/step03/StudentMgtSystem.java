@@ -16,6 +16,13 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+/* Frame에 들어갈 화면 제작
+ * 1) MenuPanel: 메뉴 출력 화면
+ * 2) StudentPanel: 학생 관리 화면
+ * 3) ScorePanel: 점수 관리 화면
+ * 
+ * 
+ */
 public class StudentMgtSystem extends Frame 
 										implements ActionListener {
 	static Scanner scanner = new Scanner(System.in);
