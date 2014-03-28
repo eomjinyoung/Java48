@@ -26,6 +26,10 @@ import javax.swing.JOptionPane;
  */
 @SuppressWarnings("serial")
 public class StudentMgtSystem extends Frame {
+	public static final String MENU_PANEL = "MenuPanel";
+	public static final String STUDENT_PANEL = "StudentPanel";
+	public static final String SCORE_PANEL = "ScorePanel";
+	
 	MenuPanel menuPanel;
 	StudentPanel studentPanel;
 	ScorePanel scorePanel;
@@ -47,23 +51,19 @@ public class StudentMgtSystem extends Frame {
 		studentPanel = new StudentPanel(this);
 		scorePanel = new ScorePanel(this);
 		
-		add(menuPanel);
-		add(studentPanel);
-		add(scorePanel);
+		// CardLayout인 경우 자식 컴포넌트를 붙일 때 
+		// 이름을 함께 주어야 한다.
+		add(menuPanel, MENU_PANEL);
+		add(studentPanel, STUDENT_PANEL);
+		add(scorePanel, SCORE_PANEL);
 		
 	}
 	
 	// 자식 패널들이 호출한다.
 	public void changePanel(String panelName) {
-		if ("menuPanel".equals(panelName)) {
-			JOptionPane.showMessageDialog(null, "메뉴화면 출력하라.");
-			
-		} else if ("studentPanel".equals(panelName)) {
-			JOptionPane.showMessageDialog(null, "학생화면 출력하라.");
-			
-		} else if ("scorePanel".equals(panelName)) {
-			JOptionPane.showMessageDialog(null, "점수화면 출력하라.");
-		}
+		CardLayout cardLayout = (CardLayout)this.getLayout();
+		
+		cardLayout.show(this, panelName);
 	}
 	
 	public static void main(String[] args) {

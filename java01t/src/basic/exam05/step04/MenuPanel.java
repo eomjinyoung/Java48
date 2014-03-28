@@ -27,9 +27,9 @@ public class MenuPanel extends Panel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnStudentMgt) {
-			parent.changePanel("studentPanel");
+			parent.changePanel(StudentMgtSystem.STUDENT_PANEL);
 		} else { // btnScoreMgt
-			parent.changePanel("scorePanel");
+			parent.changePanel(StudentMgtSystem.SCORE_PANEL);
 		}
 		
 	}
