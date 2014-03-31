@@ -4,16 +4,24 @@ import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
+import java.awt.List;
 import java.awt.Panel;
-import java.awt.TextArea;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 
 @SuppressWarnings("serial")
 public class StudentPanel extends ContentPanel {
 	StudentControl controller = new StudentControl();
 	
-	TextArea listView = new TextArea();
+	List listView = new List(){
+		public Dimension getPreferredSize() {
+			return new Dimension(300, 400);
+		};
+	};
 	
 	Panel detailView = new Panel(new FlowLayout(FlowLayout.LEFT));
 	TextField tfName = new TextField(10);
@@ -21,12 +29,33 @@ public class StudentPanel extends ContentPanel {
 	TextField tfTel = new TextField(15);
 	TextField tfEmail = new TextField(20);
 	TextField tfAddr = new TextField(20);
+	Panel newButtonBar;
+	Panel detailButtonBar;
 	Button btnAdd = new Button("등록");
+	Button btnUpdate = new Button("변경");
+	Button btnDelete = new Button("삭제");
+	Button btnCancel = new Button("취소");
 	
 	public StudentPanel() {
 		super("학생관리");
 		
-		listView.setPreferredSize(new Dimension(300, 400));
+		listView.setMultipleMode(false);
+		listView.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				Student s = Student.fromCSV(
+						listView.getItem(
+								listView.getSelectedIndex()));
+				tfName.setText(s.name);
+				tfAge.setText(Integer.toString(s.age));
+				tfTel.setText(s.tel);
+				tfEmail.setText(s.email);
+				tfAddr.setText(s.address);
+				
+				newButtonBar.setVisible(false);
+				detailButtonBar.setVisible(true);
+			}
+		});
 		content.add(listView);
 		
 		detailView.setPreferredSize(new Dimension(300,400));
@@ -57,23 +86,72 @@ public class StudentPanel extends ContentPanel {
 		rowPane.add(tfAddr);
 		detailView.add(rowPane);
 		
-		rowPane = createRowPane();
-		rowPane.add(btnAdd);
-		detailView.add(rowPane);
+		newButtonBar = createRowPane();
+		newButtonBar.add(btnAdd);
+		btnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Student s = new Student();
+				s.name = tfName.getText();
+				s.age = Integer.parseInt(tfAge.getText());
+				s.tel = tfTel.getText();
+				s.email = tfEmail.getText();
+				s.address = tfAddr.getText();
+				
+				controller.add(s);
+				listView.add(s.toString());
+				clearForm();
+			}
+		});
+		detailView.add(newButtonBar);
+		
+		detailButtonBar = createRowPane();
+		detailButtonBar.add(btnUpdate);
+		detailButtonBar.add(btnDelete);
+		detailButtonBar.add(btnCancel);
+		
+		btnUpdate.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnCancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				newButtonBar.setVisible(true);
+				detailButtonBar.setVisible(false);
+			}
+		});
+		detailView.add(detailButtonBar);
+		
+		
 		
 		content.add(detailView);
+		
 		
 		controller.executeLoad();
 		displayList();
 	}
 	
+	private void clearForm() {
+    tfName.setText("");
+    tfAge.setText("");
+    tfTel.setText("");
+    tfEmail.setText("");
+    tfAddr.setText("");
+  }
+	
 	private void displayList() {
-		StringBuffer buf = new StringBuffer();
 	  for (Student student : controller.studentList) {
-	  	buf.append(student.toString() + "\n");
+	  	listView.add(student.toString());
 	  }
-	  
-	  listView.setText(buf.toString());
   }
 
 	private Panel createRowPane() {
