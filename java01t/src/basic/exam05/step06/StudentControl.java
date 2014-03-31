@@ -8,14 +8,10 @@ import java.util.Scanner;
 
 public class StudentControl {
 	static Scanner scanner;
-	private static ArrayList<Student> studentList 
+	public ArrayList<Student> studentList 
 												= new ArrayList<Student>();
 	
-	static {
-		//scanner = StudentMgtSystem.scanner;
-	}
-	
-	private static void executeAdd(final String value) {
+	private void executeAdd(final String value) {
 		String input;
 		
 		Student student = Student.fromCSV(value);
@@ -36,14 +32,14 @@ public class StudentControl {
 		}
 	}
 	
-	private static void executeList() {
+	private void executeList() {
 		int i = 0;
 		for (Student student : studentList) {
 			System.out.println(i++ + " " + student);
 		}
 	}
 	
-	private static void executeDelete(final int no) {
+	private void executeDelete(final int no) {
 	  if (no >= 0 && no < studentList.size()) {
 	  	studentList.remove(no);
 	  	System.out.println("삭제하였습니다.");
@@ -52,7 +48,7 @@ public class StudentControl {
 	  }
   }
 	
-	private static void executeUpdate(final int no) {
+	private void executeUpdate(final int no) {
 		if (no >= 0 && no < studentList.size()) {
 			Student temp = new Student();
 			
@@ -85,7 +81,7 @@ public class StudentControl {
 		}
   }
 	
-	private static void executeSave() {
+	private void executeSave() {
 		try {
 			FileWriter out = new FileWriter("student.data");
 			for(Student student : studentList) {
@@ -98,7 +94,7 @@ public class StudentControl {
 		}
 	}
 	
-	public static void executeLoad() {
+	public void executeLoad() {
 		try {
 			FileReader in = new FileReader("student.data");
 			Scanner s = new Scanner(in);
@@ -117,7 +113,7 @@ public class StudentControl {
 		}
 	}
 	
-	public static void execute() {
+	public void execute() {
 		do {
 			String[] values = promptCommand();
 			
@@ -141,7 +137,7 @@ public class StudentControl {
 		} while(true);
 	}
 	
-	private static String[] promptCommand() {
+	private String[] promptCommand() {
 		System.out.print("학생관리>");
 		String input = scanner.nextLine(); 
 		

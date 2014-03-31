@@ -49,7 +49,7 @@ public class StudentMgtSystem extends Frame {
 	
 	public StudentMgtSystem() {
 		super("학생관리시스템"); 
-		setSize(400, 300);
+		setSize(800, 600);
 		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
