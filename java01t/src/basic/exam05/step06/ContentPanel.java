@@ -13,17 +13,16 @@ public class ContentPanel extends Panel implements ActionListener{
 	protected Label title = new Label();
 	protected Button btnBack = new Button("뒤로");
 	protected Panel content = new Panel();
+	protected Panel titlebar = new Panel();
 	
 	protected ArrayList<StateChangeListener> listeners = 
 			new ArrayList<StateChangeListener>();
-	
 	
 	public ContentPanel(String title) {
 		this.setLayout(new BorderLayout());
 		
 		this.title.setText(title);
 		
-		Panel titlebar = new Panel();
 		titlebar.add(this.title);
 		titlebar.add(btnBack);
 		this.add(titlebar, BorderLayout.NORTH);
@@ -31,6 +30,12 @@ public class ContentPanel extends Panel implements ActionListener{
 		this.add(content, BorderLayout.CENTER);
 		
 		btnBack.addActionListener(this);
+	}
+	
+	public ContentPanel(String title, boolean showTitleBar) {
+		this(title);
+		
+		titlebar.setVisible(showTitleBar);
 	}
 
 	@Override
