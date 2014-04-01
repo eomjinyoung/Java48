@@ -15,13 +15,6 @@ public class StudentControl {
 		studentList.add(student);
 	}
 	
-	private void executeList() {
-		int i = 0;
-		for (Student student : studentList) {
-			System.out.println(i++ + " " + student);
-		}
-	}
-	
 	public void remove(final int no) {
 		studentList.remove(no);
   }
