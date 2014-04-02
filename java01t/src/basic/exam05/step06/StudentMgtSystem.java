@@ -24,10 +24,12 @@ public class StudentMgtSystem extends Frame {
 	public static final String MENU_PANEL = "MenuPanel";
 	public static final String STUDENT_PANEL = "StudentPanel";
 	public static final String SCORE_PANEL = "ScorePanel";
+	public static final String LECTURE_PANEL = "LecturePanel";
 	
 	MenuPanel menuPanel;
 	StudentPanel studentPanel;
 	ScorePanel scorePanel;
+	LecturePanel lecturePanel;
 	
 	// StateChangeListener를 구현한 익명 클래스 정의 
 	StateChangeListener stateChangeListener = new StateChangeListener() {
@@ -43,7 +45,11 @@ public class StudentMgtSystem extends Frame {
 				
 			} else if (e.stateName.equals("scorePanel")) {
 				cardLayout.show(StudentMgtSystem.this, SCORE_PANEL);
+				
+			} else if (e.stateName.equals("lecturePanel")) {
+				cardLayout.show(StudentMgtSystem.this, LECTURE_PANEL);
 			}
+			
     }
 	};
 	
@@ -54,6 +60,8 @@ public class StudentMgtSystem extends Frame {
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				studentPanel.save();
+				scorePanel.save();
+				lecturePanel.save();
 				System.exit(0); 		
 			}
 		});
@@ -63,16 +71,19 @@ public class StudentMgtSystem extends Frame {
 		menuPanel = new MenuPanel();
 		studentPanel = new StudentPanel();
 		scorePanel = new ScorePanel();
+		lecturePanel = new LecturePanel();
 		
 		menuPanel.addStateChangeListener(stateChangeListener);
 		studentPanel.addStateChangeListener(stateChangeListener);
 		scorePanel.addStateChangeListener(stateChangeListener);
+		lecturePanel.addStateChangeListener(stateChangeListener);
 		
 		// CardLayout인 경우 자식 컴포넌트를 붙일 때 
 		// 이름을 함께 주어야 한다.
 		add(menuPanel, MENU_PANEL);
 		add(studentPanel, STUDENT_PANEL);
 		add(scorePanel, SCORE_PANEL);
+		add(lecturePanel, LECTURE_PANEL);
 		
 	}
 	

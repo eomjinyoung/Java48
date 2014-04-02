@@ -7,7 +7,6 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class StudentScoreControl {
-	static Scanner scanner;
 	public ArrayList<StudentScore> scoreList 
 												= new ArrayList<StudentScore>();
 	

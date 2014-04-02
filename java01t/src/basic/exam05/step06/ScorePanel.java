@@ -60,7 +60,7 @@ public class ScorePanel extends ContentPanel {
 			}
 		});
 		content.add(listView);
-		detailView.setPreferredSize(new Dimension(300,400));
+		detailView.setPreferredSize(new Dimension(300,500));
 		
 		Panel rowPane = new Panel(new FlowLayout(FlowLayout.LEFT));
 		rowPane.setPreferredSize(new Dimension(290, 50));
