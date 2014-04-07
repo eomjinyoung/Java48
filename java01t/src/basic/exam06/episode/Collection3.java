@@ -25,15 +25,11 @@ public class Collection3 {
 	public Object get(int index) {
 		if (index >= 0 && index < length) {
 			Box cursor = start;
-			int pos = 0;
-			do {
-				if (index == pos) {
-					return cursor.value;
-				} else {
-					cursor = cursor.next;
-				}
-				pos++;
-			} while (cursor != null);
+			for (int pos = 0; pos < length; pos++) {
+				if (pos == index) 
+					break;
+				cursor = cursor.next;
+			}
 			return cursor.value;
 		} else {
 			throw new RuntimeException("무효한 인덱스입니다.");
@@ -45,9 +41,27 @@ public class Collection3 {
 	}
 	
 	public void insert(int index, Object value) {
-		if(index >= 0 && index < length) {
-
+		if (index == 0) {
+			Box next = start;
+			start = new Box();
+			start.value = value;
+			start.next = next;
+			
+		} else if (index > 0 && index < length) {
+			Box cursor = start;
+			for(int pos = 1; pos < index; pos++) {
+				cursor = cursor.next;
+			}
+			Box temp = new Box();
+			temp.value = value;
+			
+			temp.next = cursor.next;
+			cursor.next = temp;
+			
+		} else {
+			throw new RuntimeException("인덱스가 무효합니다.");
 		}
+		length++;
 	}
 }
 
