@@ -25,9 +25,7 @@ public class Collection3 {
 	public Object get(int index) {
 		if (index >= 0 && index < length) {
 			Box cursor = start;
-			for (int pos = 0; pos < length; pos++) {
-				if (pos == index) 
-					break;
+			for (int pos = 0; pos < index; pos++) {
 				cursor = cursor.next;
 			}
 			return cursor.value;
