@@ -35,6 +35,19 @@ public class Collection2 {
 	public int size() {
 		return cursor;
 	}
+	
+	public void insert(int index, Object value) {
+		if(cursor < list.length && 
+				index >= 0 && 
+				index < list.length) {
+			for(int i = cursor; i > index; i--) {
+				list[i] = list[i-1];
+			}
+			
+			list[index] = value;
+			cursor++;
+		}
+	}
 }
 
 

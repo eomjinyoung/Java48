@@ -1,13 +1,13 @@
 package basic.exam06.episode;
 
 public class Test2 {
-	static Collection2 coll = new Collection2(2);
+	static Collection2 coll = new Collection2(4);
 	
 	public static void testAdd() {
 		//try {
 			coll.add("홍길동");
 			coll.add("임꺽정");
-			coll.add("장길산");
+			coll.insert(0, "장길산");
 		//} catch (Throwable e) {
 		//		System.out.println("헐.. 니가 보고할려고.. 어이가 없다. 안돼!");
 		//}
