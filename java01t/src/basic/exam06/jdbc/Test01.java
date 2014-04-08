@@ -3,11 +3,16 @@ package basic.exam06.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+
+
 public class Test01 {
 
 	public static void main(String[] args) throws Exception {
-		// 1.드라이버 로딩 
+		// 1) java.jdbc.Driver 구현체를 로딩 => JDBC 드라이버 관리자에 등록   
 		Class.forName("com.mysql.jdbc.Driver");
+		
+		java.sql.Driver driver = new com.mysql.jdbc.Driver();
+		java.sql.Connection conn = driver.connect();
 		
 		// 2.DB 커넥션 객체 가져오기
 		Connection con = DriverManager.getConnection(
