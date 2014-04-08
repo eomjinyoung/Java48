@@ -2,14 +2,10 @@ package basic.exam06.jdbc.up1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
 
-/* delete 요청
- * - executeUpdate() 사용
- * 
- * delete sql
- * - delete from 테이블명 where 조건
+/* PreparedStatement 사용
  */
 public class DeleteTest {
 
@@ -17,17 +13,19 @@ public class DeleteTest {
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		Connection con = DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/studydb", // jdbc url 
-				"study", // username
-				"study"); // password
+				"jdbc:mysql://localhost:3306/studydb", 
+				"study", 
+				"study"); 
 		
-		Statement stmt = con.createStatement();
+		PreparedStatement stmt = con.prepareStatement(
+				"delete from SE_SUBJS where SNO=?"
+				);
 
-		/* delete from SE_SUBJS where SNO=2
-		 */
+		Scanner sc = new Scanner(System.in);
 		
-		stmt.executeUpdate(
-				"delete from SE_SUBJS where SNO=2");
+		stmt.setInt(1, Integer.parseInt(sc.nextLine()));
+		
+		stmt.executeUpdate();
 		
 		System.out.println("삭제 성공!");
 		
