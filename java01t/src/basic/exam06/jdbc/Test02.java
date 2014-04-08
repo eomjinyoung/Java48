@@ -10,7 +10,8 @@ public class Test02 {
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		Connection con = DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/studydb", // jdbc url 
+				"jdbc:mysql://localhost:3306/studydb",
+				//"jdbc:mysql://localhost:3306/studydb?useUnicode=true&characterEncoding=UTF-8", // jdbc url 
 				"study", // username
 				"study"); // password
 		
