@@ -1,4 +1,4 @@
--- 주문정보
+-- 주문정보 
 ALTER TABLE ODERS
   DROP FOREIGN KEY FK_CUSTOMERS_TO_ODERS; -- 고객정보 -> 주문정보
 
