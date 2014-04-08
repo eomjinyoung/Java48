@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 -- 주문정보 
 ALTER TABLE ODERS
   DROP FOREIGN KEY FK_CUSTOMERS_TO_ODERS; -- 고객정보 -> 주문정보
@@ -1778,5 +1778,4 @@ ALTER TABLE SE_TEACH_SUBJS
     )
     REFERENCES SE_SUBJS ( -- 과목
       SNO -- 과목번호
->>>>>>> branch 'master' of git@github.com:eomjinyoung/Java48.git
     );
