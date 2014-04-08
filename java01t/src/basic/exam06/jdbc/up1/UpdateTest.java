@@ -2,14 +2,12 @@ package basic.exam06.jdbc.up1;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Scanner;
 
-/* update 요청
- * - executeUpdate() 사용
- * 
- * update sql
- * - update 테이블명 set 컬럼명=값, 컬럼명=값, ... where 조건
+/* PreparedStatement 사용 
  */
 public class UpdateTest {
 
@@ -21,17 +19,17 @@ public class UpdateTest {
 				"study", // username
 				"study"); // password
 		
-		Statement stmt = con.createStatement();
-
-		/* update SE_SUBJS set 
-		 * 		TITLE='Java Basic'
-		 * where SNO=1
-		 */
-		
-		stmt.executeUpdate(
+		PreparedStatement stmt = con.prepareStatement(
 				"update SE_SUBJS set"
-				+ " TITLE='Java Basic'"
-				+ " where SNO=1");
+						+ " TITLE=?"
+						+ " where SNO=?");
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		stmt.setString(1, scanner.nextLine());
+		stmt.setInt(2, 1);
+		
+		stmt.executeUpdate();
 		
 		System.out.println("변경 성공!");
 		
