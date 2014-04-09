@@ -18,7 +18,6 @@ public class DetailTest {
 		
 		sc.close();
 	}
-
 }
 
 
