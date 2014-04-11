@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>web01</display-name>
+  
+  <!-- 서블릿에 대한 선언 
+    : 이런이런 서블릿이 있다!
+  -->
+  <servlet>
+     <!-- 서블릿 별명 -->
+    <servlet-name>Hello Servlet</servlet-name> 
+    
+    <!-- 서블릿 클래스 명(패키지이름 포함): fully qualified name: QName -->
+    <servlet-class>servlets.HelloServlet</servlet-class>
+  </servlet>
+  
+  <!-- 서블릿에 대해 URL을 정의 
+    : 이 서블릿을 실행하고 싶으면 웹 브라우저에서 이런 URL로 요청해봐!
+  -->
+  <servlet-mapping>
+    <servlet-name>Hello Servlet</servlet-name>
+    
+    <!-- http://localhost:9999/web01/test/hello.bit --> 
+    <url-pattern>/test/hello.bit</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
+
+
+
+
+
+
+
+
+
+
