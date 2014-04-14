@@ -5,10 +5,28 @@
     <servlet-name>Hello Servlet</servlet-name>
     <servlet-class>servlets.HelloServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Hello2 Servlet</servlet-name>
+    <servlet-class>servlets.Hello2Servlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Hello3 Servlet</servlet-name>
+    <servlet-class>servlets.Hello3Servlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>Hello Servlet</servlet-name>
     <url-pattern>/test/hello.bit</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Hello2 Servlet</servlet-name>
+    <url-pattern>/test/hello2.bit</url-pattern>
+  </servlet-mapping> 
+  <servlet-mapping>
+    <servlet-name>Hello3 Servlet</servlet-name>
+    <url-pattern>/test/hello3.bit</url-pattern>
+  </servlet-mapping> 
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -18,3 +36,9 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
 </web-app>
+
+
+
+
+
+
