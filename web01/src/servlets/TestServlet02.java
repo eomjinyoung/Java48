@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 //@WebServlet(value={"/test/test02.bit","/test/test0202.bit"})
 //@WebServlet(value={"/test/test02.bit"})
 //@WebServlet(value="/test/test02.bit")
-@WebServlet("/test/test02.bit")
+@WebServlet("/test/test02.bit") 
 public class TestServlet02 extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
