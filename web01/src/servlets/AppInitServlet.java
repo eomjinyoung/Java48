@@ -8,10 +8,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebServlet;
 
-import dao.MysqlSubjectDao;
 import util.DBConnectionPool;
+import dao.MysqlSubjectDao;
 
 /* 서블릿
  * - 생성 시점: 최소로 클라이언트가 요청했을 때
@@ -39,6 +38,19 @@ public class AppInitServlet extends GenericServlet {
 		
 		//다른 서블릿을 위한 공통 자원을 준비
 		dbConnectionPool = new DBConnectionPool();
+		// 이것도 결국 소스코드에 DB 정보가 있다. <== 개선할 대상
+		/*
+		dbConnectionPool.setDriver("com.mysql.jdbc.Driver");
+		dbConnectionPool.setUrl("jdbc:mysql://localhost:3306/studydb");
+		dbConnectionPool.setUsername("study");
+		dbConnectionPool.setPassword("study");
+		*/
+		// DD 파일에 선언된 서블릿 초기화 파라미터 사용
+		dbConnectionPool.setDriver(this.getInitParameter("driver"));
+		dbConnectionPool.setUrl(this.getInitParameter("url"));
+		dbConnectionPool.setUsername(this.getInitParameter("username"));
+		dbConnectionPool.setPassword(this.getInitParameter("password"));
+		
 		MysqlSubjectDao subjectDao = new MysqlSubjectDao();
 		subjectDao.setDBConnectionPool(dbConnectionPool);
 		
