@@ -103,7 +103,7 @@ public class MysqlSubjectDao implements SubjectDao {
 			stmt = con.prepareStatement(
 					"update SE_SUBJS set"
 							+ " TITLE=?" 
-							+ ", DEST=SubjectVo?"
+							+ ", DEST=?"
 							+ " where SNO=?");
 			stmt.setString(1, subject.getTitle());
 			stmt.setString(2, subject.getDescription());
