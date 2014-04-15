@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.DBConnectionPool;
 import vo.SubjectVo;
-import dao.MysqlSubjectDao;
+import dao.SubjectDao;
 
 @WebServlet("/subject/insert.bit")
 @SuppressWarnings("serial")
@@ -33,9 +32,8 @@ public class SubjectInsertServlet extends HttpServlet {
 		try {
 			out.println("<h1>과목 등록 결과</h1>");
 			
-			DBConnectionPool dbConnectionPool = new DBConnectionPool();
-			MysqlSubjectDao dao = new MysqlSubjectDao();
-			dao.setDBConnectionPool(dbConnectionPool);
+			SubjectDao dao = (SubjectDao)this.getServletContext()
+					.getAttribute("subjectDao");
 			
 			SubjectVo vo = new SubjectVo();
 			vo.setTitle(request.getParameter("title"));

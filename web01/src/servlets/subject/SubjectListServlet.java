@@ -10,9 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.MysqlSubjectDao;
-import util.DBConnectionPool;
 import vo.SubjectVo;
+import dao.SubjectDao;
 
 @WebServlet("/subject/list.bit")
 @SuppressWarnings("serial")
@@ -28,9 +27,8 @@ public class SubjectListServlet extends HttpServlet {
 		try {
 			out.println("<h1>과목 목록</h1>");
 			
-			DBConnectionPool dbConnectionPool = new DBConnectionPool();
-			MysqlSubjectDao dao = new MysqlSubjectDao();
-			dao.setDBConnectionPool(dbConnectionPool);
+			SubjectDao dao = (SubjectDao)this.getServletContext()
+																							.getAttribute("subjectDao");
 			
 			int pageNo = Integer.parseInt(request.getParameter("pageNo")); 
 			int pageSize = Integer.parseInt(request.getParameter("pageSize")); 

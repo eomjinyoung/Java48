@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.DBConnectionPool;
 import vo.SubjectVo;
-import dao.MysqlSubjectDao;
+import dao.SubjectDao;
 
 @WebServlet("/subject/detail.bit")
 @SuppressWarnings("serial")
@@ -27,9 +26,8 @@ public class SubjectDetailServlet extends HttpServlet {
 		try {
 			out.println("<h1>과목 상세정보</h1>");
 			
-			DBConnectionPool dbConnectionPool = new DBConnectionPool();
-			MysqlSubjectDao dao = new MysqlSubjectDao();
-			dao.setDBConnectionPool(dbConnectionPool);
+			SubjectDao dao = (SubjectDao)this.getServletContext()
+					.getAttribute("subjectDao");
 			
 			int no = Integer.parseInt(request.getParameter("no")); 
 			
