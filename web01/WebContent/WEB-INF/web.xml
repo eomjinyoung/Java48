@@ -8,6 +8,24 @@
     <servlet-name>AppInitServlet</servlet-name>
     <servlet-class>servlets.AppInitServlet</servlet-class>
     
+    <!-- 이 서블릿만 참조할 수 있는 파라미터 정보 -->
+    <init-param>
+      <param-name>driver</param-name>
+      <param-value>com.mysql.jdbc.Driver</param-value>
+    </init-param>
+    <init-param>
+      <param-name>url</param-name>
+      <param-value>jdbc:mysql://localhost:3306/studydb</param-value>
+    </init-param>
+    <init-param>
+      <param-name>username</param-name>
+      <param-value>study</param-value>
+    </init-param>
+    <init-param>
+      <param-name>password</param-name>
+      <param-value>study</param-value>
+    </init-param>
+    
     <!-- 웹 애플리케이션을 시작할 때 자동으로 생성되게 함. 
       번호: 만약 이런 서블릿이 여러개 있을 경우 생성되는 순서를 나타냄.
       한 개 밖에 없을 경우 숫자는 무의미함.
