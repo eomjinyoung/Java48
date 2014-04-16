@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import vo.SubjectVo;
 import dao.SubjectDao;
 
+/* 목록으로 가기, 삭제하기 링크 추가
+ * 
+ */
+
 @WebServlet("/subject/detail.bit")
 @SuppressWarnings("serial")
 public class SubjectDetailServlet extends HttpServlet {
@@ -52,6 +56,10 @@ public class SubjectDetailServlet extends HttpServlet {
 			out.println("</tr>");
 			
 			out.println("</table>");
+			out.println("<a href='list.bit?pageNo=1&pageSize=10'>목록</a>");
+			out.println("<a href='delete.bit?no="
+					+ subject.getNo()
+					+ "'>삭제</a><br>");
 		} catch (Throwable e) {
 			out.println("오류 발생 했음!");
 			e.printStackTrace();
