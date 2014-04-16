@@ -24,6 +24,22 @@
   <listener>
     <listener-class>listeners.ContextLoaderListener</listener-class>
   </listener>  
+  
+  <!-- 필터 선언 -->
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>filters.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>charset</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  
+  <!-- 필터를 적용할 URL을 선언 -->
+  <filter-mapping>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <url-pattern>*.bit</url-pattern> <!-- '?' 전에 끝나는 URL -->
+  </filter-mapping>
     
   <!-- 
         http://localhost:9999/web01/subject
