@@ -68,7 +68,8 @@ public class SubjectUpdateServlet extends HttpServlet {
 	protected void doPost(
 			HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		// CharacterEncodingFilter로 대체함.
+		//request.setCharacterEncoding("UTF-8");
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();

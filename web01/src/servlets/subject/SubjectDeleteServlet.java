@@ -29,8 +29,6 @@ public class SubjectDeleteServlet extends HttpServlet {
 	protected void doGet(
 			HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
 		// 1) 응답 헤더에 Refresh 명령어 심기 
 		//response.setHeader("Refresh", "1;url=list.bit?pageNo=1&pageSize=10");
 		

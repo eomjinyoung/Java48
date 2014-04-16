@@ -30,7 +30,9 @@ public class SubjectInsertServlet extends HttpServlet {
 		// - 서블릿 컨테이너의 안내에 따라 설정한다.
 		// - getParameter()를 호출하기 전에 실행해야 한다.
 		//   단, 한번이라도 getParameter()를 호출했다면 적용안됨. 
-		request.setCharacterEncoding("UTF-8");
+		
+		// CharacterEncodingFilter로 대체함.
+		//request.setCharacterEncoding("UTF-8");
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
