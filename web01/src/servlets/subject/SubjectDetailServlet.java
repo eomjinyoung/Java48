@@ -56,10 +56,13 @@ public class SubjectDetailServlet extends HttpServlet {
 			out.println("</tr>");
 			
 			out.println("</table>");
-			out.println("<a href='list.bit?pageNo=1&pageSize=10'>목록</a>");
+			out.println("<a href='list.bit?pageNo=1&pageSize=10'>목록</a> ");
 			out.println("<a href='delete.bit?no="
 					+ subject.getNo()
-					+ "'>삭제</a><br>");
+					+ "'>삭제</a> ");
+			out.println("<a href='update.bit?no="
+					+ subject.getNo()
+					+ "'>변경</a><br>");
 		} catch (Throwable e) {
 			out.println("오류 발생 했음!");
 			e.printStackTrace();

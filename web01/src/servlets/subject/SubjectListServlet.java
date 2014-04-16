@@ -39,6 +39,7 @@ public class SubjectListServlet extends HttpServlet {
 			
 			List<SubjectVo> list = dao.list(pageNo, pageSize);
 			
+			out.println("<a href='form.html'>새과목</a><br>");
 			out.println("<table border='1'>");
 			out.println("<tr>");
 			out.println("	<th>번호</th>");

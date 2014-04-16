@@ -16,6 +16,13 @@ import dao.SubjectDao;
 @SuppressWarnings("serial")
 public class SubjectInsertServlet extends HttpServlet {
 	@Override
+	protected void doPost(
+			HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+	  doGet(request, response);
+	}
+	
+	@Override
 	protected void doGet(
 			HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
@@ -42,6 +49,8 @@ public class SubjectInsertServlet extends HttpServlet {
 			dao.insert(vo);
 			
 			out.println("등록 성공!");
+			
+			response.setHeader("Refresh", "1;url=list.bit?pageNo=1&pageSize=10");
 			
 		} catch (Throwable e) {
 			out.println("오류 발생 했음!");
