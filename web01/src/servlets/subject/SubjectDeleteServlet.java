@@ -16,6 +16,10 @@ import dao.SubjectDao;
  * - 1) 응답 헤더에 리프래시 정보 심기
  * - 2) HTML 헤더에 리프래시 정보 심기 
  * 
+ * Redirect
+ * - 클라이언트에게 다시 요청할 주소를 알려줌.
+ * - 경과 시간 지정 불가!
+ * - 콘텐츠를 보내지 않는다.
  */
 
 @WebServlet("/subject/delete.bit")
@@ -28,7 +32,7 @@ public class SubjectDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		// 1) 응답 헤더에 Refresh 명령어 심기 
-		response.setHeader("Refresh", "1;url=list.bit?pageNo=1&pageSize=10");
+		//response.setHeader("Refresh", "1;url=list.bit?pageNo=1&pageSize=10");
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -50,6 +54,10 @@ public class SubjectDeleteServlet extends HttpServlet {
 			dao.delete(no);
 			
 			out.println("삭제 성공!");
+			
+			// 3) Redirect 처리
+			// - 콘텐츠를 출력하지 않기 때문에 => 이전에 출력한 내용은 취소된다.
+			response.sendRedirect("list.bit?pageNo=1&pageSize=10");
 			
 		} catch (Throwable e) {
 			out.println("오류 발생 했음!");
