@@ -45,7 +45,7 @@ public class SubjectUpdateServlet extends HttpServlet {
 		try {
 			SubjectDao dao = (SubjectDao)this.getServletContext()
 					.getAttribute("subjectDao");
-			
+			 
 			SubjectVo vo = new SubjectVo();
 			vo.setNo(Integer.parseInt(request.getParameter("no")));
 			vo.setTitle(request.getParameter("title"));
