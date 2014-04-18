@@ -2,6 +2,7 @@
 <%@page import="vo.SubjectVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>       
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +20,8 @@
 <input type='button' value='취소' 
         onclick="location.href='detail.bit?no=${subject.no}'">
 </form>
-<jsp:include page="/footer.jsp">
-  <jsp:param value="Java48$$" name="studyClass"/>
-</jsp:include>
+<c:set var="studyClass" value="Java48$$" scope="request"/>
+<jsp:include page="/footer.jsp"/>
 </body>
 </html>
 
