@@ -37,7 +37,9 @@ SubjectVo subject = (SubjectVo) request.getAttribute("subject");
         onclick="location.href='detail.bit?no=<jsp:getProperty 
              name="subject" property="no"/>'">
 </form>
-<jsp:include page="/footer.jsp"/>
+<jsp:include page="/footer.jsp">
+  <jsp:param value="Java48$$" name="studyClass"/>
+</jsp:include>
 </body>
 </html>
 
