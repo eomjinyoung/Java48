@@ -23,7 +23,7 @@ if (test != null && test instanceof Date) {
 	out.println("날짜 맞네!!@");
 }
 %>
-<hr>
+<hr> jsp:useBean 액션 태그 사용
 
 <%-- c:formatDate
 => java.util.Date 객체로부터 문자열 생성  

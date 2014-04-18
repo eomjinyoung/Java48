@@ -1,46 +1,9 @@
-<%-- jsp:useBean 액션 태그 사용 --%>
+<%-- JSTL 및 EL 적용하기 --%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.SubjectVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%-- jsp:useBean 사용  --%>
-<%-- 1) type 만 사용 --%>
-<jsp:useBean id="list" type="java.util.List<vo.SubjectVo>" 
-      scope="request"/>    
-<%-- 
-List<SubjectVo> list = 
-  (List<SubjectVo>) request.getAttribute("list"); 
---%>    
-
-<%-- 2) class 만 사용 --%>
-<%--  
-<jsp:useBean id="list" class="java.util.ArrayList" 
-      scope="request"/>
---%>         
-<%-- 
-ArrayList list = (ArrayList) request.getAttribute("list");
-if (list == null) {
-  list = new ArrayList();
-  request.setAttribute("list", list);
-} 
---%> 
-
-<%-- 3) class, type 모두 사용 --%>
-<%-- 
-<jsp:useBean id="list" 
-              class="java.util.ArrayList"
-              type="java.util.List<vo.SubjectVo>" 
-              scope="request"/>
---%>
-<%--
-List<SubjectVo> list = (List<SubjectVo>) request.getAttribute("list");
-if (list == null) {
-  list = (List<SubjectVo>)new ArrayList();
-  request.setAttribute("list", list);
-} 
---%>      
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,19 +11,19 @@ if (list == null) {
   <title>과목목록</title>
 </head>
 <body>
-<h1>과목 목록(byJSP)</h1>
+<h1>과목 목록(JSTL,EL)</h1>
 <a href='form.html'>새과목</a><br>
 <table border='1'>
 <tr>
   <th>번호</th>
   <th>과목명</th>
 </tr>
-<%for(SubjectVo subject : list) {%>
+<c:forEach var="subject" items="${list}">
 <tr>
-  <td><%=subject.getNo()%></td>
-  <td><a href='detail.bit?no=<%=subject.getNo()%>'><%=subject.getTitle()%></a></td>
+  <td>${subject.no}</td>
+  <td><a href='detail.bit?no=${subject.no}'>${subject.title}</a></td>
 </tr>
-<%}%>
+</c:forEach>
 </table>
 <jsp:include page="/footer.jsp"/>
 </body></html>
