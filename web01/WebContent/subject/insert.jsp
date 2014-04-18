@@ -10,6 +10,7 @@
 </head>
 <body>
 <p>과목 등록 성공입니다!</p>
+<jsp:include page="/footer.jsp"/>
 </body></html>
 
 

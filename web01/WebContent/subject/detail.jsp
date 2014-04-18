@@ -58,6 +58,7 @@ if (subject == null) {
 <a href='list.bit?pageNo=1&pageSize=10'>목록</a> 
 <a href='delete.bit?no=<jsp:getProperty name="subject" property="no"/>'>삭제</a> 
 <a href='update.bit?no=<jsp:getProperty name="subject" property="no"/>'>변경</a><br>
+<jsp:include page="/footer.jsp"/>
 </body></html>
 
 
