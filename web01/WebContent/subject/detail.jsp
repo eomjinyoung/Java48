@@ -9,6 +9,7 @@
   <title>과목상세정보</title>
 </head>
 <body>
+<jsp:include page="/header.jsp"/>
 <h1>과목 상세정보(EL)</h1>
 <table border='1'>
 <tr>

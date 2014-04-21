@@ -10,6 +10,7 @@
   <title>과목변경폼</title>
 </head>
 <body>
+<jsp:include page="/header.jsp"/>
 <h1>과목 변경폼(JSP, JSP Action Tag)</h1>
 <form action='update.bit' method='post'>
 번호: <input type='text' name='no' value='${subject.no}' readonly><br>

@@ -11,6 +11,7 @@
   <title>과목목록</title>
 </head>
 <body>
+<jsp:include page="/header.jsp"/>
 <h1>과목 목록(JSTL,EL)</h1>
 <a href='form.html'>새과목</a><br>
 <table border='1'>

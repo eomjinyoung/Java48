@@ -26,6 +26,14 @@ public class SubjectListServlet extends HttpServlet {
 			HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 		try {
+			/* 모든 서블릿 마다 로그인 검사 코드를 넣을 수는 없다.
+			 * 필터를 이용하여 처리하는 것이 좋다.
+			if (request.getSession().getAttribute("loginUser") == null) {
+				response.sendRedirect("../auth/login.bit");
+				return;
+			}
+			*/
+			
 			SubjectDao dao = (SubjectDao)this.getServletContext()
 																							.getAttribute("subjectDao");
 			
