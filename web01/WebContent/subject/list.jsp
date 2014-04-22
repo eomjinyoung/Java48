@@ -9,12 +9,14 @@
 <head>
   <meta charset="UTF-8">
   <title>과목목록</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 </head>
 <body>
 <jsp:include page="/header.jsp"/>
 <h1>과목 목록(JSTL,EL)</h1>
-<a href='form.html'>새과목</a><br>
-<table border='1'>
+<a href='form.html' class="btn btn-primary">새과목</a><br>
+<table class="table table-striped">
 <tr>
   <th>번호</th>
   <th>과목명</th>
