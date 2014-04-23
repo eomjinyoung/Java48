@@ -1,4 +1,4 @@
-package chat.up2;
+package chat.up3;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -16,8 +16,15 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
+/* 2. 스레드 만들기 - Runnable 인터페이스 구현
+ * - Runnable 인터페이스를 구현한다. 
+ * - 독립적으로 실행할 코드를 run() 메서드에 넣는다.
+ * - Thread 객체를 통해 실행한다.
+ */
+
 @SuppressWarnings("serial")
-public class ChatClient extends Frame implements ActionListener {
+public class ChatClient extends Frame 
+								implements ActionListener, Runnable {
 	
 	TextField serverAddress = new TextField(30);
 	Button btnConnect = new Button("접속");
@@ -91,8 +98,9 @@ public class ChatClient extends Frame implements ActionListener {
 				msgPane.append("접속되었습니다.\n");
 				
 				// 스레드 생성 
-				MessageReader reader = new MessageReader();
-				reader.start(); // 스레드 시작
+				// 기본 Thread에게 Runnable 구현체를 넘긴다.
+				Thread reader = new Thread(this);
+				reader.start(); // 스레드 시작 => 생성자에서 받은 객체의 run() 호출.
 				
 			} catch (Exception ex) {
 				msgPane.append(ex.getMessage() + "\n");
@@ -120,23 +128,17 @@ public class ChatClient extends Frame implements ActionListener {
 		chatClient.setVisible(true);
 	}
 	
-	// 1. 스레드 만들기 - Thread 클래스를 상속
-	// - 독립적으로 실행할 코드는 run() 메서드에 넣는다.
-	// * 스레드의 라이프사이클
-	// 스레드 생성 -> start() -> 스레드 실행(run()호출) -> sleep() -> 스레드 정지
-	// run() 호출 종료 -> 스레드 종료(dead)
-	class MessageReader extends Thread {
-		@Override
-		public void run() {
-			while (true) {
-				try {
-					// 서버에서 보내는 데이터 출력
-					String message = in.readLine();
-					msgPane.append("[" + friendName + "] " + message + "\n");
-					
-				} catch (Exception ex) {
-					msgPane.append(ex.getMessage() + "\n");
-				}
+	// Runnable 인터페이스에 선언된 메서드 정의
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				// 서버에서 보내는 데이터 출력
+				String message = in.readLine();
+				msgPane.append("[" + friendName + "] " + message + "\n");
+				
+			} catch (Exception ex) {
+				msgPane.append(ex.getMessage() + "\n");
 			}
 		}
 	}
