@@ -17,7 +17,7 @@ public class Test01 extends Frame {
 	public static void main(String[] args) {
 		Test01 f = new Test01();
 		f.setSize(400, 300);
-		f.setVisible(true);
+	  f.setVisible(true);
 		
 		Thread t = Thread.currentThread();
 		System.out.println("현재 스레드:" + t.getName());
@@ -35,7 +35,10 @@ public class Test01 extends Frame {
 		printSubThreadGroup(tgSystem, "system/");
 		
 		//system 스레드그룹의 하위 스레드:
+		printSubThread(tgSystem, "system/");
 		
+		printSubThreadGroup(tgMain, "system/main/");
+		printSubThread(tgMain, "system/main/");
 	}
 	
 	static private void printSubThreadGroup(ThreadGroup tg, String path) {
