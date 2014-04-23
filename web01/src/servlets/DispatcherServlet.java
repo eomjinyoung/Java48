@@ -22,6 +22,9 @@ public class DispatcherServlet extends HttpServlet {
 	protected void service(
 			HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+		// 0) 출력 콘텐츠의 문자 집합 지정
+		response.setContentType("text/html;charset=UTF-8");
+		
 	  // 1) 서블릿 경로를 알아낸다.
 		String servletPath = request.getServletPath();
 		
@@ -44,7 +47,12 @@ public class DispatcherServlet extends HttpServlet {
 		// 4) 페이지 컨트롤러를 호출한다.
 		String viewUrl = pc.execute(model);
 		
-		// 5) 페이지 컨트롤러가 리턴한 뷰 URL을 인클루드 한다.
+		// 5) model 객체에 담겨있는 값을 request에 복사한다.
+		for (String name : model.keySet()) {
+			request.setAttribute(name, model.get(name));
+		}
+		
+		// 6) 페이지 컨트롤러가 리턴한 뷰 URL을 인클루드 한다.
 		RequestDispatcher rd = request.getRequestDispatcher(viewUrl);
 		rd.include(request, response);
 	}

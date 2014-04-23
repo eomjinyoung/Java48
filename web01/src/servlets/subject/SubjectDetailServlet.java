@@ -16,7 +16,7 @@ import dao.SubjectDao;
  * 
  */
 
-@WebServlet("/subject/detail.bit")
+//@WebServlet("/subject/detail.bit")
 @SuppressWarnings("serial")
 public class SubjectDetailServlet extends HttpServlet {
 	@Override

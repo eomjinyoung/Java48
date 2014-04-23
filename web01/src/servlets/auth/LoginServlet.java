@@ -25,7 +25,7 @@ import dao.UserDao;
  *            유효기간을 지정하지 않으면, 웹 브라우저를 닫기 전까지 유지된다. 
  */
 
-@WebServlet("/auth/login.bit")
+//@WebServlet("/auth/login.bit")
 @SuppressWarnings("serial")
 public class LoginServlet extends HttpServlet {
 	@Override

@@ -17,7 +17,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 
-@WebServlet("/file/upload.bit")
+//@WebServlet("/file/upload.bit")
 @SuppressWarnings("serial")
 public class FileUploadServlet extends HttpServlet {
 	@Override

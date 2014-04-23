@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import vo.SubjectVo;
 import dao.SubjectDao;
 
-@WebServlet("/subject/insert.bit")
+//@WebServlet("/subject/insert.bit")
 @SuppressWarnings("serial")
 public class SubjectInsertServlet extends HttpServlet {
 	@Override

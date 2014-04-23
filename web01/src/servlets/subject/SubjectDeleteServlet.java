@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.SubjectDao;
 
-@WebServlet("/subject/delete.bit")
+//@WebServlet("/subject/delete.bit")
 @SuppressWarnings("serial")
 public class SubjectDeleteServlet extends HttpServlet {
 	@Override
