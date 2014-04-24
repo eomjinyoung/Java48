@@ -5,6 +5,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import util.DBConnectionPool;
+import controls.FileUploadControl;
 import controls.SubjectDeleteControl;
 import controls.SubjectDetailControl;
 import controls.SubjectInsertControl;
@@ -76,6 +77,9 @@ public class ContextLoaderListener implements ServletContextListener {
 		
 		LogoutControl logoutControl = new LogoutControl();
 		sc.setAttribute("/auth/logout.bit", logoutControl);
+		
+		FileUploadControl fileUploadControl = new FileUploadControl();
+		sc.setAttribute("/file/upload.bit", fileUploadControl);
 	}
 	
 	

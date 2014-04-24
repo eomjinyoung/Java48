@@ -4,30 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>업로드 결과</title>
+<title>시스템 오류</title>
 </head>
 <body>
-<h1>업로드 결과</h1>
-이름: ${name}<br>
-나이: ${age}<br>
-<img src="../upload/${file1.name}"><br>
+<h1>시스템 오류</h1>
+<pre>
+${error}
+</pre>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
