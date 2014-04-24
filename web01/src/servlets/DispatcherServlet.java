@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +50,10 @@ public class DispatcherServlet extends HttpServlet {
 			model.put(	paramName, 	request.getParameter(paramName));
 		}
 		
+		// * HttpSession 객체를 주입
+		HttpSession session = request.getSession();
+		injectHttpSession(pc, session);
+		
 		// 4) 페이지 컨트롤러를 호출한다.
 		String viewUrl = pc.execute(model);
 		
@@ -64,7 +69,6 @@ public class DispatcherServlet extends HttpServlet {
     Map<String,Object> sessionMap = 
 				(Map<String,Object>) model.get("sessionMap");
 		if (sessionMap != null) {
-			HttpSession session = request.getSession();
 			for (Entry<String,Object> entry : sessionMap.entrySet()) {
 				session.setAttribute(entry.getKey(), entry.getValue());
 			}
@@ -86,6 +90,30 @@ public class DispatcherServlet extends HttpServlet {
 			// 6) 페이지 컨트롤러가 리턴한 뷰 URL을 인클루드 한다.
 			RequestDispatcher rd = request.getRequestDispatcher(viewUrl);
 			rd.include(request, response);
+		}
+	}
+	
+	private void injectHttpSession(Object obj, HttpSession session) {
+		try {
+			Class<?> clazz = obj.getClass(); // 객체의 클래스 정보를 가져온다.
+			Method[] methods = clazz.getMethods(); // 클래스의 메서드 목록을 얻는다.
+			
+			for (Method m : methods) {
+				
+				// 목록에서 setXXX() 셋터 메서드를 찾는다.
+				if (m.getName().startsWith("set")) {
+					
+					// 셋터 메서드의 파라미터 타입을 알아낸다.
+					Class<?> parameterType = m.getParameterTypes()[0];
+					
+					// 파라미터의 타입이 HttpSession 클래스인지 확인
+					if (parameterType == HttpSession.class) {
+						m.invoke(obj, session);
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

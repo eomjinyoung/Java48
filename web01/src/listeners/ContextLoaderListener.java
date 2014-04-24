@@ -11,6 +11,7 @@ import controls.SubjectInsertControl;
 import controls.SubjectListControl;
 import controls.SubjectUpdateControl;
 import controls.auth.LoginControl;
+import controls.auth.LogoutControl;
 import dao.MysqlSubjectDao;
 import dao.MysqlUserDao;
 
@@ -72,7 +73,12 @@ public class ContextLoaderListener implements ServletContextListener {
 		LoginControl loginControl = new LoginControl();
 		loginControl.setUserDao(userDao);
 		sc.setAttribute("/auth/login.bit", loginControl);
+		
+		LogoutControl logoutControl = new LogoutControl();
+		sc.setAttribute("/auth/logout.bit", logoutControl);
 	}
+	
+	
 }
 
 
