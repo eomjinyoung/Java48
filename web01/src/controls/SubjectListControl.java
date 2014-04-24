@@ -15,17 +15,16 @@ public class SubjectListControl implements PageController {
 
 	@Override
   public String execute(Map<String, Object> model) {
-		int pageNo = Integer.parseInt((String)model.get("pageNo")); 
-		int pageSize = Integer.parseInt((String)model.get("pageSize")); 
-		
 		try {
+			int pageNo = Integer.parseInt((String)model.get("pageNo")); 
+			int pageSize = Integer.parseInt((String)model.get("pageSize")); 
 			List<SubjectVo> list = subjectDao.list(pageNo, pageSize);
 			model.put("list", list);
+			return "/subject/list.jsp";
+			
 		} catch (Throwable ex) {
 			throw new Error(ex);
 		}
-		
-		return "/subject/list.jsp";
   }
 
 }
