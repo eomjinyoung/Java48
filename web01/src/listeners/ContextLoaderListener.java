@@ -5,9 +5,12 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import util.DBConnectionPool;
+import controls.SubjectDeleteControl;
 import controls.SubjectDetailControl;
 import controls.SubjectInsertControl;
 import controls.SubjectListControl;
+import controls.SubjectUpdateControl;
+import controls.auth.LoginControl;
 import dao.MysqlSubjectDao;
 import dao.MysqlUserDao;
 
@@ -56,8 +59,20 @@ public class ContextLoaderListener implements ServletContextListener {
 		subjectInsertControl.setSubjectDao(subjectDao);
 		sc.setAttribute("/subject/insert.bit", subjectInsertControl);
 		
+		SubjectUpdateControl subjectUpdateControl = 
+				new SubjectUpdateControl();
+		subjectUpdateControl.setSubjectDao(subjectDao);
+		sc.setAttribute("/subject/update.bit", subjectUpdateControl);
+		
+		SubjectDeleteControl subjectDeleteControl = 
+				new SubjectDeleteControl();
+		subjectDeleteControl.setSubjectDao(subjectDao);
+		sc.setAttribute("/subject/delete.bit", subjectDeleteControl);
+		
+		LoginControl loginControl = new LoginControl();
+		loginControl.setUserDao(userDao);
+		sc.setAttribute("/auth/login.bit", loginControl);
 	}
-
 }
 
 
