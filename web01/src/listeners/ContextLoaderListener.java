@@ -1,6 +1,5 @@
 package listeners;
 
-import java.io.File;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -12,6 +11,7 @@ import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
+import org.reflections.Reflections;
 
 import annotations.Component;
 
@@ -105,53 +105,19 @@ public class ContextLoaderListener implements ServletContextListener {
 	}
 
 	private void prepareBeansFromAnnotation() throws Exception {
-		// 클래스들이 있는 절대 경로 알아내기
-		String path = sc.getRealPath("/WEB-INF/classes");
-		File dir = new File(path);
-		
-		// 지정된 폴더에서 .class 파일을 찾는다.
-		// @Component가 붙어 있는지 확인한다.
-		// 해당 애노테이션이 붙어 있으면 빈을 생성하여 objPool에 담는다.
-	  findAndCreateComponent(dir, "");
-  }
-
-	private void findAndCreateComponent(File dir, String packageName) 
-			throws Exception {
-	  File[] files = dir.listFiles(); // 하위 폴더 및 파일 목록 리턴
-	  int index = 0;
-	  String classname = null; // 패키지 이름을 포함한 클래스 이름
-	  Class<?> clazz = null;
-	  String compname = null; // objPool에 객체를 저장할 때 사용할 이름.
-	  for (File f : files) {
-	  	if (f.isDirectory()) {
-	  		findAndCreateComponent(f, packageName + f.getName() + ".");
-	  	} else { // only file
-	  		if (f.getName().endsWith(".class")) { // only .class file
-	  			// .class가 시작되는 인덱스 알아내기
-	  			index = f.getName().indexOf(".class");
-	  			classname = packageName + f.getName().substring(0, index);
-	  			log.debug(classname);
-	  			
-	  			// 1) 클래스 로딩
-	  			clazz = Class.forName(classname);
-	  			
-	  			// 2) @Component 애노테이션이 있는지 조사
-        Component compAnno = 
-	  					(Component) clazz.getAnnotation(Component.class);
-	  			if (compAnno != null) {
-	  				log.debug("**********" + classname);
-	  				compname = compAnno.value(); // @Component(이름)
-	  				if (compname.equals("")) { // @Component <- 이름이 없다면 
-	  					compname = classname; // 클래스 이름을 객체 이름을 사용함
-	  				}
-	  				// 빈을 생성하여 임시 저장소에 보관한다.
-	  				objPool.put(compname, clazz.newInstance());
-	  				log.info("created:" + compname + "[" + classname + "]");
-	  			}
-	  		}
-	  	}
-	  }
-	  
+		Reflections reflections = new Reflections("dao");
+		reflections.merge(new Reflections("controls"));
+		Component compAnno = null;
+		String compName = null;
+		for (Class<?> clazz : 
+					reflections.getTypesAnnotatedWith(Component.class) ) {
+			compAnno = clazz.getAnnotation(Component.class);
+			compName = compAnno.value();
+			if (compName.equals("")) {
+				compName = clazz.getName();
+			}
+			objPool.put(compName, clazz.newInstance());
+		}
   }
 }
 
