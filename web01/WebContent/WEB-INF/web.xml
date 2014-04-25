@@ -1,75 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns="http://java.sun.com/xml/ns/javaee" 
-    xsi:schemaLocation="
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="
           http://java.sun.com/xml/ns/javaee 
-          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
-    id="WebApp_ID" version="3.0">
-  <display-name>web01t</display-name>
+          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>web01t</display-name>
 
-  <!-- context 파라미터는 누구든 사용할 수 있다. -->
-  <context-param>
-    <param-name>driver</param-name>
-    <param-value>com.mysql.jdbc.Driver</param-value>
-  </context-param>
-  <context-param>
-    <param-name>url</param-name>
-    <param-value>jdbc:mysql://localhost:3306/studydb</param-value>
-  </context-param>
-  <context-param>
-    <param-name>username</param-name>
-    <param-value>study</param-value>
-  </context-param>
-  <context-param>
-    <param-name>password</param-name>
-    <param-value>study</param-value>
-  </context-param>
-    
-  <!-- ServletContextListener 등록 -->
-  <listener>
-    <listener-class>listeners.ContextLoaderListener</listener-class>
-  </listener>  
-  
-  <!-- 필터 선언 -->
-  <filter>
-    <filter-name>CharacterEncodingFilter</filter-name>
-    <filter-class>filters.CharacterEncodingFilter</filter-class>
-    <init-param>
-      <param-name>charset</param-name>
-      <param-value>UTF-8</param-value>
-    </init-param>
-  </filter>
-  <filter>
-    <filter-name>AuthFilter</filter-name>
-    <filter-class>filters.AuthFilter</filter-class>
-  </filter>
-   
-  <!-- 필터를 적용할 URL을 선언 -->
-  <filter-mapping>
-    <filter-name>CharacterEncodingFilter</filter-name>
-    <url-pattern>*.bit</url-pattern> <!-- '?' 전에 끝나는 URL -->
-  </filter-mapping>
-  <!--  
-  <filter-mapping>
-    <filter-name>AuthFilter</filter-name>
-    <url-pattern>*.bit</url-pattern> 
-  </filter-mapping>
-  -->
-    
-  <!-- 
-        http://localhost:9999/web01/subject
-        위와 같이 클라이언트의 요청 URL이 폴더까지만 지정된다면 
-       해당 폴더에서 다음 파일들을 찾아서 보내 준다.
-   -->
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+	<!-- context 파라미터는 누구든 사용할 수 있다. -->
+	<context-param>
+		<param-name>driver</param-name>
+		<param-value>com.mysql.jdbc.Driver</param-value>
+	</context-param>
+	<context-param>
+		<param-name>url</param-name>
+		<param-value>jdbc:mysql://localhost:3306/studydb</param-value>
+	</context-param>
+	<context-param>
+		<param-name>username</param-name>
+		<param-value>study</param-value>
+	</context-param>
+	<context-param>
+		<param-name>password</param-name>
+		<param-value>study</param-value>
+	</context-param>
+
+	<!-- ServletContextListener 등록 -->
+	<listener>
+		<listener-class>listeners.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 필터 선언 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>filters.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>charset</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>AuthFilter</filter-name>
+		<filter-class>filters.AuthFilter</filter-class>
+	</filter>
+
+	<!-- 필터를 적용할 URL을 선언 -->
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>*.bit</url-pattern> <!-- '?' 전에 끝나는 URL -->
+	</filter-mapping>
+	<!-- <filter-mapping> <filter-name>AuthFilter</filter-name> <url-pattern>*.bit</url-pattern> 
+		</filter-mapping> -->
+
+	<!-- http://localhost:9999/web01/subject 위와 같이 클라이언트의 요청 URL이 폴더까지만 지정된다면 
+		해당 폴더에서 다음 파일들을 찾아서 보내 준다. -->
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+  <!-- 톰캣 서버에 설정한 DataSource를 참조 -->
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/studydb</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
 </web-app>
+
+
+
+
+
+
+
+
+
 
 
 

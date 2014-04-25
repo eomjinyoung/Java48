@@ -6,22 +6,23 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import util.DBConnectionPool;
+import javax.sql.DataSource;
+
 import vo.SubjectVo;
 
 // SubjectVo의 setter/getter 사용
 public class MysqlSubjectDao implements SubjectDao {
-	DBConnectionPool dbConnectionPool;
-
-	public void setDBConnectionPool(DBConnectionPool dbConnectionPool) {
-		this.dbConnectionPool = dbConnectionPool;
-	}
+	DataSource dataSource;
 	
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+
 	public void insert(SubjectVo subject) throws Throwable {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
-			con = dbConnectionPool.getConnection();
+			con = dataSource.getConnection();
 			stmt = con.prepareStatement(
 					"insert SE_SUBJS(TITLE, DEST) values(?, ?)");
 			stmt.setString(1, subject.getTitle());
@@ -31,7 +32,7 @@ public class MysqlSubjectDao implements SubjectDao {
 			throw e;
 		} finally { 
 			try {stmt.close();} catch (Throwable e2) {}
-			dbConnectionPool.returnConnection(con);
+			try {con.close();} catch (Throwable e2) {}
 		}
 	}
 	
@@ -41,7 +42,7 @@ public class MysqlSubjectDao implements SubjectDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			con = dbConnectionPool.getConnection();
+			con = dataSource.getConnection();
 			stmt = con.prepareStatement(
 					"select SNO, TITLE from SE_SUBJS"
 							+ " order by SNO desc"
@@ -62,7 +63,7 @@ public class MysqlSubjectDao implements SubjectDao {
 		} finally { 
 			try {rs.close();} catch (Throwable e2) {}
 			try {stmt.close();} catch (Throwable e2) {}
-			dbConnectionPool.returnConnection(con);
+			try {con.close();} catch (Throwable e2) {}
 		}
 	}
 	
@@ -71,7 +72,7 @@ public class MysqlSubjectDao implements SubjectDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			con = dbConnectionPool.getConnection();
+			con = dataSource.getConnection();
 			stmt = con.prepareStatement(
 					"select SNO, TITLE, DEST from SE_SUBJS"
 							+ " where SNO=?");
@@ -91,7 +92,7 @@ public class MysqlSubjectDao implements SubjectDao {
 		} finally { 
 			try {rs.close();} catch (Throwable e2) {}
 			try {stmt.close();} catch (Throwable e2) {}
-			dbConnectionPool.returnConnection(con);
+			try {con.close();} catch (Throwable e2) {}
 		}
 	}
 	
@@ -99,7 +100,7 @@ public class MysqlSubjectDao implements SubjectDao {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
-			con = dbConnectionPool.getConnection();
+			con = dataSource.getConnection();
 			stmt = con.prepareStatement(
 					"update SE_SUBJS set"
 							+ " TITLE=?" 
@@ -113,7 +114,7 @@ public class MysqlSubjectDao implements SubjectDao {
 			throw e;
 		} finally { 
 			try {stmt.close();} catch (Throwable e2) {}
-			dbConnectionPool.returnConnection(con);
+			try {con.close();} catch (Throwable e2) {}
 		}
 	}
 	
@@ -121,7 +122,7 @@ public class MysqlSubjectDao implements SubjectDao {
 		Connection con = null;
 		PreparedStatement stmt = null;
 		try {
-			con = dbConnectionPool.getConnection();
+			con = dataSource.getConnection();
 			stmt = con.prepareStatement(
 					"delete from SE_SUBJS where SNO=?"	);
 			stmt.setInt(1, no);
@@ -130,7 +131,7 @@ public class MysqlSubjectDao implements SubjectDao {
 			throw e;
 		} finally { 
 			try {stmt.close();} catch (Throwable e2) {}
-			dbConnectionPool.returnConnection(con);
+			try {con.close();} catch (Throwable e2) {}
 		}
 	}
 }
