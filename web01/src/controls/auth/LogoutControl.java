@@ -4,8 +4,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import annotations.Component;
 import controls.PageController;
 
+@Component("/auth/logout.bit")
 public class LogoutControl implements PageController {
 	HttpSession session;
 	

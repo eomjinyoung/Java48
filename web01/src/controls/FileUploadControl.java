@@ -7,6 +7,9 @@ import javax.servlet.ServletContext;
 
 import org.apache.commons.fileupload.FileItem;
 
+import annotations.Component;
+
+@Component("/file/upload.bit")
 public class FileUploadControl implements PageController {
 	ServletContext servletContext;
 	

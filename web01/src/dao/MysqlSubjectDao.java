@@ -8,9 +8,10 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import annotations.Component;
 import vo.SubjectVo;
 
-// SubjectVo의 setter/getter 사용
+@Component
 public class MysqlSubjectDao implements SubjectDao {
 	DataSource dataSource;
 	

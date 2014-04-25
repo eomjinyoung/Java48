@@ -6,11 +6,13 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 
+import annotations.Component;
 import vo.UserVo;
 import controls.PageController;
 import dao.DaoException;
 import dao.UserDao;
 
+@Component("/auth/login.bit")
 public class LoginControl implements PageController {
 	UserDao userDao;
 	

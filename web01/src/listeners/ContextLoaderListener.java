@@ -1,10 +1,9 @@
 package listeners;
 
-import java.io.FileReader;
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import java.util.Properties;
 
 import javax.naming.InitialContext;
 import javax.servlet.ServletContext;
@@ -14,21 +13,21 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
-/* DBConnectionPool을 JDBC 공식 커넥션 풀로 대체
- * - javax.sql.DataSource 
- * - 애플리케이션에서 직접 관리하지 않고, 서블릿 컨테이너에서 관리한다.
- * - 사용 방법:
- *   1) 서블릿 컨테이너에 DataSource 객체 설정
- *   2) 웹 애플리케이션 설정(web.xml)에서 서블릿 컨테이너의 DataSource를 참조.
- * 
- * web.xml에 설정된 자원을 가져오는 방법
- * 예) DataSource를 꺼내는 방법
- * - InitialContext 객체를 준비 <== 서버의 자원을 가져오는 역할 수행
- * - lookup(자원이름) 호출
+import annotations.Component;
+
+/* 빈 자동 생성 - 애노테이션 이용하기 
+ * 1) WEB-INF/classes 폴더에 있는 클래스들 중에서
+ *    @Component 애노테이션이 붙은 클래스를 찾는다.
+ *  2) 그 클래스의 인스턴스를 생성하여 objPool에 담는다.
+ *  3) 나머지는 이전과 같다.
  * 
  */
 public class ContextLoaderListener implements ServletContextListener {
 	Logger log = Logger.getLogger(ContextLoaderListener.class);
+	
+	// 여러 인스턴스 메서드에서 objPool을 사용한다면,
+	// 차라리 인스턴스 변수로 만든다.
+	HashMap<String,Object> objPool = new HashMap<String,Object>();
 	
 	ServletContext sc;
 	
@@ -48,16 +47,15 @@ public class ContextLoaderListener implements ServletContextListener {
 			DataSource ds = (DataSource) ctx.lookup(
 					"java:/comp/env/jdbc/studydb");
 			
-			// 생성된 객체를 보관할 임시 저장소
-			HashMap<String,Object> objPool = new HashMap<String,Object>();
+			// 임시 저장소에 객체 보관
 			objPool.put("dataSource", ds);
 			objPool.put("servletContext", sc);
 		
-			// .properties 파일을 읽어서 빈을 생성한다.
-			prepareBeansFromProperties(objPool);
+			// @Component 애노테이션이 붙은 클래스를 찾아서 빈을 생성한다.
+			prepareBeansFromAnnotation();
 			
 			// objPool에 들어 있는 빈에 대해 의존 객체를 찾아 주입한다.
-			injectDependencies(objPool);
+			injectDependencies();
 			
 			// 임시 보관소에 저장된 객체들을 ServletContext에 복사한다.
 			// DispatcherServlet이 페이지 컨트롤러를 찾을 수 있도록 하기 위해.
@@ -71,7 +69,7 @@ public class ContextLoaderListener implements ServletContextListener {
 		
 	}
 
-	private void injectDependencies(HashMap<String, Object> objPool) 
+	private void injectDependencies() 
 			throws Exception {
 		// objPool에서 빈을 꺼내어 setXXX() 메서드를 찾는다.
 		Class<?> clazz = null;
@@ -85,8 +83,7 @@ public class ContextLoaderListener implements ServletContextListener {
 				if (m.getName().startsWith("set")) {
 					log.debug("==>" + m.getName());
 					// 셋터 메서드의 파라미터 타입을 알아낸다.-> 의존 객체 찾는다.
-					dependency = findDependency(
-							objPool, m.getParameterTypes()[0]);
+					dependency = findDependency(m.getParameterTypes()[0]);
 					if (dependency != null) { // 의존 객체를 찾았다면,
 						// 셋터 메서드 호출 => 의존 객체 주입
 						m.invoke(obj, dependency);	
@@ -97,8 +94,7 @@ public class ContextLoaderListener implements ServletContextListener {
 		}
   }
 	
-	private Object findDependency(
-			HashMap<String,Object> objPool, Class<?> clazz) 
+	private Object findDependency(Class<?> clazz) 
 			throws Exception {
 		for (Object dependency : objPool.values()) {
 			if (clazz.isInstance(dependency)) {
@@ -108,22 +104,54 @@ public class ContextLoaderListener implements ServletContextListener {
 		return null;
 	}
 
-	private void prepareBeansFromProperties(
-			HashMap<String, Object> objPool) throws Exception {
-		// properties 파일이 있는 경로 알아내기
-		String path = sc.getRealPath("/WEB-INF/classes/beans.properties");
-		FileReader propIn = new FileReader(path); // 읽기 준비
+	private void prepareBeansFromAnnotation() throws Exception {
+		// 클래스들이 있는 절대 경로 알아내기
+		String path = sc.getRealPath("/WEB-INF/classes");
+		File dir = new File(path);
 		
-		// beans.properties 파일 읽기
-	  Properties props = new Properties();
-	  props.load(propIn);
-	  
-	  // 프로퍼티 파일에 적혀있는대로 빈을 생성한다.
+		// 지정된 폴더에서 .class 파일을 찾는다.
+		// @Component가 붙어 있는지 확인한다.
+		// 해당 애노테이션이 붙어 있으면 빈을 생성하여 objPool에 담는다.
+	  findAndCreateComponent(dir, "");
+  }
+
+	private void findAndCreateComponent(File dir, String packageName) 
+			throws Exception {
+	  File[] files = dir.listFiles(); // 하위 폴더 및 파일 목록 리턴
+	  int index = 0;
+	  String classname = null; // 패키지 이름을 포함한 클래스 이름
 	  Class<?> clazz = null;
-	  for (Entry<Object,Object> entry : props.entrySet()) {
-	  	clazz = Class.forName( (String)entry.getValue() );
-	  	objPool.put( (String)entry.getKey(), clazz.newInstance());
+	  String compname = null; // objPool에 객체를 저장할 때 사용할 이름.
+	  for (File f : files) {
+	  	if (f.isDirectory()) {
+	  		findAndCreateComponent(f, packageName + f.getName() + ".");
+	  	} else { // only file
+	  		if (f.getName().endsWith(".class")) { // only .class file
+	  			// .class가 시작되는 인덱스 알아내기
+	  			index = f.getName().indexOf(".class");
+	  			classname = packageName + f.getName().substring(0, index);
+	  			log.debug(classname);
+	  			
+	  			// 1) 클래스 로딩
+	  			clazz = Class.forName(classname);
+	  			
+	  			// 2) @Component 애노테이션이 있는지 조사
+        Component compAnno = 
+	  					(Component) clazz.getAnnotation(Component.class);
+	  			if (compAnno != null) {
+	  				log.debug("**********" + classname);
+	  				compname = compAnno.value(); // @Component(이름)
+	  				if (compname.equals("")) { // @Component <- 이름이 없다면 
+	  					compname = classname; // 클래스 이름을 객체 이름을 사용함
+	  				}
+	  				// 빈을 생성하여 임시 저장소에 보관한다.
+	  				objPool.put(compname, clazz.newInstance());
+	  				log.info("created:" + compname + "[" + classname + "]");
+	  			}
+	  		}
+	  	}
 	  }
+	  
   }
 }
 
