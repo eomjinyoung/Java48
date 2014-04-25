@@ -105,8 +105,12 @@ public class ContextLoaderListener implements ServletContextListener {
 	}
 
 	private void prepareBeansFromAnnotation() throws Exception {
-		Reflections reflections = new Reflections("dao");
-		reflections.merge(new Reflections("controls"));
+		//여러 개의 패키지 지정
+		//방법1) 
+		//Reflections reflections = new Reflections("dao");
+		//reflections.merge(new Reflections("controls"));
+		//방법2)
+		Reflections reflections = new Reflections("dao", "controls");
 		Component compAnno = null;
 		String compName = null;
 		for (Class<?> clazz : 
