@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+    <!--  java.util.Properties 타입의 프로퍼티 값 설정 -->
+    <bean id="tire1" class="spring.test08.Tire">
+      <constructor-arg value="한국타이어"/>
+      <property name="spec">
+        <props>
+          <prop key="width">215</prop>
+          <prop key="ratio">65</prop>
+          <prop key="rim.diameter">14</prop>
+        </props>
+      </property>
+    </bean>
+    
+    <!--  Map 프로퍼티 값 설정 -->
+    <bean id="car1" class="spring.test08.Car">
+      <constructor-arg value="소나타"/>
+      <property name="options">
+        <map>
+          <entry>
+            <key><value>에어백</value></key>
+            <value>2개</value>
+          </entry>
+          <entry key="썬루프" value="있음"/>
+          <entry key="스페어타이어">
+            <ref bean="tire1"/>
+          </entry>
+        </map>
+      </property>
+    </bean>
+    
+    
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
