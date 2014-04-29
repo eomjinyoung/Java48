@@ -7,36 +7,37 @@
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
         
-    <!--  java.util.Properties 타입의 프로퍼티 값 설정 -->
-    <bean id="tire1" class="spring.test08.Tire">
-      <constructor-arg value="한국타이어"/>
-      <property name="spec">
-        <props>
-          <prop key="width">215</prop>
-          <prop key="ratio">65</prop>
-          <prop key="rim.diameter">14</prop>
-        </props>
-      </property>
+    <!-- Factory 메서드를 통해 객체 생성 
+       factory-method: 객체를 생성해 주는 메서드. 반드시 static 이어야 한다.
+       - 해당 클래스의 팩토리 메서드를 호출한다.
+       - 리턴 값을 id로 저장한다.
+       - TireFactory의 인스턴스가 만들어지는 것이 아니다!!!!!!
+       - createTire()가 리턴한 값이 저장되는 것이다.
+    -->
+    <bean id="tire1" class="spring.test09.TireFactory"
+        factory-method="createTire">
+      <constructor-arg value="100"/>
     </bean>
     
-    <!--  Map 프로퍼티 값 설정 -->
-    <bean id="car1" class="spring.test08.Car">
-      <constructor-arg value="소나타"/>
-      <property name="options">
-        <map>
-          <entry>
-            <key><value>에어백</value></key>
-            <value>2개</value>
-          </entry>
-          <entry key="썬루프" value="있음"/>
-          <entry key="스페어타이어">
-            <ref bean="tire1"/>
-          </entry>
-        </map>
-      </property>
+    <bean id="tire2" class="spring.test09.TireFactory"
+        factory-method="createTire">
+      <constructor-arg value="101"/>
     </bean>
     
+    <bean id="tire3" class="spring.test09.TireFactory"
+        factory-method="createTire">
+      <constructor-arg value="200"/>
+    </bean>
     
+    <bean id="tire4" class="spring.test09.TireFactory"
+        factory-method="createTire">
+      <constructor-arg value="201"/>
+    </bean>
+    
+    <bean id="tire5" class="spring.test09.TireFactory"
+        factory-method="createTire">
+      <constructor-arg value="0"/>
+    </bean>
 </beans>
 
 
