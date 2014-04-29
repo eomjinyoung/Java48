@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+    <!--  배열 프로퍼티의 값 설정 -->
+    <bean id="car1" class="spring.test07.Car">
+      <constructor-arg value="소나타"/>
+      <constructor-arg>
+        <bean class="spring.test07.Engine"
+              c:maker="현대자동차" p:cc="1997"/>
+      </constructor-arg>
+       <property name="tires">
+          <list>
+              <bean class="spring.test07.Tire"
+                     c:maker="한국타이어" 
+                     c:spec="215/45 R 17 87 W"/>
+              <bean class="spring.test07.Tire"
+                     c:maker="한국타이어" 
+                     c:spec="215/45 R 17 87 W"/>   
+              <bean class="spring.test07.Tire"
+                     c:maker="금호타이어" 
+                     c:spec="235/55 ZR 17 103 W"/>  
+              <bean class="spring.test07.Tire"
+                     c:maker="금호타이어" 
+                     c:spec="235/55 ZR 17 103 W"/>  
+          </list>
+       </property>
+    </bean>
+    
+   
+    
+    
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

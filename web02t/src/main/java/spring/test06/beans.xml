@@ -17,11 +17,11 @@
     </bean>
     
     <bean id="car2" class="spring.test06.Car">
-      <constructor-arg value="K7"/>
-      <constructor-arg>
+      <property name="model" value="K7"/>
+      <property name="engine">
         <bean class="spring.test06.Engine"
               c:maker="기아자동차" p:cc="2999"/>
-      </constructor-arg>
+      </property>
     </bean>
     
     
