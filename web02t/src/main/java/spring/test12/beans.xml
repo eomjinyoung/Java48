@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+    <!-- 스프링 빈 생성 정책
+    기본: singleton. 한 개만 생성
+    옵션: prototype. 호출할 때 마다 생성.
+    -->
+    <bean id="tire1" class="spring.test12.Tire">
+      <property name="maker" value="한국타이어"/>
+    </bean>
+    
+    <!-- scope을 prototype으로 설정하면
+      getBean()을 호출할 때 마다 인스턴스를 생성한다.
+     -->
+    <bean id="tire2" class="spring.test12.Tire"
+      scope="prototype">
+      <property name="maker" value="금호타이어"/>
+    </bean>
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
