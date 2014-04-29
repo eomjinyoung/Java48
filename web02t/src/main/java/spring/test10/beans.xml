@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+    <!-- 인스턴스 팩토리 메서드 호출
+    1) 팩토리 메서드를 갖고 있는 객체를 생성한다.
+    2) 팩토리 메서드 객체에 대해 factory-method를 지정한다.
+      factory-bean : 팩토리 메서드를 갖고 있는 객체 아이디
+      factory-method : 팩토리 메서드 이름. (인스턴스 메서드여야 한다)
+    -->
+    <bean id="tireFactory" class="spring.test10.TireFactory"/>
+    
+    <bean id="tire1" factory-bean="tireFactory"
+        factory-method="createTire">
+      <constructor-arg value="100"/>
+    </bean>
+    
+    <bean id="tire2" factory-bean="tireFactory" 
+        factory-method="createTire">
+      <constructor-arg value="101"/>
+    </bean>
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
