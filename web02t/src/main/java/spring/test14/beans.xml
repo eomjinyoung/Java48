@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+     
+     <!-- 스프링 플러그인 사용 
+     1) 스프링 기본 기능에 새 작업 처리 추가
+       => 그 작업을 처리하는 객체를 선언한다.
+     -->   
+    <!-- @Autowired를 사용하여 의존 객체 자동 주입
+          셋터 메서드 자동 호출 
+          @Autowired를 인식하게 하려면 이것을 처리해 주는 빈을 생성해야 한다.
+          => AutowiredAnnotationBeanPostProcessor 객체 생성
+          
+          * 빈 후 처리기(Post Processor)
+          - 빈을 생성한 후에 추가 작업을 하는 객체 
+    -->
+    <!-- 
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>    
+     -->
+     
+     <!-- 빈 후 처리기 자동 등록 
+     AutowiredAnnotationBeanPostProcessor, 
+     CommonAnnotationBeanPostProcessor,
+     PersistenceAnnotationBeanPostProcessor,
+     RequiredAnnotationBeanPostProcessor
+      -->
+    <context:annotation-config/>
+     
+    <bean id="engine1" class="spring.test14.Engine"/>
+    
+    <bean id="car1" class="spring.test14.Car"/>
+    
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
