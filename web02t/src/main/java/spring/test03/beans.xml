@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--  셋터 메서드 호출  -->
+    <bean id="s1" class="spring.test03.Score">
+      <property name="name"><value>홍길동</value></property>
+      <property name="kor"><value>80</value></property>
+      <property name="eng"><value>70</value></property>
+      <property name="math"><value>100</value></property>
+    </bean>
+    <bean id="s2" class="spring.test03.Score">
+      <property name="name" value="임꺽정"/>
+      <property name="kor" value="100"/>
+      <property name="eng" value="100"/>
+      <property name="math" value="100"/>
+    </bean>
+    
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
