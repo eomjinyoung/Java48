@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="s1" class="spring.test01.Score"/>
+    <bean name="s2,s3,s4" class="spring.test01.Score"/>
+    <bean name="score-ok!" class="spring.test01.Score"/>
+    
+    <!-- 익명 빈 선언  -->
+    <!-- 이름이 없으면 전체 클래스 이름을 사용 : spring.test01.Score
+      추가적으로 인덱스를 포함한 이름이 등록됨: spring.test01.Score#0
+     -->
+    <bean class="spring.test01.Score"/>
+    <!-- 같은 클래스에 대해 다음 익명 빈의 이름 : spring.test01.Score#1 -->
+    <bean class="spring.test01.Score"/>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
