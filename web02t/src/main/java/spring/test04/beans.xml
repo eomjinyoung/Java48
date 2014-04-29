@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+    <!--  bean 태그의 속성을 이용하여 생성자 및 셋터 호출  
+      네임스페이스 추가해야 한다.
+      xmlns:c="http://www.springframework.org/schema/c"
+      xmlns:p="http://www.springframework.org/schema/p"
+      스키마 파일은 지정할 필요없다.
+    -->
+    <bean id="s1" class="spring.test04.Score"
+        c:name="홍길동" c:kor="99" c:eng="88" c:math="77"/>
+    <bean id="s2" class="spring.test04.Score" 
+        p:name="임꺽정" p:kor="77" p:eng="66" p:math="55"/>
+    
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
