@@ -13,6 +13,7 @@ repositories {
 }
 
 dependencies {
+  compile 'org.springframework:spring-context:4.0.3.RELEASE'
   compile 'jstl:jstl:1.2'
   compile 'mysql:mysql-connector-java:5.1.30'
   compile 'log4j:log4j:1.2.17'
