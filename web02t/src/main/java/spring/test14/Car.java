@@ -64,7 +64,7 @@ public class Car {
 		return engine;
 	}
 
-	@Autowired
+	@Autowired(required=false) // default 'true'
 	public void setEngine(Engine engine) {
 		this.engine = engine;
 	}
