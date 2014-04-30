@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+     
+     <!-- 컴포넌트 자동 스캔=> 자동 생성 => 의존 객체 자동 주입 
+     - @Component가 붙은 클래스를 찾아 객체를 자동 생성하게 만든다.
+     context:component-scan 태그 추가 => 이 작업을 처리하는 객체가 등록된다. 
+      context:annotation-config는 자동으로 활성화된다.
+     -->
+    <context:component-scan base-package="spring.test18"/>
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
