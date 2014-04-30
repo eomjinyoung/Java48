@@ -6,16 +6,15 @@ import java.sql.ResultSet;
 
 import javax.sql.DataSource;
 
-import sems.annotations.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import sems.vo.UserVo;
 
 @Component
 public class MysqlUserDao implements UserDao {
+	@Autowired
 	DataSource dataSource;
-	
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
 	
 	@Override
   public UserVo getUser(String email, String password) {

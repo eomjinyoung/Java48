@@ -2,17 +2,15 @@ package sems.controls;
 
 import java.util.Map;
 
-import sems.annotations.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import sems.dao.SubjectDao;
 
 @Component("/subject/delete.bit")
 public class SubjectDeleteControl implements PageController {
+	@Autowired
 	SubjectDao subjectDao;
-
-
-	public void setSubjectDao(SubjectDao subjectDao) {
-		this.subjectDao = subjectDao;
-	}
 	
 	@Override
 	public String execute(Map<String, Object> model) {

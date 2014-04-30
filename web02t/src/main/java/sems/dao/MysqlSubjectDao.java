@@ -8,16 +8,15 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import sems.annotations.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import sems.vo.SubjectVo;
 
 @Component
 public class MysqlSubjectDao implements SubjectDao {
+	@Autowired
 	DataSource dataSource;
-	
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
 
 	public void insert(SubjectVo subject) throws Throwable {
 		Connection con = null;

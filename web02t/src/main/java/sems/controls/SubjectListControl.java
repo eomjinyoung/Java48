@@ -3,17 +3,16 @@ package sems.controls;
 import java.util.List;
 import java.util.Map;
 
-import sems.annotations.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import sems.dao.SubjectDao;
 import sems.vo.SubjectVo;
 
 @Component("/subject/list.bit")
 public class SubjectListControl implements PageController {
+	@Autowired
 	SubjectDao subjectDao;
-
-	public void setSubjectDao(SubjectDao subjectDao) {
-		this.subjectDao = subjectDao;
-	}
 
 	@Override
   public String execute(Map<String, Object> model) {
