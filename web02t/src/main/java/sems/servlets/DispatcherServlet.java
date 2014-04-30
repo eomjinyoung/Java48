@@ -23,9 +23,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import sems.controls.PageController;
-import sems.listeners.ContextLoaderListener;
 
 @WebServlet("*.bit")
 @SuppressWarnings("serial")
@@ -39,8 +39,13 @@ public class DispatcherServlet extends HttpServlet {
 			response.setContentType("text/html;charset=UTF-8");
 			String servletPath = request.getServletPath();
 			
-			PageController pc = (PageController) ContextLoaderListener
-																.applicationContext.getBean(servletPath);
+			// 스프링에서 제공하는 ContextLoaderListener를 사용할 경우
+			// 스프링 IoC 컨테이너는 WebApplicationContextUtils로부터 얻는다.
+			// getWebApplicationContext(현재웹애플리케이션의 ServletContext)
+			// 리턴값은 ApplicationContext이기 때문에 이전처럼 getBean() 호출하면 된다.
+			PageController pc = (PageController) WebApplicationContextUtils
+				.getWebApplicationContext(this.getServletContext())
+				.getBean(servletPath);
 			
 			injectServletContext(pc); 
 			

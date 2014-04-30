@@ -5,11 +5,18 @@
           http://java.sun.com/xml/ns/javaee 
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
-	<display-name>web01t</display-name>
+	<display-name>web02t</display-name>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!-- <param-value>/WEB-INF/applicationContext*.xml</param-value> -->
+		<param-value>classpath:beans.xml</param-value>
+	</context-param>
+
 
 	<!-- ServletContextListener 등록 -->
 	<listener>
-		<listener-class>sems.listeners.ContextLoaderListener</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
 	<!-- 필터 선언 -->
@@ -45,7 +52,7 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
-  <!-- 톰캣 서버에 설정한 DataSource를 참조 -->
+	<!-- 톰캣 서버에 설정한 DataSource를 참조 -->
 	<resource-ref>
 		<description>DB Connection</description>
 		<res-ref-name>jdbc/studydb</res-ref-name>
