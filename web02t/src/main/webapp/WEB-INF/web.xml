@@ -41,6 +41,24 @@
 	<!-- <filter-mapping> <filter-name>AuthFilter</filter-name> <url-pattern>*.bit</url-pattern> 
 		</filter-mapping> -->
 
+
+	<servlet>
+		<servlet-name>bit</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/bit-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>bit</servlet-name>
+		<url-pattern>*.bit</url-pattern>
+	</servlet-mapping>
+
+
+
 	<!-- http://localhost:9999/web01/subject 위와 같이 클라이언트의 요청 URL이 폴더까지만 지정된다면 
 		해당 폴더에서 다음 파일들을 찾아서 보내 준다. -->
 	<welcome-file-list>

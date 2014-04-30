@@ -13,13 +13,9 @@
         http://www.springframework.org/schema/jee
         http://www.springframework.org/schema/jee/spring-jee.xsd">
      
-    <context:component-scan base-package="sems">
-      <context:exclude-filter type="regex" 
-            expression="sems.controls.*"/>
-    </context:component-scan>
+    <context:component-scan base-package="sems.controls"/>
 
-    <jee:jndi-lookup id="dataSource" 
-          jndi-name="java:comp/env/jdbc/studydb"/>
+    
 
 </beans>
 
