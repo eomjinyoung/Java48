@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 날짜 프로퍼티 값 설정 
+	방법2. 스프링의 CustomDateEditor 사용 -->
+	<!-- 문자열을 java.util.Date 객체로 만들어 주는 일 -->
+	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd" />
+	</bean>
+	
+	<!-- 커스텀 날짜 에디터  -->
+	<bean id="dateEditor" 
+	     class="org.springframework.beans.propertyeditors.CustomDateEditor">
+	     <constructor-arg ref="dateFormat"/>
+	     <constructor-arg value="true"/>
+	</bean>
+	
+	<!-- 날짜 프로퍼티를 위한 커스텀 에디터 등록기(개발자가 작성해야 한다) -->
+  <bean id="customPropertyEditorRegistrar"
+        class="spring.test20.CustomPropertyEditorRegistrar">
+      <property name="customDateEditor" ref="dateEditor"/>
+  </bean>
+        
+	<!-- 스프링 커스텀 에디터 목록에 우리가 만든 에디터 등록기를 추가한다. -->
+	<bean id="customEditorConfigurer" 
+	class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+   <property name="propertyEditorRegistrars">
+     <list>
+        <ref bean="customPropertyEditorRegistrar"/>
+     </list>
+   </property>
+ </bean>
+
+	<bean id="tire1" class="spring.test20.Tire" c:maker="금호타이어">
+		<property name="createdDate" value="2014-5-1"/>
+	</bean>
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
