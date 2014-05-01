@@ -1,5 +1,7 @@
 package sems.controls.auth;
 
+import java.util.HashMap;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,7 +45,11 @@ public class LoginControl {
 				UserVo userVo = null;
 				
 				try {
-					userVo = userDao.getUser(email, password);
+					HashMap<String,String> params = new HashMap<String,String>();
+					params.put("email", email);
+					params.put("password", password);
+					
+					userVo = userDao.getUser(params);
 				} catch (DaoException e) { // 로그인 실패!
 					return "redirect:login.bit";
 				}

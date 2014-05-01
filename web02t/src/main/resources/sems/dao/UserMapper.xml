@@ -4,7 +4,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="sems.user">
+<!-- DAO 인터페이스만 선언하고, 구현체를 자동 생성되게 하려면
+네임스페이스 이름을 인터페이스 이름과 같게 한다.
+SQL 아이디 값을 인터페이스의 메서드 이름과 같게 한다.
+ -->  
+<mapper namespace="sems.dao.UserDao">
   <resultMap type="sems.vo.UserVo" id="userMap">
     <id column="UNO" property="no"/><!-- PK 컬럼에 대해서만 설정한다. -->
     <result column="EMAIL" property="email"/>

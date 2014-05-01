@@ -1,5 +1,6 @@
 package sems.controls;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -35,7 +36,11 @@ public class SubjectListControl {
   		@RequestParam(value="pageSize",defaultValue="10") int pageSize, 
   		Model model) {
 		try {
-			List<SubjectVo> list = subjectDao.list(pageNo, pageSize);
+			HashMap<String,Integer> params = new HashMap<String,Integer>();
+			params.put("startIndex", (pageNo - 1) * pageSize);
+			params.put("pageSize", pageSize);
+			
+			List<SubjectVo> list = subjectDao.list(params);
 			model.addAttribute("list", list);
 			return "/subject/list.jsp";
 			
