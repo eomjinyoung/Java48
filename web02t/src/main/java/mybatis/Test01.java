@@ -11,7 +11,43 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import sems.vo.SubjectVo;
 
 public class Test01 {
-	public static void main(String[] args) throws Exception {
+	public static void mainx(String[] args) throws Exception {
+		String mybatisConfigFile = "mupdateybatis/mybatis.xml";
+		InputStream configStream = 
+				Resources.getResourceAsStream(mybatisConfigFile);
+		SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+		SqlSessionFactory factory = builder.build(configStream);
+		SqlSession sqlSession = factory.openSession(true);
+		
+		sqlSession.delete("test.subject.delete", 87);
+		
+		System.out.println("삭제 완료!");
+		sqlSession.close();
+	}
+	
+	public static void main04(String[] args) throws Exception {
+		String mybatisConfigFile = "mybatis/mybatis.xml";
+		InputStream configStream = 
+				Resources.getResourceAsStream(mybatisConfigFile);
+		SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+		SqlSessionFactory factory = builder.build(configStream);
+		
+		// autocommit
+		// - DML 실행 결과를 즉시 실제 DB에 반영하기
+		SqlSession sqlSession = factory.openSession(true);
+		
+		SubjectVo vo = new SubjectVo()
+			.setNo(31)
+			.setTitle("xxxxxx")
+			.setDescription("ssssss");
+		
+		sqlSession.update("test.subject.update", vo);
+		
+		System.out.println("변경 완료!");
+		sqlSession.close();
+	}
+	
+	public static void main03(String[] args) throws Exception {
 		String mybatisConfigFile = "mybatis/mybatis.xml";
 		InputStream configStream = 
 				Resources.getResourceAsStream(mybatisConfigFile);
@@ -19,7 +55,7 @@ public class Test01 {
 		SqlSessionFactory factory = builder.build(configStream);
 		SqlSession sqlSession = factory.openSession();
 		
-		SubjectVo vo = sqlSession.selectOne("test.subject.detail", 87);
+		SubjectVo vo = sqlSession.selectOne("test.subject.detail", 31);
 		
 		System.out.format("%1$3d %2$s\n", vo.getNo(), vo.getTitle());
 		System.out.println(vo.getDescription());

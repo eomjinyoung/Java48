@@ -5,35 +5,35 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="test.subject">
-  <!-- ResultMap : 컬럼 이름과 프로퍼티를 연결 설정
+  <!-- mybatis는 SQL 문을 실행하고 그 결과를 값 객체에 담아서 리턴한다.
+   => 만약 결과가 여러 개라면, List에 담아서 리턴한다.
+   => 레코드의 컬럼 값을 값 객체에 담을 때, 컬럼 이름과 같은 프로퍼티에 담는다.
+   예) SNO -> setSno(), TITLE -> setTitle()
+   => 컬럼 이름과 프로퍼티 이름이 같지 않아서 값을 담을 수 없다면,
+      컬럼에 대해 별명을 부여하라!
+      예) select 컬럼명 as 별명 ...
+      
    -->
-  <resultMap type="sems.vo.SubjectVo" id="subjectMap">
-    <id column="SNO" property="no"/><!-- PK 컬럼에 대해서만 설정한다. -->
-    <result column="TITLE" property="title"/>
-    <result column="DEST" property="description"/>
-  </resultMap> 
-   
-   <!-- ResultMap을 사용하면, 컬럼 이름에 대해 별명을 부여할 필요가 없다. -->
-  <select id="list" resultMap="subjectMap">
-    select SNO, TITLE
+  <select id="list" resultType="sems.vo.SubjectVo">
+    select SNO as no, TITLE
     from SE_SUBJS
     order by SNO desc
   </select>
   
-  <insert id="insert" parameterType="subjectVo">
+  <insert id="insert" parameterType="sems.vo.SubjectVo">
     insert into SE_SUBJS(TITLE, DEST)
     values (#{title}, #{description})
   </insert>
   
   <!-- 파라미터가 기본 타입일 경우, #{}에 사용하는 이름은 아무거나 괜찮다. -->
   <select id="detail" parameterType="int" 
-                      resultMap="subjectMap">
-    select SNO, TITLE, DEST
+                      resultType="sems.vo.SubjectVo">
+    select SNO as no, TITLE, DEST as description
     from SE_SUBJS
     where SNO=#{no}
   </select>
   
-  <update id="update" parameterType="subjectVo">
+  <update id="update" parameterType="sems.vo.SubjectVo">
     update SE_SUBJS set
       TITLE=#{title},
       DEST=#{description}

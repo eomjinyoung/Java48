@@ -3,12 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  
-  <!-- 값 객체의 클래스 이름에 대해 별명을 부여하기  -->
-  <typeAliases>
-    <typeAlias type="sems.vo.SubjectVo" alias="subjectVo"/>
-  </typeAliases>
-
+  <!-- 데이터베이스 정보를 설정
+  => DB 커넥션 풀, 트랜잭션 관리자 등을 설정
+  => 개발환경, 운영환경, 테스트 환경 등 여러 개를 설정하여 선택해서 사용한다.
+   -->
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
@@ -21,6 +19,7 @@
     </environment>
   </environments>
   
+  <!-- SQL 파일의 위치 설정 -->
   <mappers>
     <mapper resource="mybatis/SubjectMapper.xml"/>
   </mappers>
