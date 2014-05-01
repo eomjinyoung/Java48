@@ -5,16 +5,23 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import sems.vo.SubjectVo;
 
-@Component
+@Repository
 public class MysqlSubjectDao implements SubjectDao {
+	static Logger log = Logger.getLogger(MysqlSubjectDao.class);
+	
 	@Autowired
 	SqlSessionFactory sqlSessionFactory;
 
+	public MysqlSubjectDao() {
+		log.debug("MysqlSubjectDao 생성됨");
+	}
+	
 	public void insert(SubjectVo subject) throws Throwable {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {

@@ -2,6 +2,7 @@ package sems.controls;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +15,15 @@ import sems.vo.SubjectVo;
 // @RequestParam 애노테이션 사용
 @Controller
 public class SubjectListControl {
+	static Logger log = Logger.getLogger(SubjectListControl.class);
+
 	@Autowired
 	SubjectDao subjectDao;
 
+	public SubjectListControl() {
+		log.debug("SubjectListControl 생성됨");
+	}
+	
 	// @RequestParam("요청파라미터명")
 	// - 메서드의 파라미터와 요청 파라미터를 연결하는 애노테이션
 	// - 만약 메서드의 파라미터 이름과 요청 파라미터 이름이 같다면 생략 가능

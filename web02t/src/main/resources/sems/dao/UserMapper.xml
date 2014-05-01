@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SubjectMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="sems.user">
+  <resultMap type="sems.vo.UserVo" id="userMap">
+    <id column="UNO" property="no"/><!-- PK 컬럼에 대해서만 설정한다. -->
+    <result column="EMAIL" property="email"/>
+    <result column="PWD" property="password"/>
+    <result column="NAME" property="name"/>
+    <result column="TEL" property="tel"/>
+    <result column="FAX" property="fax"/>
+    <result column="POSTNO" property="postNo"/>
+    <result column="ADDR" property="address"/>
+    <result column="PHOT_PATH" property="photoPath"/>
+  </resultMap> 
+
+  <select id="getUser" parameterType="map" resultMap="userMap">
+    select UNO, NAME, EMAIL,TEL
+    from SE_USERS
+    where EMAIL=#{email} and PWD=#{password}
+  </select>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

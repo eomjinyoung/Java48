@@ -1,5 +1,6 @@
 package sems.controls;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +12,14 @@ import sems.vo.SubjectVo;
 @Controller 
 @RequestMapping("/subject/detail")
 public class SubjectDetailControl {
+	static Logger log = Logger.getLogger(SubjectDetailControl.class);
+	
 	@Autowired
 	SubjectDao subjectDao;
+	
+	public SubjectDetailControl() {
+		log.debug("SubjectDetailControl 생성됨");
+	}
 	
 	@RequestMapping
 	public String execute(int no, Model model) {

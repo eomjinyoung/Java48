@@ -1,43 +1,38 @@
 package sems.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.util.HashMap;
 
-import javax.sql.DataSource;
-
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import sems.vo.UserVo;
 
-@Component
+@Repository
 public class MysqlUserDao implements UserDao {
+	static Logger log = Logger.getLogger(MysqlUserDao.class);
+	
 	@Autowired
-	DataSource dataSource;
+	SqlSessionFactory sqlSessionFactory;
+	
+	public MysqlUserDao() {
+		log.debug("MysqlUserDao 생성됨");
+	}
 	
 	@Override
   public UserVo getUser(String email, String password) {
-		Connection con = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 		try {
-			con = dataSource.getConnection();
-			stmt = con.prepareStatement(
-					"select UNO, NAME, EMAIL, TEL"  
-					+ " from SE_USERS"
-					+ " where EMAIL=? and PWD=?");
-
-			stmt.setString(1, email);
-			stmt.setString(2, password);
-			rs = stmt.executeQuery();
+			HashMap<String,String> params = new HashMap<String,String>();
+			params.put("email", email);
+			params.put("password", password);
 			
-			if (rs.next()) {
-				return new UserVo()
-										.setNo(rs.getInt("UNO"))
-										.setName(rs.getString("NAME"))
-										.setEmail(rs.getString("EMAIL"))
-										.setTel(rs.getString("TEL"));
+			UserVo vo = sqlSession.selectOne("sems.user.getUser", params);
+			
+			if (vo != null) {
+				return vo;
 			} else {
 				throw new Exception("아이디와 암호가 일치하는 사용자가 없습니다.");
 			}
@@ -45,9 +40,7 @@ public class MysqlUserDao implements UserDao {
 			throw new DaoException(e);
 			
 		} finally { 
-			try {rs.close();} catch (Throwable e2) {}
-			try {stmt.close();} catch (Throwable e2) {}
-			try {con.close();} catch (Throwable e2) {}
+			try {sqlSession.close();} catch (Throwable e2) {}
 		}
   }
 
