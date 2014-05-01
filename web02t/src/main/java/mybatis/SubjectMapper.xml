@@ -19,7 +19,34 @@
     from SE_SUBJS
     order by SNO desc
   </select>
+  
+  <insert id="insert" parameterType="sems.vo.SubjectVo">
+    insert into SE_SUBJS(TITLE, DEST)
+    values (#{title}, #{description})
+  </insert>
+  
+  <!-- 파라미터가 기본 타입일 경우, #{}에 사용하는 이름은 아무거나 괜찮다. -->
+  <select id="detail" parameterType="int" 
+                      resultType="sems.vo.SubjectVo">
+    select SNO as no, TITLE, DEST as description
+    from SE_SUBJS
+    where SNO=#{no}
+  </select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
