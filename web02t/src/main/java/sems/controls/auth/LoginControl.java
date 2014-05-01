@@ -1,35 +1,38 @@
 package sems.controls.auth;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import sems.controls.PageController;
 import sems.dao.DaoException;
 import sems.dao.UserDao;
 import sems.vo.UserVo;
 
-@Component("/auth/login.bit")
-public class LoginControl implements PageController {
+@Controller
+@RequestMapping("/auth/login")
+public class LoginControl {
 	@Autowired
 	UserDao userDao;
 
-	@Override
-	public String execute(Map<String, Object> model) {
+	@RequestMapping(method=RequestMethod.GET)
+	public String loginForm() {
+		return "/auth/login.jsp";
+	}
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public String execute(
+			String email, 
+			String password, 
+			@RequestParam(required=false) String saveEmail,
+			HttpSession session,
+			HttpServletResponse response) {
 		try {
-			if (model.get("email") == null) { // 로그인 폼 출력 
-				return "/auth/login.jsp";
-				
-			} else { // 로그인 수행 
-				String email = (String)model.get("email");
-				String password = (String)model.get("password");
-				String saveEmail = (String)model.get("saveEmail");
-				
 				UserVo userVo = null;
 				
 				try {
@@ -38,23 +41,17 @@ public class LoginControl implements PageController {
 					return "redirect:login.bit";
 				}
 				
-				HashMap<String,Object> sessionMap = new HashMap<String,Object>();
-				sessionMap.put("loginUser", userVo);
-				model.put("sessionMap", sessionMap);
+				session.setAttribute("loginUser", userVo);
 				
 				if (saveEmail != null) {
-					ArrayList<Cookie> cookies = new ArrayList<Cookie>();
-					
 					Cookie cookie = new Cookie("loginEmail", email);
 					cookie.setDomain("t.java48.com"); // 서버 범위
-					cookie.setPath("/web01t");					// 하위 폴더 범위
+					cookie.setPath("/web02t");					// 하위 폴더 범위
 					
-					cookies.add(cookie);
-					model.put("cookies", cookies);
+					response.addCookie(cookie);
 				}
 				
 				return "redirect:../subject/list.bit?pageNo=1&pageSize=10";
-			}
 		} catch (Throwable ex) {
 			throw new Error(ex);
 		}
