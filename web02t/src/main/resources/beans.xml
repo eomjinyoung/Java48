@@ -20,7 +20,16 @@
 
 	<!-- mybatis의 SqlSessionFactory 객체를 생성 -->
 	<bean id="sqlSessionFactory" 
-	   class="org.apache.ibatis.session.SqlSessionFactory">
+	  class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="sems.vo" />
+		<property name="mapperLocations" value="classpath*:sems/dao/*Mapper.xml" />
+	</bean>
+
+	<!-- 스프링 트랜잭션 설정 -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 </beans>

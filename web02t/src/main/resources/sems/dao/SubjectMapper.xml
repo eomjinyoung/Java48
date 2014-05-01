@@ -4,28 +4,26 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="test.subject">
-  <!-- ResultMap : 컬럼 이름과 프로퍼티를 연결 설정
-   -->
+<mapper namespace="sems.subject">
   <resultMap type="sems.vo.SubjectVo" id="subjectMap">
     <id column="SNO" property="no"/><!-- PK 컬럼에 대해서만 설정한다. -->
     <result column="TITLE" property="title"/>
     <result column="DEST" property="description"/>
   </resultMap> 
    
-   <!-- ResultMap을 사용하면, 컬럼 이름에 대해 별명을 부여할 필요가 없다. -->
-  <select id="list" resultMap="subjectMap">
-    select SNO, TITLE
-    from SE_SUBJS
-    order by SNO desc
-  </select>
-  
-  <insert id="insert" parameterType="subjectVo">
+   <insert id="insert" parameterType="subjectVo">
     insert into SE_SUBJS(TITLE, DEST)
     values (#{title}, #{description})
   </insert>
-  
-  <!-- 파라미터가 기본 타입일 경우, #{}에 사용하는 이름은 아무거나 괜찮다. -->
+   
+  <select id="list" resultMap="subjectMap" 
+        parameterType="map">
+    select SNO, TITLE
+    from SE_SUBJS
+    order by SNO desc
+    limit #{startIndex}, #{pageSize}
+  </select>
+
   <select id="detail" parameterType="int" 
                       resultMap="subjectMap">
     select SNO, TITLE, DEST
