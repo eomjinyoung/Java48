@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import sems.dao.SubjectDao;
 
 @Controller
+@RequestMapping("/subject")
 public class SubjectDeleteControl {
 	@Autowired
 	SubjectDao subjectDao;
 	
-	@RequestMapping(value="/subject/delete", 
-			method=RequestMethod.GET)
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String execute(int no) {
 		try {
 			subjectDao.delete(no);
