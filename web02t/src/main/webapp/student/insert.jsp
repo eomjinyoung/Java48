@@ -28,12 +28,12 @@
     placeholder="예)010-1234-5678" type="tel" name="tel">
 </div>
 <div class="form-group">
-  <label for="password">전화</label><input id="password" class="form-control" 
+  <label for="password">암호</label><input id="password" class="form-control" 
     placeholder="8자리 이상의 암호" type="password" name="password">
 </div>
 <div class="form-group">
   <label for="fax">팩스</label><input id="fax" class="form-control" 
-    placeholder="예)02-1234-5678" type="tel" name="tel">
+    placeholder="예)02-1234-5678" type="tel" name="fax">
 </div>
 <div class="form-group">
   <label for="postNo">우편번호</label><input id="postNo" class="form-control" 
