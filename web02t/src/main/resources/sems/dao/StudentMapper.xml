@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SubjectMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="sems.dao.StudentDao">
+  <resultMap type="sems.vo.StudentVo" id="studentMap">
+    <id column="UNO" property="no"/><!-- PK 컬럼에 대해서만 설정한다. -->
+    <result column="COMP" property="company"/>
+    <result column="POS" property="position"/>
+    <result column="STAT" property="workingState"/>
+    <result column="LAST_SCH" property="lastSchool"/>
+    <result column="ACCT" property="bankingAccount"/>
+  </resultMap> 
+
+  <insert id="insert" parameterType="studentVo">
+    insert into SE_STUDS (UNO,COMP,POS,STAT,LAST_SCH,ACCT)
+    values (#{no}, 
+            #{company}, 
+            #{position}, 
+            #{workingState}, 
+            #{lastSchool}, 
+            #{bankingAccount})
+  </insert>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

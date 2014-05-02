@@ -27,6 +27,19 @@ SQL 아이디 값을 인터페이스의 메서드 이름과 같게 한다.
     where EMAIL=#{email} and PWD=#{password}
   </select>
   
+  <insert id="insert" parameterType="userVo"
+      useGeneratedKeys="true" keyColumn="UNO" keyProperty="no">
+    insert into SE_USERS 
+          (NAME,EMAIL,PWD,TEL,FAX,POSTNO,ADDR,PHOT_PATH)
+    values (#{name},
+            #{email},
+            #{password},
+            #{tel},
+            #{fax},
+            #{postNo},
+            #{address},
+            #{photoPath})
+  </insert>
 </mapper>
 
 

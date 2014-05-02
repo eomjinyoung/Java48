@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import sems.dao.StudentDao;
+import sems.dao.UserDao;
 import sems.vo.StudentVo;
 
 @Controller
@@ -20,6 +22,12 @@ public class StudentControl {
 	
 	@Autowired
 	ServletContext servletContext;
+	
+	@Autowired
+	UserDao userDao;
+	
+	@Autowired
+	StudentDao studentDao;
 
 	// 기본 정보 입력폼 출력 
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
@@ -51,7 +59,9 @@ public class StudentControl {
 	
 	// 기존에 입력했던 기본 정보과 추가 정보를 DB에 저장 
 	@RequestMapping(value="/insert4", method=RequestMethod.POST)
-	public String insert4() {
+	public String insert4(@ModelAttribute("student") StudentVo student) {
+		userDao.insert(student);
+		studentDao.insert(student);
 		return "/student/insert4.jsp";
 	}
 
