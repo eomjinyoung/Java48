@@ -1,21 +1,18 @@
 package sems.controls;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import sems.vo.StudentVo;
 
-@Controller
+//@Controller
 @RequestMapping("/student")
-@SessionAttributes("student") // 세션에 보관될 객체의 이름을 선언
-public class StudentControl {
+public class StudentControl01 {
 	static long fileCount;
 	
 	@Autowired
@@ -29,23 +26,22 @@ public class StudentControl {
 	
 	// 기본 정보 입력값 받고 => 추가 정보 입력폼 출력 
 	@RequestMapping(value="/insert2", method=RequestMethod.POST)
-	public String insert2(StudentVo student, Model model) {
-		// 모델에 저장하는 객체의 이름이 "student"이기 때문에 
-		// 이 객체는 세션에 보관될 것이다.
-		
-		// 모델에 저장하는 객체는 기본적으로 ServletRequest에 보관된다.
-		// 만약 객체의 이름이 @SessionAttributes에 선언돼 있다면 
-		// HttpSession에 보관한다.
-		model.addAttribute("student", student);
+	public String insert2(StudentVo student, HttpSession session) {
+		session.setAttribute("student", student);
 		return "/student/insert2.jsp";
 	}
 	
 	// 추가 정보 입력값 받고 => 전체 입력 값 출력 
-	// @ModelAttribute("student") 
-	// - 파라미터 값을 세션으로부터 가져와라.
-	// - 그리고 클라이언트가 보낸 데이터를 이 객체에 넣어라.
 	@RequestMapping(value="/insert3", method=RequestMethod.POST)
-	public String insert3(@ModelAttribute("student") StudentVo student) {
+	public String insert3(StudentVo student, HttpSession session) {
+		StudentVo basicInfo = 
+				(StudentVo)session.getAttribute("student");
+		basicInfo.setCompany(student.getCompany());
+		basicInfo.setPosition(student.getPosition());
+		basicInfo.setWorkingState(student.getWorkingState());
+		basicInfo.setLastSchool(student.getLastSchool());
+		basicInfo.setBankingAccount(student.getBankingAccount());
+		
 		return "/student/insert3.jsp";
 	}
 	
