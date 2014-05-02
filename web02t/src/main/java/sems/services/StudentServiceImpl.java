@@ -2,10 +2,8 @@ package sems.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import sems.dao.StudentDao;
 import sems.dao.UserDao;
@@ -14,32 +12,39 @@ import sems.vo.StudentVo;
 @Service
 public class StudentServiceImpl implements StudentService {
 	@Autowired
-	PlatformTransactionManager txManager;
-	
-	@Autowired
 	UserDao userDao;
 	
 	@Autowired
 	StudentDao studentDao;
 	
+	/* @Transactional 애노테이션을 처리하려면, 
+	 * 스프링에 트랜잭션 처리자를 등록해야 한다.
+	 * <tx:annotation-driven/>
+	 */
+	@Transactional(
+			propagation=Propagation.REQUIRED, 
+			rollbackFor=Throwable.class)
 	@Override
 	public void add(StudentVo student) {
-			DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-			def.setName("tx1");
-			def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-			
-			TransactionStatus status = txManager.getTransaction(def);
-			try {
-				userDao.insert(student);
-				studentDao.insert(student);
-				txManager.commit(status);
-			} catch (Throwable ex) {
-				txManager.rollback(status);
-				throw new RuntimeException("학생 정보 입력 오류!", ex);
-			}
+			userDao.insert(student);
+			studentDao.insert(student);
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

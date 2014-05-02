@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import sems.services.StudentService;
 import sems.vo.StudentVo;
@@ -28,6 +30,12 @@ public class StudentControl {
 	// 기본 정보 입력폼 출력 
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
 	public String insert() {
+		WebApplicationContext ctx = 
+				WebApplicationContextUtils.getWebApplicationContext(servletContext);
+		for (String beanName : ctx.getBeanDefinitionNames()) {
+			System.out.println(beanName);
+		}
+		
 		return "/student/insert.jsp";
 	}
 	
