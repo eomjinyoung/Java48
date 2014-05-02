@@ -1,7 +1,5 @@
 package sems.controls;
 
-import java.util.HashMap;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import sems.dao.DaoException;
-import sems.dao.UserDao;
+import sems.services.AuthService;
+import sems.services.UserGroup;
 import sems.vo.UserVo;
 
 @Controller
@@ -23,7 +21,7 @@ public class AuthControl {
 	static Logger log = Logger.getLogger(AuthControl.class);
 	
 	@Autowired
-	UserDao userDao;
+	AuthService authService;
 
 	public AuthControl() {
 		log.debug("AuthControl 생성됨");
@@ -42,18 +40,11 @@ public class AuthControl {
 			HttpSession session,
 			HttpServletResponse response) {
 		try {
-				UserVo userVo = null;
-				
-				try {
-					HashMap<String,String> params = new HashMap<String,String>();
-					params.put("email", email);
-					params.put("password", password);
-					
-					userVo = userDao.getUser(params);
-				} catch (DaoException e) { // 로그인 실패!
-					return "redirect:login.bit";
+				UserVo userVo = authService.getLoginUser(
+							email, password, UserGroup.STUDENT);
+				if (userVo == null) {
+					throw new RuntimeException("로그인 실패!");
 				}
-				
 				session.setAttribute("loginUser", userVo);
 			
 				if (saveEmail != null) {
