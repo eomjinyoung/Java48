@@ -23,18 +23,23 @@ public class StudentControl {
 	ServletContext servletContext;
 
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
-	public String form() {
-		return "/student/form.jsp";
+	public String insert() {
+		return "/student/insert.jsp";
 	}
 	
 	@RequestMapping(value="/insert2", method=RequestMethod.POST)
-	public String form2(StudentVo student) {
-		return "/student/form2.jsp";
+	public String insert2(StudentVo student) {
+		return "/student/insert2.jsp";
 	}
 	
 	@RequestMapping(value="/insert3", method=RequestMethod.POST)
-	public String form3(StudentVo student) {
-		return "/student/insertResult.jsp";
+	public String insert3(StudentVo student) {
+		return "/student/insert3.jsp";
+	}
+	
+	@RequestMapping(value="/insert4", method=RequestMethod.POST)
+	public String insert4(StudentVo student) {
+		return "/student/insert4.jsp";
 	}
 
 }

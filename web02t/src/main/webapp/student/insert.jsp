@@ -13,7 +13,7 @@
 <div class="container">
 <jsp:include page="/header.jsp"/>
 <h1>학생등록폼</h1>
-<form action="insert.bit" method="post" role="form">
+<form action="insert2.bit" method="post" role="form">
 <h2>기본정보</h2>
 <div class="form-group">
   <label for="name">이름</label><input id="name" class="form-control" 
