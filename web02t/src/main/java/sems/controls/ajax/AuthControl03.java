@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,20 +17,21 @@ import sems.services.UserGroup;
 import sems.vo.AjaxResult;
 import sems.vo.UserVo;
 
-@Controller
+import com.google.gson.Gson;
+
+//@Controller
 @RequestMapping("/auth")
-public class AuthControl {
-	static Logger log = Logger.getLogger(AuthControl.class);
+public class AuthControl03 {
+	static Logger log = Logger.getLogger(AuthControl03.class);
 	
 	@Autowired
 	AuthService authService;
 	
-	/* 리턴 타입은 JSON으로 출력할 객체이다.
-	 * - 자동으로 JSON 문자열로 변환하려면, 빈 설정파일에
-	 *   JSON 변환 해결사를 등록해야 한다.
+	/* 리턴 타입이 HttpEntity인 경우, JSP를 인클루드 하지 않고,
+	 * HttpEntity의 내용을 클라이언트로 보낸다.
 	 */
 	@RequestMapping("/login")
-	public AjaxResult login(
+	public HttpEntity<String> login(
 			String email, 
 			String password, 
 			@RequestParam(required=false) String saveEmail,
@@ -59,12 +61,16 @@ public class AuthControl {
 				
 				response.setContentType("text/html;charset=UTF-8");
 				
-				return result;
+				return new HttpEntity<String>(new Gson().toJson(result));
 				
+				/*
+				HttpHeaders respHeaders = new HttpHeaders();
+				respHeaders.add("Content-Type", "text/plain;charset=UTF-8");
+				return new HttpEntity<String>(
+						new Gson().toJson(result), respHeaders);
+				*/
 		} catch (Throwable ex) {
-			return new AjaxResult()
-					.setStatus("error")
-					.setData(ex.getMessage());
+			throw new Error(ex);
 		}
 	}
 	

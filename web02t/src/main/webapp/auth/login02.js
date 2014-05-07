@@ -17,16 +17,13 @@ $(document).ready(function(){
 				saveEmail: ($('#saveEmail:checked').length > 0) ? 
 						'true':'false'
 			},
-			success: function(jsonObj){
-				console.log(jsonObj);
-				/*
-				var result = jsonObj.ajaxResult;
+			success: function(result){
+				//console.log(result);
 				if (result.status == "ok" && result.data == "success") {
 					location.href="../subject/list.bit";
 				} else {
 					alert('이메일 또는 암호가 맞지 않습니다.');
 				}
-				*/
 			},
 			error: function(xhr, status, errorThrown){
 				alert('로그인 실행 중 오류 발생!');
