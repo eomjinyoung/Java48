@@ -17,9 +17,9 @@ $(document).ready(function(){
 				saveEmail: ($('#saveEmail:checked').length > 0) ? 
 						'true':'false'
 			},
-			success: function(result){
-				//console.log(result);
-				if (result.status == "ok" && result.data == "success") {
+			success: function(data){
+				console.log(data);
+				if (data.status == "ok" && data.result == "success") {
 					location.href="../subject/list.bit";
 				} else {
 					alert('이메일 또는 암호가 맞지 않습니다.');
