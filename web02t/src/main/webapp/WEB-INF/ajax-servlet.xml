@@ -11,10 +11,7 @@
         http://www.springframework.org/schema/jee
         http://www.springframework.org/schema/jee/spring-jee.xsd">
 
-	<context:component-scan base-package="sems.controls">
-	  <context:exclude-filter type="regex" 
-	     expression="sems.controls.ajax.*"/>
-	</context:component-scan>
+	<context:component-scan base-package="sems.controls.ajax" />
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
