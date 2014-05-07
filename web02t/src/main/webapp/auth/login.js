@@ -19,14 +19,12 @@ $(document).ready(function(){
 			},
 			success: function(jsonObj){
 				console.log(jsonObj);
-				/*
 				var result = jsonObj.ajaxResult;
 				if (result.status == "ok" && result.data == "success") {
-					location.href="../subject/list.bit";
+					location.href="../subject/main.html";
 				} else {
 					alert('이메일 또는 암호가 맞지 않습니다.');
 				}
-				*/
 			},
 			error: function(xhr, status, errorThrown){
 				alert('로그인 실행 중 오류 발생!');
