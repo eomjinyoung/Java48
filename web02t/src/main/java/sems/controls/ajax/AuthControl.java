@@ -37,18 +37,18 @@ public class AuthControl {
 							email, password, UserGroup.STUDENT);
 				if (userVo == null) {
 					model.addAttribute("result", "failure");
+					
 				} else {
 					model.addAttribute("result", "success");
-				}
-				
-				session.setAttribute("loginUser", userVo);
-			
-				if (saveEmail.equals("true")) {
-					Cookie cookie = new Cookie("loginEmail", email);
-					cookie.setDomain("t.java48.com"); // 서버 범위
-					cookie.setPath("/web02t");					// 하위 폴더 범위
+					session.setAttribute("loginUser", userVo);
 					
-					response.addCookie(cookie);
+					if (saveEmail.equals("true")) {
+						Cookie cookie = new Cookie("loginEmail", email);
+						cookie.setDomain("t.java48.com"); // 서버 범위
+						cookie.setPath("/web02t");					// 하위 폴더 범위
+						
+						response.addCookie(cookie);
+					}
 				}
 				
 				return "auth/ajax/loginResult";
