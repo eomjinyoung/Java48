@@ -29,7 +29,7 @@ public class AuthControl {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginForm() {
-		return "/auth/login.jsp";
+		return "auth/login";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)

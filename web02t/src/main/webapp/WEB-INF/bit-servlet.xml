@@ -18,8 +18,19 @@
 
 		<!-- one of the properties available; the maximum file size in bytes -->
 		<property name="maxUploadSize" value="10000000" />
-
 	</bean>
+
+	<!-- DispatcherServlet에게 JSP의 위치를 알려줌 => DispatcherServlet은 실제 자신이 직접 JSP를 
+		인클루드 하지 않는다. => 뷰를 찾아서 실행해 주는 부하에게 맡긴다. (ViewResolver) => 즉, 뷰 해결사에게 JSP가 
+		있는 위치를 말해야 한다. => 스프링에서는 다양한 ViewResolver를 제공한다. -->
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
 
 </beans>
 

@@ -37,7 +37,7 @@ public class FileUploadControl {
 				model.addAttribute("age", age);
 				model.addAttribute("file1name", filename);
 			}
-			return "/file/uploadResult.jsp";
+			return "file/uploadResult";
 		
 		} catch (Throwable ex) {
 			throw new Error(ex);

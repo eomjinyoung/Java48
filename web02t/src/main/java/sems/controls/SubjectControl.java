@@ -29,30 +29,30 @@ public class SubjectControl {
 			@RequestParam(value="pageSize",defaultValue="10") int pageSize, 
 			Model model) {
 		model.addAttribute("list", subjectService.list(pageNo, pageSize));
-		return "/subject/list.jsp";
+		return "subject/list";
 	}
 
 	@RequestMapping("/detail")
 	public String detail(int no, Model model) {
 		model.addAttribute("subject", subjectService.detail(no));
-		return "/subject/detail.jsp";
+		return "subject/detail";
 	}
 
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
 	public String form() {
-		return "/subject/form.jsp";
+		return "subject/form";
 	}
 
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public String insert(SubjectVo vo) {
 		subjectService.add(vo);
-		return "/subject/insert.jsp";
+		return "subject/insert";
 	}
 
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public String updateForm(int no, Model model) {
 		model.addAttribute("subject", subjectService.detail(no));
-		return "/subject/updateform.jsp";
+		return "subject/updateform";
 	}
 
 	@RequestMapping(value="/update", method=RequestMethod.POST)
