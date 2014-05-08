@@ -5,3 +5,5 @@ bit.getContextRootPath = function() {
 	var end = currPath.indexOf('/', 1);
 	return currPath.substring(0, end);
 }
+
+bit.contextRoot = bit.getContextRootPath();
