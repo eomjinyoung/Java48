@@ -35,26 +35,21 @@ public class SubjectControl {
 	}
 
 	@RequestMapping("/detail")
-	public String detail(int no, Model model) {
-		model.addAttribute("subject", subjectService.detail(no));
-		return "subject/detail";
-	}
-
-	@RequestMapping(value="/insert", method=RequestMethod.GET)
-	public String form() {
-		return "subject/form";
+	public AjaxResult detail(int no, Model model) {
+		SubjectVo s = subjectService.detail(no);
+		if (s != null) {
+			return new AjaxResult()
+				.setStatus("ok")
+				.setData(s);
+		} else {
+			return new AjaxResult().setStatus("failure");
+		}
 	}
 
 	@RequestMapping(value="/insert", method=RequestMethod.POST)
-	public String insert(SubjectVo vo) {
+	public AjaxResult insert(SubjectVo vo) {
 		subjectService.add(vo);
-		return "subject/insert";
-	}
-
-	@RequestMapping(value="/update", method=RequestMethod.GET)
-	public String updateForm(int no, Model model) {
-		model.addAttribute("subject", subjectService.detail(no));
-		return "subject/updateform";
+		return new AjaxResult().setStatus("ok");
 	}
 
 	@RequestMapping(value="/update", method=RequestMethod.POST)

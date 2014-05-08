@@ -29,7 +29,26 @@
 <button id="nextPage" class="btn">다음</button>
 
 <h2>과목 상세 정보</h2>
-<form>
+<form role="form">
+<div class="form-group" style="display:none;">
+  <label for="no">번호</label>
+  <input id="no" type='text' class="form-control" readonly>
+</div>
+<div class="form-group">
+  <label for="title">과목명</label>
+  <input id='title' type='text' class="form-control">
+</div>
+<div class="form-group">
+  <label for="description">설명</label>
+  <textarea id="description" class="form-control"
+    rows='10' cols='80'></textarea>
+</div>
+<button id="btnAdd" type="button" class="btn btn-primary">추가</button>
+<button id="btnChange" type="button" class="btn btn-primary" 
+  style="display:none;">변경</button>
+<button id="btnDelete" type="button" class="btn btn-primary"
+  style="display:none;">삭제</button>
+<button id="btnReset" type="reset" class="btn btn-primary">취소</button>
 </form>
 </div>
 

@@ -28,6 +28,40 @@ $(document).ready(function(){
 			});
 	});
 	
+	$(document).on('click', 'a.titleLink', function(){
+		$.getJSON(
+			bit.contextRoot + 
+				'/subject/detail.ajax?no=' + 
+				$(this).attr('data-no'),
+			function(jsonObj) {
+				var result = jsonObj.ajaxResult;
+				if (result.status == "ok") {
+					console.log(result.data);
+				} else {
+					console.log('해당 과목이 없습니다.');
+				}
+			});
+	});
+	
+	$('#btnAdd').click(function(){
+		$.post(
+			bit.contextRoot + '/subject/insert.ajax'
+			,{
+				title: $('#title').val(),
+				description: $('#description').val()
+			}
+			,function(jsonObj) {
+				loadSubjectList(currPageNo);
+				$('#btnReset').click();
+			}
+			,'json');
+	});
+	
+	$('#btnChange').click(function(){});
+	$('#btnDelete').click(function(){});
+	$('#btnReset').click(function(){});
+	
+	
 	loadSubjectList(1);
 });
 
@@ -48,10 +82,8 @@ function loadSubjectList(pageNo) {
 							.append('<td>' + subject.no + '</td>')
 							.append( $('<td>')
 								.append( $('<a>')
-									.attr('href', 
-											contextRoot + 
-											'/subject/detail.bit?no=' + 
-											subject.no)
+									.addClass('titleLink')
+									.attr('data-no', 	subject.no)
 									.text(subject.title) 
 							))
 							.append( $('<td>')
