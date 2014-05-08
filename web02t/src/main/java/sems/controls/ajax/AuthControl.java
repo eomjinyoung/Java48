@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import sems.services.AuthService;
 import sems.services.UserGroup;
@@ -18,6 +19,7 @@ import sems.vo.UserVo;
 
 @Controller
 @RequestMapping("/auth")
+@SessionAttributes("loginUser")
 public class AuthControl {
 	static Logger log = Logger.getLogger(AuthControl.class);
 	
@@ -33,7 +35,6 @@ public class AuthControl {
 			String email, 
 			String password, 
 			@RequestParam(required=false) String saveEmail,
-			HttpSession session,
 			HttpServletResponse response,
 			Model model) {
 		try {
@@ -46,7 +47,7 @@ public class AuthControl {
 					
 				} else {
 					result = new AjaxResult().setStatus("ok")	.setData("success");
-					session.setAttribute("loginUser", userVo);
+					model.addAttribute("loginUser", userVo);
 					
 					if (saveEmail.equals("true")) {
 						Cookie cookie = new Cookie("loginEmail", email);
@@ -73,7 +74,38 @@ public class AuthControl {
 	  session.invalidate();
 	  return "redirect:login.bit";
   }
+	
+	@RequestMapping("/getLoginUser")
+	public AjaxResult getLoginUser(HttpSession session) {
+		UserVo loginUser = (UserVo) session.getAttribute("loginUser");
+		if (loginUser == null) {
+			return new AjaxResult()
+									.setStatus("failure")
+									.setData("로그인 하지 않았습니다.");
+		} else {
+			return new AjaxResult()
+									.setStatus("ok")
+									.setData(loginUser);
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
