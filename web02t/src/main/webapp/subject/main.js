@@ -16,16 +16,7 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', 'button.rowDelBtn', function(){
-		$.getJSON(
-			bit.contextRoot + 
-				'/subject/delete.ajax?no=' + 
-				$(this).attr('data-no'),
-			function(jsonObj) {
-				var result = jsonObj.ajaxResult;
-				if (result.status == "ok") {
-					loadSubjectList(currPageNo);
-				}
-			});
+		deleteSubject( $(this).attr('data-no') );
 	});
 	
 	$(document).on('click', 'a.titleLink', function(){
@@ -36,7 +27,11 @@ $(document).ready(function(){
 			function(jsonObj) {
 				var result = jsonObj.ajaxResult;
 				if (result.status == "ok") {
-					console.log(result.data);
+					$('#no').val(result.data.no);
+					$('#title').val(result.data.title);
+					$('#description').val(result.data.description);
+					
+					changeFormState("update");
 				} else {
 					console.log('해당 과목이 없습니다.');
 				}
@@ -57,13 +52,45 @@ $(document).ready(function(){
 			,'json');
 	});
 	
-	$('#btnChange').click(function(){});
-	$('#btnDelete').click(function(){});
-	$('#btnReset').click(function(){});
+	$('#btnChange').click(function(){
+		$.post(
+				bit.contextRoot + '/subject/update.ajax'
+				,{
+					no: $('#no').val(),
+					title: $('#title').val(),
+					description: $('#description').val()
+				}
+				,function(jsonObj) {
+					loadSubjectList(currPageNo);
+					$('#btnReset').click();
+				}
+				,'json');
+	});
+	
+	$('#btnDelete').click(function(){
+		deleteSubject( $('#no').val() );
+	});
+	
+	$('#btnReset').click(function(){
+		changeFormState("new");
+	});
 	
 	
 	loadSubjectList(1);
 });
+
+function deleteSubject(no) {
+	$.getJSON(
+			bit.contextRoot + 
+				'/subject/delete.ajax?no=' + no,
+			function(jsonObj) {
+				var result = jsonObj.ajaxResult;
+				if (result.status == "ok") {
+					loadSubjectList(currPageNo);
+					$('#btnReset').click();
+				}
+			});
+}
 
 function loadSubjectList(pageNo) {
 	$.getJSON(
@@ -97,9 +124,35 @@ function loadSubjectList(pageNo) {
 					});
 					currPageNo = pageNo;
 					$('#currPageNo').text(pageNo);
+					$('#btnReset').click();
 				}
 			});
 }
+
+function changeFormState(state) {
+	if (state == "update") {
+		$('.updateForm').css('display', '');
+		$('.newForm').css('display', 'none');
+	} else {
+		$('.updateForm').css('display', 'none');
+		$('.newForm').css('display', '');
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

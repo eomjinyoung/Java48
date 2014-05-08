@@ -30,7 +30,7 @@
 
 <h2>과목 상세 정보</h2>
 <form role="form">
-<div class="form-group" style="display:none;">
+<div class="form-group updateForm" style="display:none;">
   <label for="no">번호</label>
   <input id="no" type='text' class="form-control" readonly>
 </div>
@@ -43,10 +43,13 @@
   <textarea id="description" class="form-control"
     rows='10' cols='80'></textarea>
 </div>
-<button id="btnAdd" type="button" class="btn btn-primary">추가</button>
-<button id="btnChange" type="button" class="btn btn-primary" 
+<button id="btnAdd" type="button" 
+  class="btn btn-primary newForm">추가</button>
+<button id="btnChange" type="button" 
+  class="btn btn-primary updateForm" 
   style="display:none;">변경</button>
-<button id="btnDelete" type="button" class="btn btn-primary"
+<button id="btnDelete" type="button" 
+  class="btn btn-primary updateForm"
   style="display:none;">삭제</button>
 <button id="btnReset" type="reset" class="btn btn-primary">취소</button>
 </form>

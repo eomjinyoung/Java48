@@ -53,9 +53,9 @@ public class SubjectControl {
 	}
 
 	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String update(SubjectVo vo, Model model) {
+	public AjaxResult update(SubjectVo vo, Model model) {
 		subjectService.change(vo);
-		return "redirect:detail.bit?no=" + vo.getNo();
+		return new AjaxResult().setStatus("ok");
 	}
 
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
