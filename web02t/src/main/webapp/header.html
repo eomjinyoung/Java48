@@ -1,0 +1,14 @@
+<div id="header" 
+  style="border:1px solid white;background-color:darkgray;font-weight:bold;font-size:18px;color:white;">
+<span id="loginUsername"></span>(<span id="loginEmail"></span>)
+<a href="#">로그아웃</a>
+</div>
+<script>
+var contextRoot = bit.getContextRootPath();
+
+$('<script>')
+  .attr('src', contextRoot + '/header.js')
+  .appendTo($('body'));
+
+</script>
+
