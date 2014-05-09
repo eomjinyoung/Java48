@@ -1,7 +1,6 @@
 $(function(){
-	var contextPath = bit.getContextRootPath(); 
 	$.getJSON(
-		contextPath + '/auth/getLoginUser.ajax', 
+		bit.contextPath + '/auth/getLoginUser.ajax', 
 		function(jsonObj) {
 			var result = jsonObj.ajaxResult;
 			if (result.status == "ok") {

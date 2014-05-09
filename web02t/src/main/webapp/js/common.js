@@ -6,4 +6,5 @@ bit.getContextRootPath = function() {
 	return currPath.substring(0, end);
 }
 
-bit.contextRoot = bit.getContextRootPath();
+//bit.contextRoot = bit.getContextRootPath();
+bit.contextRoot = 'http://192.168.200.63:9999/web';
